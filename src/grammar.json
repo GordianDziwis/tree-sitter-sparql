@@ -1,0 +1,196 @@
+{
+  "name": "sparql",
+  "rules": {
+    "query_unit": {
+      "type": "SYMBOL",
+      "name": "query"
+    },
+    "query": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "prologue"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "select_query"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "construct_query"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "describe_query"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ask_query"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "values_clause"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "prologue": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "base_declaration"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "prefix_declaration"
+          }
+        ]
+      }
+    },
+    "base_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "BASE"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "iri_reference"
+        }
+      ]
+    },
+    "prefix_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "PREFIX"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pname_ns"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "iri_reference"
+        }
+      ]
+    },
+    "select_query": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "select_clause"
+        }
+      ]
+    },
+    "select_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "SELECT"
+        }
+      ]
+    },
+    "construct_query": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "CONSTRUCT"
+        }
+      ]
+    },
+    "describe_query": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "DESCRIBE"
+        }
+      ]
+    },
+    "ask_query": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "ASK"
+        }
+      ]
+    },
+    "values_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "VALUES"
+        }
+      ]
+    },
+    "iri_reference": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "PATTERN",
+          "value": "([^<>\"{}|^`\\\\\\x00-\\x20])*"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
+    },
+    "pname_ns": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ":"
+        }
+      ]
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    }
+  ],
+  "conflicts": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
+

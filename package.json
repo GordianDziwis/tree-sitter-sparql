@@ -1,0 +1,21 @@
+{
+  "name": "tree-sitter-sparql",
+  "version": "0.0.1",
+  "description": "SPARQL grammar for tree-sitter",
+  "main": "index.js",
+  "scripts": {
+    "test": "tree-sitter test && node test.js"
+  },
+  "keywords": [
+    "parser",
+    "lexer"
+  ],
+  "author": "Gordian Dziwis",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.14.1"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.17.1"
+  }
+}

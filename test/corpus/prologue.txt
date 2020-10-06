@@ -1,0 +1,42 @@
+=================
+Base declaration
+=================
+
+
+BASE <https://www.example.com>
+
+SELECT
+
+
+---
+
+
+(query_unit
+  (query
+    (prologue
+      (base_declaration
+        (iri_reference))) 
+    (select_query
+      (select_clause))))
+
+=================
+Prefix declaration
+=================
+
+
+PREFIX : <https://www.example.com>
+
+SELECT
+
+
+---
+
+
+(query_unit
+  (query
+    (prologue
+      (prefix_declaration
+        (pname_ns)
+        (iri_reference))) 
+    (select_query
+      (select_clause))))

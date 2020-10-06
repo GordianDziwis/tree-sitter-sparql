@@ -1,0 +1,18 @@
+==============
+Values clause
+==============
+
+
+SELECT
+
+VALUES
+
+
+---
+
+
+(query_unit
+  (query 
+    (select_query 
+      (select_clause)) 
+    (values_clause)))

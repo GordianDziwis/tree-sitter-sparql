@@ -1,0 +1,195 @@
+[
+  {
+    "type": "ask_query",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "base_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "iri_reference",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "construct_query",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "describe_query",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "iri_reference",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "pname_ns",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "prefix_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "pname_ns",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "prologue",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "base_declaration",
+          "named": true
+        },
+        {
+          "type": "prefix_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "query",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ask_query",
+          "named": true
+        },
+        {
+          "type": "construct_query",
+          "named": true
+        },
+        {
+          "type": "describe_query",
+          "named": true
+        },
+        {
+          "type": "prologue",
+          "named": true
+        },
+        {
+          "type": "select_query",
+          "named": true
+        },
+        {
+          "type": "values_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "query_unit",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "query",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "select_clause",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "select_query",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "select_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "values_clause",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": "ASK",
+    "named": false
+  },
+  {
+    "type": "BASE",
+    "named": false
+  },
+  {
+    "type": "CONSTRUCT",
+    "named": false
+  },
+  {
+    "type": "DESCRIBE",
+    "named": false
+  },
+  {
+    "type": "PREFIX",
+    "named": false
+  },
+  {
+    "type": "SELECT",
+    "named": false
+  },
+  {
+    "type": "VALUES",
+    "named": false
+  }
+]
