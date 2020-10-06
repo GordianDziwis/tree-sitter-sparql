@@ -1,0 +1,115 @@
+==============
+Select query
+==============
+
+
+SELECT
+
+WHERE {
+
+}
+
+---
+
+
+(query_unit
+  (query 
+    (select_query 
+      (select_clause)
+      (where_clause
+        (group_graph_pattern)))))
+
+
+================
+Construct query
+================
+
+
+CONSTRUCT
+
+WHERE {
+  a
+}
+
+---
+
+
+(query_unit
+  (query 
+    (construct_query
+      (triples_template
+        (triples_same_subject
+          (property_list_not_empty
+            (verb)))))))
+
+
+===============
+Describe query
+===============
+
+
+DESCRIBE
+
+*
+
+---
+
+
+(query_unit
+  (query 
+    (describe_query)))
+
+
+==========
+Ask query
+==========
+
+
+ASK
+
+WHERE {}
+
+---
+
+
+(query_unit
+  (query 
+    (ask_query
+      (where_clause
+        (group_graph_pattern)))))
+
+
+===================
+Solution modifiers
+===================
+
+
+SELECT {}
+
+GROUP BY ()
+
+HAVING
+
+ORDER BY
+
+LIMIT
+
+OFFSET
+
+---
+
+
+(query_unit
+  (query 
+    (select_query 
+      (select_clause)
+      (where_clause
+        (group_graph_pattern))
+        (solution_modifier
+          (group_clause
+            (group_condition))
+          (having_clause)
+          (order_clause)
+          (limit_offset_clauses
+            (limit_clause)
+            (offset_clause))))))

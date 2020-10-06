@@ -3,7 +3,7 @@ Values clause
 ==============
 
 
-SELECT
+SELECT {}
 
 VALUES
 
@@ -14,5 +14,7 @@ VALUES
 (query_unit
   (query 
     (select_query 
-      (select_clause)) 
+      (select_clause)
+      (where_clause
+        (group_graph_pattern))) 
     (values_clause)))

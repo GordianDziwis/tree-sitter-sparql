@@ -1,0 +1,26 @@
+======
+Query
+======
+
+SELECT 
+
+FROM
+
+WHERE {
+
+}
+
+VALUES
+
+
+---
+
+
+(query_unit
+  (query
+    (select_query
+      (select_clause) 
+      (dataset_clause)
+      (where_clause
+        (group_graph_pattern)))
+    (values_clause)))

@@ -1,11 +1,12 @@
 =================
-Base declaration
+Prolouge
 =================
 
 
 BASE <https://www.example.com>
+PREFIX : <https://www.example.com>
 
-SELECT
+SELECT {}
 
 
 ---
@@ -15,28 +16,11 @@ SELECT
   (query
     (prologue
       (base_declaration
-        (iri_reference))) 
-    (select_query
-      (select_clause))))
-
-=================
-Prefix declaration
-=================
-
-
-PREFIX : <https://www.example.com>
-
-SELECT
-
-
----
-
-
-(query_unit
-  (query
-    (prologue
+        (iri_reference))
       (prefix_declaration
         (pname_ns)
         (iri_reference))) 
     (select_query
-      (select_clause))))
+      (select_clause)
+      (where_clause
+        (group_graph_pattern)))))
