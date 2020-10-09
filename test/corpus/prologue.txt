@@ -6,7 +6,7 @@ Prolouge
 BASE <https://www.example.com>
 PREFIX : <https://www.example.com>
 
-SELECT {}
+SELECT * {}
 
 
 ---

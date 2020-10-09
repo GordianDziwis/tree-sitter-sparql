@@ -3,7 +3,7 @@ Select query
 ==============
 
 
-SELECT
+SELECT *
 
 WHERE {
 
@@ -84,7 +84,7 @@ Solution modifiers
 ===================
 
 
-SELECT {}
+SELECT * {}
 
 GROUP BY ()
 

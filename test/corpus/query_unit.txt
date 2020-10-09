@@ -2,7 +2,7 @@
 Query
 ======
 
-SELECT 
+SELECT *
 
 FROM
 

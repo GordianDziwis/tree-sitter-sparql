@@ -3,7 +3,7 @@ Values clause
 ==============
 
 
-SELECT {}
+SELECT * {}
 
 VALUES
 
