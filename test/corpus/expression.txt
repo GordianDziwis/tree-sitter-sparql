@@ -1,0 +1,20 @@
+===========
+Expression
+===========
+
+
+SELECT DISTINCT ($xee * 4 AS $b)
+
+WHERE {
+
+}
+
+---
+
+
+(query_unit
+  (query 
+    (select_query 
+      (select_clause)
+      (where_clause
+        (group_graph_pattern)))))

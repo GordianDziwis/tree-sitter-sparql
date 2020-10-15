@@ -3028,21 +3028,24 @@
       "value": "[0-9]+"
     },
     "decimal": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[0-9]*"
-        },
-        {
-          "type": "STRING",
-          "value": "."
-        },
-        {
-          "type": "PATTERN",
-          "value": "[0-9]+"
-        }
-      ]
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[0-9]*"
+          },
+          {
+            "type": "STRING",
+            "value": "."
+          },
+          {
+            "type": "PATTERN",
+            "value": "[0-9]+"
+          }
+        ]
+      }
     },
     "double": {
       "type": "CHOICE",
@@ -3519,22 +3522,54 @@
       ]
     },
     "var_name": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "pn_chars_u"
-            },
-            {
-              "type": "PATTERN",
-              "value": "[0-9]"
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "pn_chars_u"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[0-9]"
+              }
+            ]
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "pn_chars_u"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[0-9]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\u00B7]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\u0300-\\u036F]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\u203F-\\u2040]"
+                }
+              ]
             }
-          ]
-        }
-      ]
+          }
+        ]
+      }
     },
     "pn_chars": {
       "type": "CHOICE",

@@ -254,11 +254,6 @@
     "fields": {}
   },
   {
-    "type": "decimal",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "decimal_negative",
     "named": true,
     "fields": {},
@@ -1485,7 +1480,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
@@ -1974,6 +1969,10 @@
   {
     "type": "a",
     "named": false
+  },
+  {
+    "type": "decimal",
+    "named": true
   },
   {
     "type": "exponent",

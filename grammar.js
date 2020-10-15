@@ -624,7 +624,7 @@ module.exports = grammar({
     integer: $ => /[0-9]+/,
 
     // [147]
-    decimal: $ => seq(/[0-9]*/, '.', /[0-9]+/),
+    decimal: $ => token(seq(/[0-9]*/, '.', /[0-9]+/)),
 
     // [148]
     double: $ => choice(
@@ -752,13 +752,19 @@ module.exports = grammar({
     ),
 
     // [166]
-    var_name: $ => seq(
+    var_name: $ => prec.right(seq(
       choice(
         $.pn_chars_u,
         /[0-9]/
       ),
-      // TODO
-    ),
+      repeat(choice(
+        $.pn_chars_u,
+        /[0-9]/,
+        /[\u00B7]/,
+        /[\u0300-\u036F]/,
+        /[\u203F-\u2040]/
+      ))
+    )),
 
     // [167]
     pn_chars: $ => choice(
