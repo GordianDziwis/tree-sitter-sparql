@@ -1,0 +1,102 @@
+=================
+Unary expression
+=================
+
+
+SELECT ( -?a AS $x ) {}
+
+
+---
+
+(unit
+  (select_query 
+    (select_clause 
+      (unary_expression
+        (var))
+      (var))
+    (where_clause
+      (group_graph_pattern)))) 
+
+
+==================
+Binary expression
+==================
+
+
+SELECT ( ?a + ?b AS $x ) {}
+
+
+---
+
+(unit
+  (select_query 
+    (select_clause 
+      (binary_expression
+        (var)
+        (var))
+      (var))
+    (where_clause
+      (group_graph_pattern))))
+
+==================
+Precedence levels
+==================
+
+
+SELECT ( ?a + ?b * 1 AS $x ) {}
+
+
+---
+
+(unit
+  (select_query 
+    (select_clause 
+      (binary_expression
+        (var)
+        (binary_expression
+          (var)
+          (integer)))
+      (var))
+    (where_clause
+      (group_graph_pattern))))
+
+=================
+Iri and literals
+=================
+
+
+SELECT * {}
+
+VALUES ?a {
+  <http://example.org/foo>
+  <foo>
+  example:foo
+  'foo'@de
+  'foo'^^<http://example.org/foo>
+  '''foo"bar'foo'"'''
+}
+
+
+---
+
+(unit
+  (select_query 
+    (select_clause)
+    (where_clause
+      (group_graph_pattern))) 
+  (values_clause 
+    (inline_data_one_var
+      (var)
+      (iri_reference)
+      (iri_reference)
+      (prefixed_name
+        (pn_prefix)
+        (pn_local))
+      (rdf_literal
+        (string_literal1)
+        (lang_tag))
+      (rdf_literal
+        (string_literal1)
+        (iri_reference))
+      (rdf_literal
+        (string_literal_long1)))))

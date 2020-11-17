@@ -1,0 +1,75 @@
+=============
+Alternative
+=============
+
+SELECT * {
+  ?s :a|:b ?o
+}
+
+---
+
+(unit
+  (select_query
+    (select_clause)
+    (where_clause
+      (group_graph_pattern
+        (triples_block
+          (triples_same_subject_path
+            (var)
+            (property_list_path
+              (binary_path
+                (path_element (prefixed_name (pn_local)))
+                (path_element (prefixed_name (pn_local))))
+            (object_list_path (var)))))))))
+
+=========
+Sequence
+=========
+
+SELECT * {
+  ?s :a/:b ?o
+}
+
+---
+
+(unit
+  (select_query
+    (select_clause)
+    (where_clause
+      (group_graph_pattern
+        (triples_block
+          (triples_same_subject_path
+            (var)
+            (property_list_path
+              (binary_path
+                (path_element (prefixed_name (pn_local)))
+                (path_element (prefixed_name (pn_local))))
+            (object_list_path (var)))))))))
+
+=========
+Modifier
+=========
+
+SELECT * {
+  ?s ^:p? ?o
+}
+
+---
+
+
+(unit
+  (select_query
+    (select_clause)
+    (where_clause
+      (group_graph_pattern
+        (triples_block
+          (triples_same_subject_path
+            (var)
+            (property_list_path 
+              (path_element
+                (path_inverse)
+                (prefixed_name (pn_local))
+                (path_mod))
+            (object_list_path (var)))))))))
+
+

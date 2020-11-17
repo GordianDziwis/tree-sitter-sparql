@@ -4,23 +4,21 @@ Prolouge
 
 
 BASE <https://www.example.com>
-PREFIX : <https://www.example.com>
+PREFIX ex:<https://www.example.com>
 
 SELECT * {}
 
 
 ---
 
-
-(query_unit
-  (query
-    (prologue
-      (base_declaration
-        (iri_reference))
-      (prefix_declaration
-        (pname_ns)
-        (iri_reference))) 
-    (select_query
-      (select_clause)
-      (where_clause
-        (group_graph_pattern)))))
+(unit
+  (prologue
+    (base_declaration
+      (iri_reference))
+    (prefix_declaration
+      (pn_prefix)
+      (iri_reference))) 
+  (select_query
+    (select_clause)
+    (where_clause
+      (group_graph_pattern))))

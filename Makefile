@@ -1,5 +1,5 @@
-generate:
+build:
 	tree-sitter generate
 
-test: generate
+develop: build
 	tree-sitter test

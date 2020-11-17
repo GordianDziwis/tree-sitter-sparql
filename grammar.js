@@ -1,13 +1,87 @@
+// [160]
+const ECHAR = /\\\\[tbnrf\\"']/
+
+// [162]
+const WS = [
+  /\x20/,
+  /\x09/,
+  /\x0D/,
+  /\x0A/
+]
+
+// [164]
+const PN_CHARS_BASE = [
+  /[A-Z]/,
+  /[a-z]/,
+  // /[\u00C0-\u00D6]/,
+  // /[\u00D8-\u00F6]/,
+  // /[\u00F8-\u02FF]/,
+  // /[\u0370-\u037D]/,
+  // /[\u037F-\u1FFF]/,
+  // /[\u200C-\u200D]/,
+  // /[\u2070-\u218F]/,
+  // /[\u2C00-\u2FEF]/,
+  // /[\u3001-\uD7FF]/,
+  // /[\uF900-\uFDCF]/,
+  // /[\uFDF0-\uFFFD]/,
+  // /[\u{10000}-\u{EFFFF}]/u
+]
+
+// [165]
+const PN_CHARS_U = PN_CHARS_BASE.concat('_')
+
+// [167]
+const PN_CHARS = PN_CHARS_U.concat([
+  '-',
+  /[0-9]/,
+  /[\u00B7]/,
+  /[\u0300-\u036F]/,
+  /[\u203F-\u2040]/
+])
+
+// [172]
+const HEX = [
+  /[0-9]/,
+  /[A-F]/,
+  /[a-f]/
+]
+
+// [173]
+const PN_LOCAL_ESC = [
+  '_',
+  '~',
+  '.',
+  '-',
+  '!',
+  '$',
+  '&',
+  "'",
+  '(',
+  ')',
+  '*',
+  '+',
+  ',',
+  ';',
+  '=',
+  '/',
+  '?',
+  '#',
+  '@',
+  '%'
+].map(char => '\\' + char)
+
 module.exports = grammar({
   name: 'sparql',
 
   rules: {
 
-    // [1]
-    query_unit: $ => $.query,
+    unit: $ => choice(
+      $._query,
+      $._update
+    ),
 
     // [2]
-    query: $ => seq(
+    _query: $ => seq(
       optional($.prologue),
       choice(
         $.select_query,
@@ -16,6 +90,32 @@ module.exports = grammar({
         $.ask_query,
       ),
       optional($.values_clause)
+    ),
+
+    // [3]
+    // [29]
+    // [30]
+    _update: $ => seq(
+      $.prologue,
+      optional(seq(
+        choice(
+          $.load,
+          $.clear,
+          $.drop,
+          $.add,
+          $.move,
+          $.copy,
+          $.create,
+          $.insert_data,
+          $.delete_data,
+          $.delete_where,
+          $.modify
+        ),
+        optional(seq(
+          ';',
+          $._update
+        ))
+      ))
     ),
 
     // [4]
@@ -33,7 +133,7 @@ module.exports = grammar({
     // [6]
     prefix_declaration: $ => seq(
       'PREFIX',
-      $.pname_ns,
+      $._namespace,
       $.iri_reference
     ),
 
@@ -43,6 +143,14 @@ module.exports = grammar({
       repeat($.dataset_clause),
       $.where_clause,
       optional($.solution_modifier)
+    ),
+
+    // [8]
+    sub_select: $ => seq(
+      $.select_clause,
+      $.where_clause,
+      optional($.solution_modifier),
+      optional($.values_clause)
     ),
 
     // [9]
@@ -55,7 +163,7 @@ module.exports = grammar({
       choice(
         repeat1(choice(
           $.var,
-          seq('(', $.expression, 'AS', $.var, ')')
+          seq('(', $._expression, 'AS', $.var, ')')
         )),
         '*'
       )
@@ -83,7 +191,7 @@ module.exports = grammar({
     describe_query: $ => seq(
       'DESCRIBE',
       choice(
-        repeat1($.var_or_iri),
+        repeat1($._var_or_iri),
         '*'
       ),
       repeat($.dataset_clause),
@@ -101,9 +209,24 @@ module.exports = grammar({
 
     // [13]
     dataset_clause: $ => seq(
-      'FROM'
-      // TODO
+      'FROM',
+      choice(
+        $.default_graph_clause,
+        $.named_graph_clause
+      )
     ),
+
+    // [14]
+    default_graph_clause: $ => $.source_selector,
+
+    // [15]
+    named_graph_clause: $ => seq(
+      'NAMED',
+      $.source_selector
+    ),
+
+    // [16]
+    source_selector: $ => $._iri,
 
     // [17]
     where_clause: $ => seq(
@@ -149,30 +272,46 @@ module.exports = grammar({
 
     // [20]
     group_condition: $ => choice(
-      // TODO
+      $._build_in_call,
+      $.function_call,
       seq(
         '(',
-        //TODO
+        $._expression,
+        optional(seq('AS', $.var)),
         ')'
       ),
-      // TODO
+      $.var
     ),
 
     // [21]
     having_clause: $ => seq(
       'HAVING',
-      // TODO
+      repeat1($.having_condition)
     ),
+
+    // [22]
+    having_condition: $ => $._constraint,
 
     // [23]
     order_clause: $ => seq(
       'ORDER',
       'BY',
-      // TODO
+      repeat1($.order_condition)
+    ),
+
+    // [24]
+    order_condition: $ => choice(
+      seq(
+        choice('ASC', 'DESC'),
+        $.bracketted_expression
+      ),
+      choice(
+        $._constraint,
+        $.var
+      )
     ),
 
     // [25]
-    // TODO Hide?
     limit_offset_clauses: $ => choice(
       seq($.limit_clause, optional($.offset_clause)),
       seq($.offset_clause, optional($.limit_clause)
@@ -182,19 +321,153 @@ module.exports = grammar({
     // [26]
     limit_clause: $ => seq(
       'LIMIT',
-      // TODO
+      $.integer
     ),
 
     // [27]
     offset_clause: $ => seq(
       'OFFSET',
-      // TODO
+      $.integer
     ),
 
     // [28]
     values_clause: $ => seq(
       'VALUES',
-      // TODO
+      $._data_block
+    ),
+
+    // [31]
+    load: $ => seq(
+      'LOAD',
+      optional('SILENT'),
+      $._iri,
+      optional(seq('INTO', $.graph_ref))
+    ),
+
+    // [32]
+    clear: $ => seq(
+      'CLEAR',
+      optional('SILENT'),
+      $.graph_ref_all
+    ),
+
+    // [33]
+    drop: $ => seq(
+      'DROP',
+      optional('SILENT'),
+      $.graph_ref_all
+    ),
+
+    // [34]
+    create: $ => seq(
+      'CREATE',
+      optional('SILENT'),
+      $.graph_ref
+    ),
+
+    // [35]
+    add: $ => seq(
+      'ADD',
+      optional('SILENT'),
+      $.graph_or_default,
+      'TO',
+      $.graph_or_default
+    ),
+
+    // [36]
+    move: $ => seq(
+      'MOVE',
+      optional('SILENT'),
+      $.graph_or_default,
+      'TO',
+      $.graph_or_default
+    ),
+
+    // [37]
+    copy: $ => seq(
+      'COPY',
+      optional('SILENT'),
+      $.graph_or_default,
+      'TO',
+      $.graph_or_default
+    ),
+
+    // [38]
+    insert_data: $ => seq('INSERT DATA', $.quads),
+
+    // [39]
+    delete_data: $ => seq('DELETE DATA', $.quads),
+
+    // [40]
+    delete_where: $ => seq('DELETE WHERE', $.quads),
+
+    // [41]
+    modify: $ => seq(
+      optional(seq('WITH', $._iri)),
+      choice(
+        seq($.delete_clause, optional($.insert_clause)),
+        $.insert_clause
+      ),
+      repeat($.using_clause),
+      'WHERE',
+      $.group_graph_pattern
+    ),
+
+    // [42]
+    delete_clause: $ => seq('DELETE', $.quads),
+
+    // [43]
+    insert_clause: $ => seq('INSERT', $.quads),
+
+    // [44]
+    using_clause: $ => seq(
+      'USING',
+      choice(
+        $._iri,
+        seq('NAMED', $._iri)
+      )
+    ),
+
+    // [45]
+    graph_or_default: $ => choice(
+      'DEFAULT',
+      seq(
+        optional('GRAPH'),
+        $._iri)
+    ),
+
+    // [46]
+    graph_ref: $ => seq('GRAPH', $._iri),
+
+    // [47]
+    graph_ref_all: $ => choice(
+      $.graph_ref,
+      'DEFAULT',
+      'NAMED',
+      'ALL'
+    ),
+
+    // [48]
+    // [49]
+    // [50]
+    quads: $ => seq(
+      '{',
+      optional($.triples_template),
+      repeat(seq(
+        $.quads_not_triples,
+        optional('?'),
+        optional($.triples_template),
+      )),
+      '}'
+    ),
+
+    // [51]
+    quads_not_triples: $ => seq(
+      'GRAPH',
+      $._var_or_iri,
+      '{',
+      optional($.triples_template),
+      '}'
     ),
 
     // [52]
@@ -204,10 +477,135 @@ module.exports = grammar({
     ),
 
     // [53]
+    // [54]
     group_graph_pattern: $ => seq(
       '{',
-      // TODO
+      choice(
+        $.sub_select,
+        seq(
+          optional($.triples_block),
+          repeat(seq(
+            $._graph_pattern_not_triples,
+            optional('.'),
+            optional($.triples_block)
+          ))
+        )
+      ),
       '}'
+    ),
+
+    // [55]
+    triples_block: $ => seq(
+      $.triples_same_subject_path,
+      optional(seq(
+        '.',
+        optional($.triples_block)
+      ))
+    ),
+
+    // [56]
+    _graph_pattern_not_triples: $ => choice(
+      $.group_or_union_graph_pattern,
+      $.optional_graph_pattern,
+      $.minus_graph_pattern,
+      $.graph_graph_pattern,
+      $.service_graph_pattern,
+      $.filter,
+      $.bind,
+      $.inline_data
+    ),
+
+    // [57]
+    optional_graph_pattern: $ => seq('OPTIONAL', $.group_graph_pattern),
+
+    // [58]
+    graph_graph_pattern: $ => seq(
+      'GRAPH',
+      $._var_or_iri,
+      $.group_graph_pattern
+    ),
+
+    // [59]
+    service_graph_pattern: $ => seq(
+      'SERVICE',
+      optional('SILENT'),
+      $._var_or_iri,
+      $.group_graph_pattern
+    ),
+
+    // [60]
+    bind: $ => seq(
+      'BIND',
+      '(',
+      $._expression,
+      'AS',
+      $.var,
+      ')'
+    ),
+
+    // [61]
+    inline_data: $ => seq('VALUES', $._data_block),
+
+    // [62]
+    _data_block: $ => choice(
+      $.inline_data_one_var,
+      $.inline_data_full
+    ),
+
+    // [63]
+    inline_data_one_var: $ => seq(
+      $.var,
+      '{',
+      repeat($._data_block_value),
+      '}'
+    ),
+
+    // [64]
+    inline_data_full: $ => seq(
+      choice(
+        $.nil,
+        seq('(', repeat1($.var), ')')
+      ),
+      '{',
+      repeat(choice(
+        seq('(', repeat1($._data_block_value), ')'),
+        $.nil
+      )),
+      '}'
+    ),
+
+    // [65]
+    _data_block_value: $ => choice(
+      $._iri,
+      $.rdf_literal,
+      $._numeric_literal,
+      $.boolean_literal,
+      'UNDEF'
+    ),
+
+    // [66]
+    minus_graph_pattern: $ => seq('MINUS', $.group_graph_pattern),
+
+    // [67]
+    group_or_union_graph_pattern: $ => seq(
+      $.group_graph_pattern,
+      repeat(seq('UNION', $.group_graph_pattern))
+    ),
+
+    // [68]
+    filter: $ => seq('FILTER', $._constraint),
+
+    // [69]
+    _constraint: $ => choice(
+      $.bracketted_expression,
+      $._build_in_call,
+      $.function_call
+    ),
+
+    // [70]
+    function_call: $ => seq(
+      $._iri,
+      $.arg_list
     ),
 
     // [71]
@@ -216,8 +614,8 @@ module.exports = grammar({
       seq(
         '(',
         optional('DISTINCT'),
-        $.expression,
-        repeat(seq(',', $.expression)),
+        $._expression,
+        repeat(seq(',', $._expression)),
         ')'
       )
     ),
@@ -227,8 +625,8 @@ module.exports = grammar({
       $.nil,
       seq(
         '(',
-        $.expression,
-        repeat(seq(',', $.expression)),
+        $._expression,
+        repeat(seq(',', $._expression)),
         ')'
       )
     ),
@@ -236,138 +634,296 @@ module.exports = grammar({
     // [73]
     construct_template: $ => seq(
       '{',
-      // TODO
+          $.construct_triples,
       '}'
     ),
 
+    // [74]
+    construct_triples: $ => seq(
+      $.triples_same_subject,
+      optional(seq(
+        '.',
+        optional($.construct_triples)
+      ))
+    ),
+
     // [75]
+    // [76]
     triples_same_subject: $ => choice(
       seq(
-        // TODO
-        $.property_list_not_empty
+        $._var_or_term,
+        $.property_list
       ),
       seq(
-        $.triples_node
-        // TODO
+        $._triples_node,
+        optional($.property_list)
       )
     ),
 
     // [77]
-    property_list_not_empty: $ => seq(
-      $.verb,
-      // TODO
+    // [78]
+    property_list: $ => seq(
+      field('predicate', choice(
+        $._var_or_iri,
+        'a'
+      )),
+      $.object_list,
+      repeat(
+        seq(
+          ';',
+          optional(seq(
+            field('predicate', choice(
+              $._var_or_iri,
+              'a'
+            )),
+            $.object_list
+          ))
+        )
+      )
     ),
 
-    // [78]
-    verb: $ => choice(
-      // TODO
-      'a'
+    // [79]
+    // [80]
+    object_list: $ => seq(
+      $._graph_node,
+      repeat(seq(',', $._graph_node))
+    ),
+
+    // [81]
+    // [82]
+    triples_same_subject_path: $ => choice(
+      seq(
+        field('subject', $._var_or_term),
+        $.property_list_path),
+      seq(
+        $._triples_node_path,
+        optional($.property_list_path)
+      )
+    ),
+
+    // [83]
+    // [84]
+    // [85]
+    property_list_path: $ => seq(
+      field('predicate', choice(
+        $._path,
+        $.var
+      )),
+      $.object_list_path,
+      repeat(seq(
+        ';',
+        optional(seq(
+          field('predicate', choice(
+            $._path,
+            $.var
+          )),
+          $.object_list,
+        ))
+      ))
+    ),
+
+    // [86]
+    // [87]
+    object_list_path: $ => seq(
+      $._graph_node_path,
+      repeat(seq(',', $._graph_node_path)
+      )
+    ),
+
+    // [88 - 92]
+    _path: $ => choice(
+      $.path_element,
+      $.binary_path
+    ),
+
+    binary_path: $ => choice(
+      prec.left(1, seq($._path, '/', $._path)),
+      prec.left(seq($._path, '|', $._path))
+    ),
+
+    path_element: $ => seq(
+      optional($.path_inverse),
+      $._primary_path,
+      optional($.path_mod)
+    ),
+
+    // [92]
+    path_inverse: $ => '^',
+
+    // [93]
+    path_mod: $ => token(choice(
+      '?',
+      '*',
+      '+'
+    )),
+
+    // [94]
+    _primary_path: $ => choice(
+      $._iri,
+      'a',
+      seq('!', $.path_negated_property_set),
+      seq('(', $._path, ')')
+    ),
+
+    // [95]
+    path_negated_property_set: $ => choice(
+      $.path_one_in_property_set,
+      seq(
+        '(',
+        optional(seq(
+          $.path_one_in_property_set,
+          repeat(seq('|', $.path_one_in_property_set)),
+        )),
+        ')'
+      )
+    ),
+
+    // [96]
+    path_one_in_property_set: $ => choice(
+      $._iri,
+      'a',
+      seq(
+        '^',
+        choice(
+          $._iri,
+          'a'
+        )
+      )
     ),
 
     // [98]
-    triples_node: $ => choice(
+    _triples_node: $ => choice(
       $.collection,
-      // TODO
+      $.blank_node_property_list
+    ),
+
+    // [99]
+    blank_node_property_list: $ => seq(
+      '[',
+      $.property_list,
+      ']'
+    ),
+
+    // [100]
+    _triples_node_path: $ => choice(
+      $.collection_path,
+      $.blank_node_property_list_path
+    ),
+
+    // [101]
+    blank_node_property_list_path: $ => seq(
+      '[',
+      $.property_list_path,
+      ']'
     ),
 
     // [102]
     collection: $ => seq(
       '(',
-      // TODO
+      repeat1($._graph_node),
       ')'
     ),
 
-    // [107]
-    var_or_iri: $ => choice(
+    // [103]
+    collection_path: $ => seq(
+      '(',
+      repeat1($._graph_node_path),
+      ')'
+    ),
+
+    // [104]
+    _graph_node: $ => choice(
+      $._var_or_term,
+      $._triples_node
+    ),
+
+    // [105]
+    _graph_node_path: $ => choice(
+      $._var_or_term,
+      $._triples_node_path
+    ),
+
+    // [106]
+    _var_or_term: $ => choice(
       $.var,
-      $.iri,
+      $._graph_term
     ),
 
-    // [108]
-    var: $ => choice(
-      $.var_1,
-      $.var_2,
+    // [107]
+    _var_or_iri: $ => choice(
+      $.var,
+      $._iri,
     ),
 
-    // [110]
-    expression: $ => $.conditional_or_expression,
-
-    // [111]
-    conditional_or_expression: $ => seq(
-      $.conditional_and_expression,
-      repeat(seq('||', $.conditional_and_expression))
-    ),
-
-    // [112]
-    conditional_and_expression: $ => seq(
-      $.value_logical,
-      repeat(seq('&&', $.value_logical))
-    ),
-
-    // [113]
-    value_logical: $ => $.relational_expression,
-
-    // [114]
-    relational_expression: $ => seq(
-      $.numeric_expression,
-      optional(choice(
-        seq('=', $.numeric_expression),
-        seq('!=', $.numeric_expression),
-        seq('<', $.numeric_expression),
-        seq('>', $.numeric_expression),
-        seq('<=', $.numeric_expression),
-        seq('>=', $.numeric_expression),
-        seq('IN', $.expression_list),
-        seq('NOT', 'IN', $.expression_list),
-      ))
-    ),
-
-    // [115]
-    numeric_expression: $ => $.additive_expression,
-
-    // [116]
-    additive_expression: $ => seq(
-      $.multiplicative_expression,
+    // [108, 143, 144, 166]
+    var: $ => token(seq(
+      choice(
+        '?',
+        '$'
+      ),
+      choice(
+        ...PN_CHARS_U,
+        /[0-9]/
+      ),
       repeat(choice(
-        seq('+', $.multiplicative_expression),
-        seq('-', $.multiplicative_expression),
-        seq(
-          choice(
-            $.numeric_literal_positive,
-            $.numeric_literal_negative
-          ),
-          repeat(choice(
-            seq('*', $.unary_expression),
-            seq('/', $.unary_expression)
-          ))
-        )
+        ...PN_CHARS_U,
+        /[0-9]/,
+        /[\u00B7]/,
+        /[\u0300-\u036F]/,
+        /[\u203F-\u2040]/
       ))
+    )),
+
+    // [109]
+    _graph_term: $ => choice(
+      $._iri,
+      $.rdf_literal,
+      $._numeric_literal,
+      $.boolean_literal,
+      $._blank_node,
+      $.nil
     ),
 
-    // [117]
-    multiplicative_expression: $ => seq(
+    _expression: $ => choice(
+      $._primary_expression,
       $.unary_expression,
-      repeat(choice(
-        seq('*', $.unary_expression),
-        seq('/', $.unary_expression)
-      ))
+      $.binary_expression
+    ),
+
+    // [110 - 117]
+    binary_expression: $ => choice(
+      // conditional
+      prec.left(seq($._expression, '||', $._expression)),
+      prec.left(1, seq($._expression, '&&', $._expression)),
+      // relational
+      prec.left(2, seq($._expression, '=', $._expression)),
+      prec.left(2, seq($._expression, '<', $._expression)),
+      prec.left(2, seq($._expression, '>', $._expression)),
+      prec.left(2, seq($._expression, '<=', $._expression)),
+      prec.left(2, seq($._expression, '>=', $._expression)),
+      prec.left(2, seq($._expression, 'IN', $.expression_list)),
+      prec.left(2, seq($._expression, 'NOT', 'IN', $.expression_list)),
+      // numeric
+      prec.left(3, seq($._expression, '+', $._expression)),
+      prec.left(3, seq($._expression, '-', $._expression)),
+      prec.left(4, seq($._expression, '*', $._expression)),
+      prec.left(4, seq($._expression, '/', $._expression)),
     ),
 
     // [118]
     unary_expression: $ => choice(
-      seq('!', $.primary_expression),
-      seq('+', $.primary_expression),
-      seq('-', $.primary_expression),
-      $.primary_expression
+      seq('!', $._primary_expression),
+      seq('+', $._primary_expression),
+      seq('-', $._primary_expression),
     ),
 
     // [119]
-    primary_expression: $ => choice(
+    _primary_expression: $ => choice(
       $.bracketted_expression,
-      $.built_in_call,
+      $._build_in_call,
       $.iri_or_function,
       $.rdf_literal,
-      $.numeric_literal,
+      $._numeric_literal,
       $.boolean_literal,
       $.var
     ),
@@ -375,16 +931,16 @@ module.exports = grammar({
     // [120]
     bracketted_expression: $ => seq(
       '(',
-      $.expression,
+      $._expression,
       ')'
     ),
 
     // [121]
-    built_in_call: $ => choice(
+    _build_in_call: $ => choice(
       $.aggregate,
       seq('STR', $.bracketted_expression),
       seq('LANG', $.bracketted_expression),
-      seq('LANGMATCHES', '(', $.expression, ',', $.expression, ')'),
+      seq('LANGMATCHES', '(', $._expression, ',', $._expression, ')'),
       seq('DATATYPE', $.bracketted_expression),
       seq('BOUND', '(', $.var, ')'),
       seq('IRI', $.bracketted_expression),
@@ -404,11 +960,11 @@ module.exports = grammar({
       seq('UCASE', $.bracketted_expression),
       seq('LCASE', $.bracketted_expression),
       seq('ENCODE_FOR_URI', $.bracketted_expression),
-      seq('CONTAINS', '(', $.expression, ',', $.expression, ')'),
-      seq('STRSTARTS', '(', $.expression, ',', $.expression, ')'),
-      seq('STRENDS', '(', $.expression, ',', $.expression, ')'),
-      seq('STRBEFORE', '(', $.expression, ',', $.expression, ')'),
-      seq('STRAFTER', '(', $.expression, ',', $.expression, ')'),
+      seq('CONTAINS', '(', $._expression, ',', $._expression, ')'),
+      seq('STRSTARTS', '(', $._expression, ',', $._expression, ')'),
+      seq('STRENDS', '(', $._expression, ',', $._expression, ')'),
+      seq('STRBEFORE', '(', $._expression, ',', $._expression, ')'),
+      seq('STRAFTER', '(', $._expression, ',', $._expression, ')'),
       seq('YEAR', $.bracketted_expression),
       seq('MONTH', $.bracketted_expression),
       seq('DAY', $.bracketted_expression),
@@ -426,10 +982,10 @@ module.exports = grammar({
       seq('SHA384', $.bracketted_expression),
       seq('SHA512', $.bracketted_expression),
       seq('COALESCE', $.expression_list),
-      seq('IF', '(', $.expression, ',', $.expression, ',', $.expression, ')'),
-      seq('STRLANG', '(', $.expression, ',', $.expression, ')'),
-      seq('STRDT', '(', $.expression, ',', $.expression, ')'),
-      seq('sameTerm', '(', $.expression, ',', $.expression, ')'),
+      seq('IF', '(', $._expression, ',', $._expression, ',', $._expression, ')'),
+      seq('STRLANG', '(', $._expression, ',', $._expression, ')'),
+      seq('STRDT', '(', $._expression, ',', $._expression, ')'),
+      seq('sameTerm', '(', $._expression, ',', $._expression, ')'),
       seq('isIRI', $.bracketted_expression),
       seq('isURI', $.bracketted_expression),
       seq('isBLANK', $.bracketted_expression),
@@ -444,10 +1000,10 @@ module.exports = grammar({
     regex_expression: $ => seq(
       'REGEX',
       '(',
-      $.expression,
+      $._expression,
       ',',
-      $.expression,
-      optional(seq(',', $.expression)),
+      $._expression,
+      optional(seq(',', $._expression)),
       ')'
     ),
 
@@ -455,10 +1011,10 @@ module.exports = grammar({
     substring_expression: $ => seq(
       'SUBSTR',
       '(',
-      $.expression,
+      $._expression,
       ',',
-      $.expression,
-      optional(seq(',', $.expression)),
+      $._expression,
+      optional(seq(',', $._expression)),
       ')'
     ),
 
@@ -466,12 +1022,12 @@ module.exports = grammar({
     string_replace_expression: $ => seq(
       'REPLACE',
       '(',
-      $.expression,
+      $._expression,
       ',',
-      $.expression,
+      $._expression,
       ',',
-      $.expression,
-      optional(seq(',', $.expression)),
+      $._expression,
+      optional(seq(',', $._expression)),
       ')'
     ),
 
@@ -495,65 +1051,43 @@ module.exports = grammar({
         optional('DISTINCT'),
         choice(
           '*',
-          $.expression
+          $._expression
         ),
         ')'
       ),
-      seq('SUM', '(', optional('DISTINCT'), $.expression, ')'),
-      seq('MIN', '(', optional('DISTINCT'), $.expression, ')'),
-      seq('MAX', '(', optional('DISTINCT'), $.expression, ')'),
-      seq('AVG', '(', optional('DISTINCT'), $.expression, ')'),
-      seq('SAMPLE', '(', optional('DISTINCT'), $.expression, ')'),
+      seq('SUM', '(', optional('DISTINCT'), $._expression, ')'),
+      seq('MIN', '(', optional('DISTINCT'), $._expression, ')'),
+      seq('MAX', '(', optional('DISTINCT'), $._expression, ')'),
+      seq('AVG', '(', optional('DISTINCT'), $._expression, ')'),
+      seq('SAMPLE', '(', optional('DISTINCT'), $._expression, ')'),
       seq(
         'GROUP_CONCAT', '(',
         optional('DISTINCT'),
-        $.expression,
-        optional(seq(';', 'SEPARATOR', '=', $.string)),
+        $._expression,
+        optional(seq(';', 'SEPARATOR', '=', $._string)),
         ')'
       ),
     ),
 
     // [128]
     iri_or_function: $ => seq(
-      $.iri,
+      $._iri,
       optional($.arg_list)
     ),
 
     // [129]
     rdf_literal: $ => seq(
-      $.string,
+      field('value', $._string),
       optional(choice(
         $.lang_tag,
-        seq('^^', $.iri)
+        field('datatype', seq('^^', $._iri))
       ))
     ),
 
-    // [130]
-    numeric_literal: $ => choice(
-      $.numeric_literal_unsigned,
-      $.numeric_literal_positive,
-      $.numeric_literal_negative
-    ),
-
-    // [131]
-    numeric_literal_unsigned: $ => choice(
+    _numeric_literal: $ => choice(
       $.integer,
       $.decimal,
       $.double
-    ),
-
-    // [132]
-    numeric_literal_positive: $ => choice(
-      $.integer_positive,
-      $.decimal_positive,
-      $.double_positive
-    ),
-
-    // [133]
-    numeric_literal_negative: $ => choice(
-      $.integer_negative,
-      $.decimal_negative,
-      $.double_negative
     ),
 
     // [134]
@@ -564,7 +1098,7 @@ module.exports = grammar({
 
 
     // [135]
-    string: $ => choice(
+    _string: $ => choice(
       $.string_literal1,
       $.string_literal2,
       $.string_literal_long1,
@@ -572,47 +1106,53 @@ module.exports = grammar({
     ),
 
     // [136]
-    iri: $ => choice(
+    _iri: $ => choice(
       $.iri_reference,
       $.prefixed_name
     ),
 
+
     // [137]
-    prefixed_name: $ => choice(
-      $.pname_ns,
-      $.pname_ln
+    // [141]
+    prefixed_name: $ => seq(
+      $._namespace,
+      optional($.pn_local)
+    ),
+
+    // [138]
+    _blank_node: $ => choice(
+      $.blank_node_label,
+      $.anon
     ),
 
     // [139]
-    iri_reference: $ => seq(
+    iri_reference: $ => token(seq(
       '<',
       /([^<>"{}|^`\\\x00-\x20])*/,
       '>'
-    ),
+    )),
 
     // [140]
-    pname_ns: $ => seq(
+    _namespace: $ => seq(
       optional($.pn_prefix),
       ':'
     ),
 
-    // [141]
-    pname_ln: $ => prec(1, seq(
-      $.pname_ns,
-      $.pn_local
+    // [142]
+    blank_node_label: $ => token(seq(
+      '_:',
+      choice(
+        ...PN_CHARS_U,
+        /[0-9]/
+      ),
+      optional(seq(
+        repeat(prec(1, choice(
+          ...PN_CHARS,
+          '.'
+        ))),
+        choice(...PN_CHARS)
+      ))
     )),
-
-    // [143]
-    var_1: $ => seq(
-      '?',
-      $.var_name
-    ),
-
-    // [144]
-    var_2: $ => seq(
-      '$',
-      $.var_name
-    ),
 
     // [145]
     lang_tag: $ => token(seq(
@@ -621,61 +1161,41 @@ module.exports = grammar({
     )),
 
     // [146]
-    integer: $ => /[0-9]+/,
+    integer: $ => token(/[0-9]+/),
 
     // [147]
     decimal: $ => token(seq(/[0-9]*/, '.', /[0-9]+/)),
 
     // [148]
-    double: $ => choice(
-      seq(/[0-9]+/, '.', /[0-9]*/, $.exponent),
-      seq('.', /[0-9]+/, $.exponent),
-      seq(/[0-9]+/, $.exponent)
-    ),
-
-    // [149]
-    integer_positive: $ => prec(1, seq('+', $.integer)),
-
-    // [150]
-    decimal_positive: $ => prec(1, seq('+', $.decimal)),
-
-    // [151]
-    double_positive: $ => prec(1, seq('+', $.double)),
-
-    // [152]
-    integer_negative: $ => prec(1, seq('-', $.integer)),
-
-    // [153]
-    decimal_negative: $ => prec(1, seq('-', $.decimal)),
-
-    // [154]
-    double_negative: $ => prec(1, seq('-', $.double)),
-
     // [155]
-    exponent: $ => token(seq(/[eE]/, /[+-]?/, /[0-9]+/)),
+    double: $ => token(choice(
+      seq(/[0-9]+/, '.', /[0-9]*/, seq(/[eE]/, /[+-]?/, /[0-9]+/)),
+      seq('.', /[0-9]+/, seq(/[eE]/, /[+-]?/, /[0-9]+/)),
+      seq(/[0-9]+/, seq(/[eE]/, /[+-]?/, /[0-9]+/))
+    )),
 
     // [156]
-    string_literal1: $ => seq(
+    string_literal1: $ => token(seq(
       "'",
       repeat(choice(
         /[^\x27\x5C\x0A\x0D]/,
-        $.echar
+        ECHAR
       )),
       "'"
-    ),
+    )),
 
     // [157]
-    string_literal2: $ => seq(
+    string_literal2: $ => token(seq(
       '"',
       repeat(choice(
         /[^\x22\x5C\x0A\x0D]/,
-        $.echar
+        ECHAR
       )),
       '"',
-    ),
+    )),
 
     // [158]
-    string_literal_long1: $ => seq(
+    string_literal_long1: $ => token(seq(
       "'''",
       repeat(seq(
         optional(choice(
@@ -684,14 +1204,14 @@ module.exports = grammar({
         )),
         choice(
           /[^'\\]/,
-          $.echar
+          ECHAR
         )
       )),
       "'''",
-    ),
+    )),
 
     // [159]
-    string_literal_long2: $ => seq(
+    string_literal_long2: $ => token(seq(
       '"""',
       repeat(seq(
         optional(choice(
@@ -700,169 +1220,64 @@ module.exports = grammar({
         )),
         choice(
           /[^"\\]/,
-          $.echar
+          ECHAR
         )
       )),
       '"""',
-    ),
-
-    // [160]
-    echar: $ => seq(
-      '\\',
-      /[tbnrf\\"']/
-    ),
+    )),
 
     // [161]
-    nil: $ => seq(
-      '(',
-      repeat($.ws),
-      ')'
-    ),
-
     // [162]
-    ws: $ => choice(
-      /\x20/,
-      /\x09/,
-      /\x0D/,
-      /\x0A/
-    ),
-
-    // [164]
-    pn_chars_base: $ => choice(
-      /[A-Z]/,
-      /[a-z]/,
-      /[\u00C0-\u00D6]/,
-      /[\u00D8-\u00F6]/,
-      /[\u00F8-\u02FF]/,
-      /[\u0370-\u037D]/,
-      /[\u037F-\u1FFF]/,
-      /[\u200C-\u200D]/,
-      /[\u2070-\u218F]/,
-      /[\u2C00-\u2FEF]/,
-      /[\u3001-\uD7FF]/,
-      /[\uF900-\uFDCF]/,
-      /[\uFDF0-\uFFFD]/,
-      /[\u{10000}-\u{EFFFF}]/u
-    ),
-
-    // [165]
-    pn_chars_u: $ => choice(
-      $.pn_chars_base,
-      '_'
-    ),
-
-    // [166]
-    var_name: $ => prec.right(seq(
-      choice(
-        $.pn_chars_u,
-        /[0-9]/
-      ),
-      repeat(choice(
-        $.pn_chars_u,
-        /[0-9]/,
-        /[\u00B7]/,
-        /[\u0300-\u036F]/,
-        /[\u203F-\u2040]/
-      ))
+    nil: $ => token(seq(
+      '(',
+      repeat(choice(...WS)),
+      ')'
     )),
 
-    // [167]
-    pn_chars: $ => choice(
-      $.pn_chars_u,
-      '-',
-      /[0-9]/,
-      /[\u00B7]/,
-      /[\u0300-\u036F]/,
-      /[\u203F-\u2040]/
-    ),
+    // [163]
+    // [162]
+    anon: $ => token(seq(
+      '[',
+      repeat(choice(...WS)),
+      ']'
+    )),
 
     // [168]
-    pn_prefix: $ => seq(
-      $.pn_chars_base,
+    pn_prefix: $ => token(seq(
+      choice(...PN_CHARS_BASE),
       optional(seq(
         repeat(choice(
-          $.pn_chars,
+          ...PN_CHARS,
           '.'
         )),
-        $.pn_chars
+        choice(...PN_CHARS)
       ))
-    ),
+    )),
 
     // [169]
-    pn_local: $ => prec.right(seq(
-      $.pn_local_start_chars,
-      optional($.pn_local_end)
-    )),
-
-    pn_local_end: $ => seq(
-      repeat($.pn_local_middle_chars),
-      $.pn_local_end_chars
-    ),
-
-
-    // [169a]
-    pn_local_start_chars: $ => choice(
-      $.pn_chars_u,
-      ':',
-      /[0-9]/,
-      $.plx
-    ),
-
-    pn_local_middle_chars: $ => prec(1, choice(
-      $.pn_chars,
-      '.',
-      ':',
-      $.plx
-    )),
-
-    pn_local_end_chars: $ => choice(
-      $.pn_chars,
-      ':',
-      $.plx
-    ),
-
-    // [170]
-    plx: $ => choice(
-      $.percent,
-      $.pn_local_esc
-    ),
-
-    // [171]
-    percent: $ => seq('%', $.hex, $.hex),
-
-    // [172]
-    hex: $ => choice(
-      /[0-9]/,
-      /[A-F]/,
-      /[a-f]/
-    ),
-
-    // [173]
-    pn_local_esc: $ => seq(
-      '\\',
+    pn_local: $ => token.immediate(seq(
       choice(
-        '_',
-        '~',
-        '.',
-        '-',
-        '!',
-        '$',
-        '&',
-        "'",
-        '(',
-        ')',
-        '*',
-        '+',
-        ',',
-        ';',
-        '=',
-        '/',
-        '?',
-        '#',
-        '@',
-        '%'
-      )
-    ),
-
+        ...PN_CHARS_U,
+        ':',
+        /[0-9]/,
+        seq('%', choice(...HEX), choice(...HEX)),
+        ...PN_LOCAL_ESC
+      ),
+      optional(seq(
+        repeat(choice(
+          ...PN_CHARS,
+          '.',
+          ':',
+          seq('%', choice(...HEX), choice(...HEX)),
+          ...PN_LOCAL_ESC
+        )),
+        choice(
+          ...PN_CHARS,
+          ':',
+          seq('%', choice(...HEX), choice(...HEX)),
+          ...PN_LOCAL_ESC
+        )
+      ))
+    )),
   }
 });

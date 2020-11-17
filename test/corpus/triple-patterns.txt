@@ -1,0 +1,128 @@
+======================
+Predicate object list
+======================
+
+
+SELECT *
+
+WHERE {
+  ?s ?p0 ?o0;
+     ?p1 ?o1
+}
+
+
+---
+
+
+(unit
+  (select_query 
+    (select_clause)
+    (where_clause
+      (group_graph_pattern
+          (triples_block
+            (triples_same_subject_path
+              subject: (var)
+              (property_list_path
+                predicate: (var)
+                (object_list_path (var))
+                predicate: (var)
+                (object_list (var)))))))))
+
+
+============
+Object list
+============
+
+
+SELECT *
+
+WHERE {
+  ?s ?p ?o0 , ?o1
+}
+
+
+---
+
+
+(unit
+  (select_query 
+    (select_clause)
+    (where_clause
+      (group_graph_pattern
+          (triples_block
+            (triples_same_subject_path
+              subject: (var)
+              (property_list_path
+                predicate: (var)
+                (object_list_path 
+                  (var)
+                  (var)))))))))
+
+
+===============
+Rdf collection
+===============
+
+
+SELECT *
+
+WHERE {
+  (?foo [:p :o] (?bar))
+}
+
+
+---
+
+
+(unit
+  (select_query 
+    (select_clause)
+    (where_clause
+      (group_graph_pattern
+        (triples_block
+          (triples_same_subject_path
+            (collection_path
+              (var)
+              (blank_node_property_list_path
+                (property_list_path
+                  (path_element
+                    (prefixed_name (pn_local)))
+                (object_list_path
+                  (prefixed_name (pn_local)))))
+              (collection_path (var)))))))))
+
+
+=========
+Rdf:type
+=========
+
+
+SELECT *
+
+WHERE {
+  ?s a ?o .
+  [ a :o ] ?p ?o
+}
+
+
+---
+
+
+(unit
+  (select_query
+    (select_clause)
+    (where_clause
+      (group_graph_pattern
+        (triples_block
+          (triples_same_subject_path
+            (var)
+            (property_list_path
+              (path_element)
+              (object_list_path (var))))
+          (triples_block
+            (triples_same_subject_path
+              (blank_node_property_list_path
+                (property_list_path (path_element)
+                  (object_list_path (prefixed_name (pn_local)))))
+              (property_list_path (var)
+                (object_list_path (var))))))))))

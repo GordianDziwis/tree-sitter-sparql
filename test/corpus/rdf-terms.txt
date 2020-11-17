@@ -1,0 +1,126 @@
+=====
+Iris
+=====
+
+SELECT * {}
+
+VALUES ?var {
+  <http://example.org/foo>
+  <foo>
+  example:foo
+}
+
+---
+
+(unit
+  (select_query
+    (select_clause) 
+    (where_clause
+      (group_graph_pattern)))
+  (values_clause 
+    (inline_data_one_var
+      (var)
+      (iri_reference)
+      (iri_reference)
+      (prefixed_name 
+        (pn_prefix)
+        (pn_local)))))
+
+=========
+Literals
+=========
+
+SELECT * {}
+
+VALUES ?var {
+    'foo'
+  "foo"
+  'foo'@de
+  'foo'^^<http://example.org/foo>
+  '''foo"bar'foo'"'''
+  false
+  'false'^^xsd:boolean
+  1.1
+  1.0e6
+  '1.3'^^xsd:decimal
+}
+
+---
+
+(unit
+  (select_query
+    (select_clause) 
+    (where_clause
+      (group_graph_pattern)))
+  (values_clause 
+    (inline_data_one_var
+      (var)
+      (rdf_literal (string_literal1)) 
+      (rdf_literal (string_literal2)) 
+      (rdf_literal (string_literal1) (lang_tag)) 
+      (rdf_literal (string_literal1) (iri_reference)) 
+      (rdf_literal (string_literal_long1)) 
+      (boolean_literal) 
+      (rdf_literal (string_literal1)
+      (prefixed_name (pn_prefix) (pn_local))) 
+      (decimal)
+      (double)
+      (rdf_literal 
+        (string_literal1) 
+        (prefixed_name
+          (pn_prefix) 
+          (pn_local))))))
+
+================
+Query Variables
+================
+
+SELECT $foo ?bar {}
+
+---
+
+(unit 
+  (select_query 
+    (select_clause (var) (var)) 
+    (where_clause (group_graph_pattern))))
+
+============
+Blank Nodes
+============
+
+SELECT * {
+  [ :p "v" ] .
+  [] :p "v" .
+  :s :q [ :p "v" ]
+}
+
+---
+
+(unit 
+  (select_query 
+    (select_clause)
+    (where_clause 
+      (group_graph_pattern
+        (triples_block
+          (triples_same_subject_path
+            (blank_node_property_list_path
+              (property_list_path
+                (path_element (prefixed_name (pn_local)))
+                (object_list_path
+                  (rdf_literal (string_literal2))))))
+          (triples_block
+            (triples_same_subject_path
+              (anon)
+              (property_list_path
+                (path_element (prefixed_name (pn_local)))
+                (object_list_path (rdf_literal (string_literal2)))))
+            (triples_block
+              (triples_same_subject_path
+                (prefixed_name (pn_local))
+                (property_list_path
+                  (path_element (prefixed_name (pn_local)))
+                  (object_list_path
+                    (blank_node_property_list_path
+                      (property_list_path
+                        (path_element (prefixed_name (pn_local)))
+                        (object_list_path (rdf_literal (string_literal2)))))))))))))))

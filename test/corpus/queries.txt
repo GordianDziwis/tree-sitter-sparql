@@ -1,0 +1,104 @@
+==============
+Select query
+==============
+
+
+SELECT *
+
+WHERE {
+
+}
+
+---
+
+(unit
+  (select_query 
+    (select_clause)
+    (where_clause
+      (group_graph_pattern))))
+
+
+================
+Subselect query
+================
+
+
+SELECT * { 
+  SELECT * {}
+}
+
+---
+
+(unit
+  (select_query 
+    (select_clause)
+    (where_clause
+      (group_graph_pattern
+        (sub_select
+          (select_clause)
+          (where_clause 
+            (group_graph_pattern)))))))
+
+
+================
+Construct query
+================
+
+
+CONSTRUCT {
+  ?s ?p ?o
+}
+
+WHERE {
+  ?s ?p ?o
+}
+
+---
+
+(unit
+  (construct_query
+   (construct_template 
+    (construct_triples 
+      (triples_same_subject (var)
+        (property_list predicate: (var)
+          (object_list (var))))))
+    (where_clause
+      (group_graph_pattern
+        (triples_block
+         (triples_same_subject_path
+              subject: (var)
+              (property_list_path 
+                predicate: (var)
+                (object_list_path (var)))))))))
+
+
+===============
+Describe query
+===============
+
+
+DESCRIBE
+
+*
+
+---
+
+(unit
+  (describe_query))
+
+
+==========
+Ask query
+==========
+
+
+ASK
+
+WHERE {}
+
+---
+
+(unit
+  (ask_query
+    (where_clause
+      (group_graph_pattern))))

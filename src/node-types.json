@@ -1,6 +1,6 @@
 [
   {
-    "type": "additive_expression",
+    "type": "add",
     "named": true,
     "fields": {},
     "children": {
@@ -8,19 +8,7 @@
       "required": true,
       "types": [
         {
-          "type": "multiplicative_expression",
-          "named": true
-        },
-        {
-          "type": "numeric_literal_negative",
-          "named": true
-        },
-        {
-          "type": "numeric_literal_positive",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
+          "type": "graph_or_default",
           "named": true
         }
       ]
@@ -35,11 +23,91 @@
       "required": false,
       "types": [
         {
-          "type": "expression",
+          "type": "aggregate",
           "named": true
         },
         {
-          "type": "string",
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_literal1",
+          "named": true
+        },
+        {
+          "type": "string_literal2",
+          "named": true
+        },
+        {
+          "type": "string_literal_long1",
+          "named": true
+        },
+        {
+          "type": "string_literal_long2",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         }
       ]
@@ -54,11 +122,75 @@
       "required": true,
       "types": [
         {
-          "type": "expression",
+          "type": "aggregate",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
           "named": true
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         }
       ]
@@ -103,27 +235,7 @@
     }
   },
   {
-    "type": "boolean_literal",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "bracketted_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "built_in_call",
+    "type": "binary_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -135,7 +247,23 @@
           "named": true
         },
         {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
           "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
           "named": true
         },
         {
@@ -143,11 +271,15 @@
           "named": true
         },
         {
-          "type": "expression",
+          "type": "expression_list",
           "named": true
         },
         {
-          "type": "expression_list",
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
           "named": true
         },
         {
@@ -156,6 +288,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
           "named": true
         },
         {
@@ -171,7 +307,246 @@
           "named": true
         },
         {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
           "type": "var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "binary_path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_path",
+          "named": true
+        },
+        {
+          "type": "path_element",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "bind",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "blank_node_property_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "property_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "blank_node_property_list_path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "property_list_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "boolean_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "bracketted_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "clear",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "graph_ref_all",
           "named": true
         }
       ]
@@ -180,25 +555,68 @@
   {
     "type": "collection",
     "named": true,
-    "fields": {}
-  },
-  {
-    "type": "conditional_and_expression",
-    "named": true,
     "fields": {},
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "value_logical",
+          "type": "anon",
+          "named": true
+        },
+        {
+          "type": "blank_node_label",
+          "named": true
+        },
+        {
+          "type": "blank_node_property_list",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "collection",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "conditional_or_expression",
+    "type": "collection_path",
     "named": true,
     "fields": {},
     "children": {
@@ -206,7 +624,55 @@
       "required": true,
       "types": [
         {
-          "type": "conditional_and_expression",
+          "type": "anon",
+          "named": true
+        },
+        {
+          "type": "blank_node_label",
+          "named": true
+        },
+        {
+          "type": "blank_node_property_list_path",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "collection_path",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         }
       ]
@@ -246,30 +712,54 @@
   {
     "type": "construct_template",
     "named": true,
-    "fields": {}
-  },
-  {
-    "type": "dataset_clause",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "decimal_negative",
-    "named": true,
     "fields": {},
     "children": {
       "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "decimal",
+          "type": "construct_triples",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "decimal_positive",
+    "type": "construct_triples",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "construct_triples",
+          "named": true
+        },
+        {
+          "type": "triples_same_subject",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "copy",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "graph_or_default",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "create",
     "named": true,
     "fields": {},
     "children": {
@@ -277,7 +767,86 @@
       "required": true,
       "types": [
         {
-          "type": "decimal",
+          "type": "graph_ref",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dataset_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "default_graph_clause",
+          "named": true
+        },
+        {
+          "type": "named_graph_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "default_graph_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "source_selector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "delete_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "quads",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "delete_data",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "quads",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "delete_where",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "quads",
           "named": true
         }
       ]
@@ -296,11 +865,19 @@
           "named": true
         },
         {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        },
+        {
           "type": "solution_modifier",
           "named": true
         },
         {
-          "type": "var_or_iri",
+          "type": "var",
           "named": true
         },
         {
@@ -311,7 +888,7 @@
     }
   },
   {
-    "type": "double",
+    "type": "drop",
     "named": true,
     "fields": {},
     "children": {
@@ -319,46 +896,11 @@
       "required": true,
       "types": [
         {
-          "type": "exponent",
+          "type": "graph_ref_all",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "double_negative",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "double",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "double_positive",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "double",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "echar",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "exists_func",
@@ -376,21 +918,6 @@
     }
   },
   {
-    "type": "expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "conditional_or_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "expression_list",
     "named": true,
     "fields": {},
@@ -399,11 +926,265 @@
       "required": true,
       "types": [
         {
-          "type": "expression",
+          "type": "aggregate",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
           "named": true
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "filter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_call",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arg_list",
+          "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "graph_graph_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "group_graph_pattern",
+          "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "graph_or_default",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "graph_ref",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "graph_ref_all",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "graph_ref",
           "named": true
         }
       ]
@@ -427,30 +1208,260 @@
   {
     "type": "group_condition",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "group_graph_pattern",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "bind",
+          "named": true
+        },
+        {
+          "type": "filter",
+          "named": true
+        },
+        {
+          "type": "graph_graph_pattern",
+          "named": true
+        },
+        {
+          "type": "group_or_union_graph_pattern",
+          "named": true
+        },
+        {
+          "type": "inline_data",
+          "named": true
+        },
+        {
+          "type": "minus_graph_pattern",
+          "named": true
+        },
+        {
+          "type": "optional_graph_pattern",
+          "named": true
+        },
+        {
+          "type": "service_graph_pattern",
+          "named": true
+        },
+        {
+          "type": "sub_select",
+          "named": true
+        },
+        {
+          "type": "triples_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "group_or_union_graph_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "group_graph_pattern",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "having_clause",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "having_condition",
+          "named": true
+        }
+      ]
+    }
   },
   {
-    "type": "hex",
+    "type": "having_condition",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
   },
   {
-    "type": "integer",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "integer_negative",
+    "type": "inline_data",
     "named": true,
     "fields": {},
     "children": {
@@ -458,41 +1469,131 @@
       "required": true,
       "types": [
         {
-          "type": "integer",
+          "type": "inline_data_full",
+          "named": true
+        },
+        {
+          "type": "inline_data_one_var",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "integer_positive",
+    "type": "inline_data_full",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "iri",
+    "type": "inline_data_one_var",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
         {
           "type": "iri_reference",
           "named": true
         },
         {
           "type": "prefixed_name",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "insert_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "quads",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "insert_data",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "quads",
           "named": true
         }
       ]
@@ -511,21 +1612,30 @@
           "named": true
         },
         {
-          "type": "iri",
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "iri_reference",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "limit_clause",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "limit_offset_clauses",
@@ -547,7 +1657,7 @@
     }
   },
   {
-    "type": "multiplicative_expression",
+    "type": "load",
     "named": true,
     "fields": {},
     "children": {
@@ -555,22 +1665,95 @@
       "required": true,
       "types": [
         {
-          "type": "unary_expression",
+          "type": "graph_ref",
+          "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "nil",
+    "type": "minus_graph_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "group_graph_pattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "modify",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "ws",
+          "type": "delete_clause",
+          "named": true
+        },
+        {
+          "type": "group_graph_pattern",
+          "named": true
+        },
+        {
+          "type": "insert_clause",
+          "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        },
+        {
+          "type": "using_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "move",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "graph_or_default",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "named_graph_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "source_selector",
           "named": true
         }
       ]
@@ -592,97 +1775,33 @@
     }
   },
   {
-    "type": "numeric_expression",
+    "type": "object_list",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "additive_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "numeric_literal",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "numeric_literal_negative",
+          "type": "anon",
           "named": true
         },
         {
-          "type": "numeric_literal_positive",
+          "type": "blank_node_label",
           "named": true
         },
         {
-          "type": "numeric_literal_unsigned",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "numeric_literal_negative",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "decimal_negative",
+          "type": "blank_node_property_list",
           "named": true
         },
         {
-          "type": "double_negative",
+          "type": "boolean_literal",
           "named": true
         },
         {
-          "type": "integer_negative",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "numeric_literal_positive",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "decimal_positive",
+          "type": "collection",
           "named": true
         },
-        {
-          "type": "double_positive",
-          "named": true
-        },
-        {
-          "type": "integer_positive",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "numeric_literal_unsigned",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
         {
           "type": "decimal",
           "named": true
@@ -694,6 +1813,89 @@
         {
           "type": "integer",
           "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "object_list_path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "anon",
+          "named": true
+        },
+        {
+          "type": "blank_node_label",
+          "named": true
+        },
+        {
+          "type": "blank_node_property_list_path",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "collection_path",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
         }
       ]
     }
@@ -701,49 +1903,196 @@
   {
     "type": "offset_clause",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "optional_graph_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "group_graph_pattern",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "order_clause",
     "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "order_condition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "order_condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "path_element",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "binary_path",
+          "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "path_element",
+          "named": true
+        },
+        {
+          "type": "path_inverse",
+          "named": true
+        },
+        {
+          "type": "path_mod",
+          "named": true
+        },
+        {
+          "type": "path_negated_property_set",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "path_inverse",
+    "named": true,
     "fields": {}
   },
   {
-    "type": "percent",
+    "type": "path_negated_property_set",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "hex",
+          "type": "path_one_in_property_set",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "plx",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "percent",
-          "named": true
-        },
-        {
-          "type": "pn_local_esc",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "pn_chars",
+    "type": "path_one_in_property_set",
     "named": true,
     "fields": {},
     "children": {
@@ -751,180 +2100,11 @@
       "required": false,
       "types": [
         {
-          "type": "pn_chars_u",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "pn_chars_base",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "pn_chars_u",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "pn_chars_base",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "pn_local",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "pn_local_end",
+          "type": "iri_reference",
           "named": true
         },
         {
-          "type": "pn_local_start_chars",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "pn_local_end",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "pn_local_end_chars",
-          "named": true
-        },
-        {
-          "type": "pn_local_middle_chars",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "pn_local_end_chars",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "plx",
-          "named": true
-        },
-        {
-          "type": "pn_chars",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "pn_local_esc",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "pn_local_middle_chars",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "plx",
-          "named": true
-        },
-        {
-          "type": "pn_chars",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "pn_local_start_chars",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "plx",
-          "named": true
-        },
-        {
-          "type": "pn_chars_u",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "pn_prefix",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "pn_chars",
-          "named": true
-        },
-        {
-          "type": "pn_chars_base",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "pname_ln",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "pn_local",
-          "named": true
-        },
-        {
-          "type": "pname_ns",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "pname_ns",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "pn_prefix",
+          "type": "prefixed_name",
           "named": true
         }
       ]
@@ -943,7 +2123,7 @@
           "named": true
         },
         {
-          "type": "pname_ns",
+          "type": "pn_prefix",
           "named": true
         }
       ]
@@ -954,54 +2134,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
+      "multiple": true,
+      "required": false,
       "types": [
         {
-          "type": "pname_ln",
+          "type": "pn_local",
           "named": true
         },
         {
-          "type": "pname_ns",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "primary_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "built_in_call",
-          "named": true
-        },
-        {
-          "type": "iri_or_function",
-          "named": true
-        },
-        {
-          "type": "numeric_literal",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "var",
+          "type": "pn_prefix",
           "named": true
         }
       ]
@@ -1027,22 +2168,102 @@
     }
   },
   {
-    "type": "property_list_not_empty",
+    "type": "property_list",
     "named": true,
-    "fields": {},
+    "fields": {
+      "predicate": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "a",
+            "named": false
+          },
+          {
+            "type": "iri_reference",
+            "named": true
+          },
+          {
+            "type": "prefixed_name",
+            "named": true
+          },
+          {
+            "type": "var",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "verb",
+          "type": "object_list",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "query",
+    "type": "property_list_path",
+    "named": true,
+    "fields": {
+      "predicate": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "binary_path",
+            "named": true
+          },
+          {
+            "type": "path_element",
+            "named": true
+          },
+          {
+            "type": "var",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "object_list",
+          "named": true
+        },
+        {
+          "type": "object_list_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quads",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "quads_not_triples",
+          "named": true
+        },
+        {
+          "type": "triples_template",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quads_not_triples",
     "named": true,
     "fields": {},
     "children": {
@@ -1050,42 +2271,19 @@
       "required": true,
       "types": [
         {
-          "type": "ask_query",
+          "type": "iri_reference",
           "named": true
         },
         {
-          "type": "construct_query",
+          "type": "prefixed_name",
           "named": true
         },
         {
-          "type": "describe_query",
+          "type": "triples_template",
           "named": true
         },
         {
-          "type": "prologue",
-          "named": true
-        },
-        {
-          "type": "select_query",
-          "named": true
-        },
-        {
-          "type": "values_clause",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "query_unit",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "query",
+          "type": "var",
           "named": true
         }
       ]
@@ -1094,21 +2292,54 @@
   {
     "type": "rdf_literal",
     "named": true,
-    "fields": {},
+    "fields": {
+      "datatype": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "^^",
+            "named": false
+          },
+          {
+            "type": "iri_reference",
+            "named": true
+          },
+          {
+            "type": "prefixed_name",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string_literal1",
+            "named": true
+          },
+          {
+            "type": "string_literal2",
+            "named": true
+          },
+          {
+            "type": "string_literal_long1",
+            "named": true
+          },
+          {
+            "type": "string_literal_long2",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
-          "type": "iri",
-          "named": true
-        },
-        {
           "type": "lang_tag",
-          "named": true
-        },
-        {
-          "type": "string",
           "named": true
         }
       ]
@@ -1123,26 +2354,75 @@
       "required": true,
       "types": [
         {
-          "type": "expression",
+          "type": "aggregate",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "relational_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
         {
           "type": "expression_list",
           "named": true
         },
         {
-          "type": "numeric_expression",
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         }
       ]
@@ -1157,7 +2437,71 @@
       "required": false,
       "types": [
         {
-          "type": "expression",
+          "type": "aggregate",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         },
         {
@@ -1195,6 +2539,33 @@
     }
   },
   {
+    "type": "service_graph_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "group_graph_pattern",
+          "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "solution_modifier",
     "named": true,
     "fields": {},
@@ -1222,7 +2593,7 @@
     }
   },
   {
-    "type": "string",
+    "type": "source_selector",
     "named": true,
     "fields": {},
     "children": {
@@ -1230,79 +2601,11 @@
       "required": true,
       "types": [
         {
-          "type": "string_literal1",
+          "type": "iri_reference",
           "named": true
         },
         {
-          "type": "string_literal2",
-          "named": true
-        },
-        {
-          "type": "string_literal_long1",
-          "named": true
-        },
-        {
-          "type": "string_literal_long2",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "string_literal1",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "echar",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "string_literal2",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "echar",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "string_literal_long1",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "echar",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "string_literal_long2",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "echar",
+          "type": "prefixed_name",
           "named": true
         }
       ]
@@ -1317,7 +2620,102 @@
       "required": true,
       "types": [
         {
-          "type": "expression",
+          "type": "aggregate",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "sub_select",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "select_clause",
+          "named": true
+        },
+        {
+          "type": "solution_modifier",
+          "named": true
+        },
+        {
+          "type": "values_clause",
+          "named": true
+        },
+        {
+          "type": "where_clause",
           "named": true
         }
       ]
@@ -1332,22 +2730,94 @@
       "required": true,
       "types": [
         {
-          "type": "expression",
+          "type": "aggregate",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "triples_node",
+    "type": "triples_block",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "collection",
+          "type": "triples_block",
+          "named": true
+        },
+        {
+          "type": "triples_same_subject_path",
           "named": true
         }
       ]
@@ -1358,15 +2828,137 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "property_list_not_empty",
+          "type": "anon",
           "named": true
         },
         {
-          "type": "triples_node",
+          "type": "blank_node_label",
+          "named": true
+        },
+        {
+          "type": "blank_node_property_list",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "collection",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        },
+        {
+          "type": "property_list",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "triples_same_subject_path",
+    "named": true,
+    "fields": {
+      "subject": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "anon",
+            "named": true
+          },
+          {
+            "type": "blank_node_label",
+            "named": true
+          },
+          {
+            "type": "boolean_literal",
+            "named": true
+          },
+          {
+            "type": "decimal",
+            "named": true
+          },
+          {
+            "type": "double",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "iri_reference",
+            "named": true
+          },
+          {
+            "type": "nil",
+            "named": true
+          },
+          {
+            "type": "prefixed_name",
+            "named": true
+          },
+          {
+            "type": "rdf_literal",
+            "named": true
+          },
+          {
+            "type": "var",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "blank_node_property_list_path",
+          "named": true
+        },
+        {
+          "type": "collection_path",
+          "named": true
+        },
+        {
+          "type": "property_list_path",
           "named": true
         }
       ]
@@ -1396,110 +2988,75 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "primary_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "value_logical",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "relational_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "values_clause",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "var",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "var_1",
+          "type": "aggregate",
           "named": true
         },
         {
-          "type": "var_2",
+          "type": "binary_expression",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "var_1",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
+        },
         {
-          "type": "var_name",
+          "type": "boolean_literal",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "var_2",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
+        },
         {
-          "type": "var_name",
+          "type": "bracketted_expression",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "var_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
+        },
         {
-          "type": "pn_chars_u",
+          "type": "decimal",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "var_or_iri",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
+        },
         {
-          "type": "iri",
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "exists_func",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_or_function",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "regex_expression",
+          "named": true
+        },
+        {
+          "type": "string_replace_expression",
+          "named": true
+        },
+        {
+          "type": "substring_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         },
         {
@@ -1510,9 +3067,121 @@
     }
   },
   {
-    "type": "verb",
+    "type": "unit",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "add",
+          "named": true
+        },
+        {
+          "type": "ask_query",
+          "named": true
+        },
+        {
+          "type": "clear",
+          "named": true
+        },
+        {
+          "type": "construct_query",
+          "named": true
+        },
+        {
+          "type": "copy",
+          "named": true
+        },
+        {
+          "type": "create",
+          "named": true
+        },
+        {
+          "type": "delete_data",
+          "named": true
+        },
+        {
+          "type": "delete_where",
+          "named": true
+        },
+        {
+          "type": "describe_query",
+          "named": true
+        },
+        {
+          "type": "drop",
+          "named": true
+        },
+        {
+          "type": "insert_data",
+          "named": true
+        },
+        {
+          "type": "load",
+          "named": true
+        },
+        {
+          "type": "modify",
+          "named": true
+        },
+        {
+          "type": "move",
+          "named": true
+        },
+        {
+          "type": "prologue",
+          "named": true
+        },
+        {
+          "type": "select_query",
+          "named": true
+        },
+        {
+          "type": "values_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "using_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "values_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "inline_data_full",
+          "named": true
+        },
+        {
+          "type": "inline_data_one_var",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "where_clause",
@@ -1530,60 +3199,11 @@
     }
   },
   {
-    "type": "ws",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "!",
     "named": false
   },
   {
-    "type": "!=",
-    "named": false
-  },
-  {
-    "type": "\"",
-    "named": false
-  },
-  {
-    "type": "\"\"",
-    "named": false
-  },
-  {
-    "type": "\"\"\"",
-    "named": false
-  },
-  {
-    "type": "#",
-    "named": false
-  },
-  {
-    "type": "$",
-    "named": false
-  },
-  {
-    "type": "%",
-    "named": false
-  },
-  {
-    "type": "&",
-    "named": false
-  },
-  {
     "type": "&&",
-    "named": false
-  },
-  {
-    "type": "'",
-    "named": false
-  },
-  {
-    "type": "''",
-    "named": false
-  },
-  {
-    "type": "'''",
     "named": false
   },
   {
@@ -1651,15 +3271,23 @@
     "named": false
   },
   {
-    "type": "@",
-    "named": false
-  },
-  {
     "type": "ABS",
     "named": false
   },
   {
+    "type": "ADD",
+    "named": false
+  },
+  {
+    "type": "ALL",
+    "named": false
+  },
+  {
     "type": "AS",
+    "named": false
+  },
+  {
+    "type": "ASC",
     "named": false
   },
   {
@@ -1672,6 +3300,10 @@
   },
   {
     "type": "BASE",
+    "named": false
+  },
+  {
+    "type": "BIND",
     "named": false
   },
   {
@@ -1691,6 +3323,10 @@
     "named": false
   },
   {
+    "type": "CLEAR",
+    "named": false
+  },
+  {
     "type": "COALESCE",
     "named": false
   },
@@ -1707,7 +3343,15 @@
     "named": false
   },
   {
+    "type": "COPY",
+    "named": false
+  },
+  {
     "type": "COUNT",
+    "named": false
+  },
+  {
+    "type": "CREATE",
     "named": false
   },
   {
@@ -1719,11 +3363,35 @@
     "named": false
   },
   {
+    "type": "DEFAULT",
+    "named": false
+  },
+  {
+    "type": "DELETE",
+    "named": false
+  },
+  {
+    "type": "DELETE DATA",
+    "named": false
+  },
+  {
+    "type": "DELETE WHERE",
+    "named": false
+  },
+  {
+    "type": "DESC",
+    "named": false
+  },
+  {
     "type": "DESCRIBE",
     "named": false
   },
   {
     "type": "DISTINCT",
+    "named": false
+  },
+  {
+    "type": "DROP",
     "named": false
   },
   {
@@ -1735,11 +3403,19 @@
     "named": false
   },
   {
+    "type": "FILTER",
+    "named": false
+  },
+  {
     "type": "FLOOR",
     "named": false
   },
   {
     "type": "FROM",
+    "named": false
+  },
+  {
+    "type": "GRAPH",
     "named": false
   },
   {
@@ -1767,6 +3443,18 @@
     "named": false
   },
   {
+    "type": "INSERT",
+    "named": false
+  },
+  {
+    "type": "INSERT DATA",
+    "named": false
+  },
+  {
+    "type": "INTO",
+    "named": false
+  },
+  {
     "type": "IRI",
     "named": false
   },
@@ -1787,6 +3475,10 @@
     "named": false
   },
   {
+    "type": "LOAD",
+    "named": false
+  },
+  {
     "type": "MAX",
     "named": false
   },
@@ -1799,11 +3491,23 @@
     "named": false
   },
   {
+    "type": "MINUS",
+    "named": false
+  },
+  {
     "type": "MINUTES",
     "named": false
   },
   {
     "type": "MONTH",
+    "named": false
+  },
+  {
+    "type": "MOVE",
+    "named": false
+  },
+  {
+    "type": "NAMED",
     "named": false
   },
   {
@@ -1816,6 +3520,10 @@
   },
   {
     "type": "OFFSET",
+    "named": false
+  },
+  {
+    "type": "OPTIONAL",
     "named": false
   },
   {
@@ -1863,6 +3571,10 @@
     "named": false
   },
   {
+    "type": "SERVICE",
+    "named": false
+  },
+  {
     "type": "SHA1",
     "named": false
   },
@@ -1876,6 +3588,10 @@
   },
   {
     "type": "SHA512",
+    "named": false
+  },
+  {
+    "type": "SILENT",
     "named": false
   },
   {
@@ -1927,6 +3643,10 @@
     "named": false
   },
   {
+    "type": "TO",
+    "named": false
+  },
+  {
     "type": "TZ",
     "named": false
   },
@@ -1935,7 +3655,19 @@
     "named": false
   },
   {
+    "type": "UNDEF",
+    "named": false
+  },
+  {
+    "type": "UNION",
+    "named": false
+  },
+  {
     "type": "URI",
+    "named": false
+  },
+  {
+    "type": "USING",
     "named": false
   },
   {
@@ -1951,11 +3683,23 @@
     "named": false
   },
   {
+    "type": "WITH",
+    "named": false
+  },
+  {
     "type": "YEAR",
     "named": false
   },
   {
-    "type": "\\",
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
     "named": false
   },
   {
@@ -1963,24 +3707,36 @@
     "named": false
   },
   {
-    "type": "_",
+    "type": "a",
     "named": false
   },
   {
-    "type": "a",
-    "named": false
+    "type": "anon",
+    "named": true
+  },
+  {
+    "type": "blank_node_label",
+    "named": true
   },
   {
     "type": "decimal",
     "named": true
   },
   {
-    "type": "exponent",
+    "type": "double",
     "named": true
   },
   {
     "type": "false",
     "named": false
+  },
+  {
+    "type": "integer",
+    "named": true
+  },
+  {
+    "type": "iri_reference",
+    "named": true
   },
   {
     "type": "isBLANK",
@@ -2007,15 +3763,55 @@
     "named": true
   },
   {
+    "type": "nil",
+    "named": true
+  },
+  {
+    "type": "path_mod",
+    "named": true
+  },
+  {
+    "type": "pn_local",
+    "named": true
+  },
+  {
+    "type": "pn_prefix",
+    "named": true
+  },
+  {
     "type": "sameTerm",
     "named": false
+  },
+  {
+    "type": "string_literal1",
+    "named": true
+  },
+  {
+    "type": "string_literal2",
+    "named": true
+  },
+  {
+    "type": "string_literal_long1",
+    "named": true
+  },
+  {
+    "type": "string_literal_long2",
+    "named": true
   },
   {
     "type": "true",
     "named": false
   },
   {
+    "type": "var",
+    "named": true
+  },
+  {
     "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   },
   {
@@ -2024,10 +3820,6 @@
   },
   {
     "type": "}",
-    "named": false
-  },
-  {
-    "type": "~",
     "named": false
   }
 ]
