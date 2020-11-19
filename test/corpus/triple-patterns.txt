@@ -2,7 +2,6 @@
 Predicate object list
 ======================
 
-
 SELECT *
 
 WHERE {
@@ -28,7 +27,6 @@ WHERE {
                 predicate: (var)
                 (object_list (var)))))))))
 
-
 ============
 Object list
 ============
@@ -40,9 +38,7 @@ WHERE {
   ?s ?p ?o0 , ?o1
 }
 
-
 ---
-
 
 (unit
   (select_query 
@@ -58,11 +54,9 @@ WHERE {
                   (var)
                   (var)))))))))
 
-
 ===============
 Rdf collection
 ===============
-
 
 SELECT *
 
@@ -70,9 +64,7 @@ WHERE {
   (?foo [:p :o] (?bar))
 }
 
-
 ---
-
 
 (unit
   (select_query 
@@ -86,16 +78,14 @@ WHERE {
               (blank_node_property_list_path
                 (property_list_path
                   (path_element
-                    (prefixed_name (pn_local)))
+                    (prefixed_name (namespace) (pn_local)))
                 (object_list_path
-                  (prefixed_name (pn_local)))))
+                  (prefixed_name (namespace) (pn_local)))))
               (collection_path (var)))))))))
-
 
 =========
 Rdf:type
 =========
-
 
 SELECT *
 
@@ -104,9 +94,7 @@ WHERE {
   [ a :o ] ?p ?o
 }
 
-
 ---
-
 
 (unit
   (select_query
@@ -119,10 +107,9 @@ WHERE {
             (property_list_path
               (path_element)
               (object_list_path (var))))
-          (triples_block
-            (triples_same_subject_path
-              (blank_node_property_list_path
-                (property_list_path (path_element)
-                  (object_list_path (prefixed_name (pn_local)))))
-              (property_list_path (var)
-                (object_list_path (var))))))))))
+          (triples_same_subject_path
+            (blank_node_property_list_path
+              (property_list_path (path_element)
+                (object_list_path (prefixed_name (namespace) (pn_local)))))
+            (property_list_path (var)
+              (object_list_path (var)))))))))

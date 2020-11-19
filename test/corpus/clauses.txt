@@ -3,7 +3,10 @@ Dataset clause
 ===============
 
 SELECT * 
+
 FROM <www.example.com>
+FROM NAMED <www.example.com>
+
 {}
 
 ---
@@ -13,8 +16,10 @@ FROM <www.example.com>
     (select_clause) 
     (dataset_clause
       (default_graph_clause
-        (source_selector
-          (iri_reference))))
+        source_selector: (iri_reference)))
+    (dataset_clause
+      (named_graph_clause
+        source_selector: (iri_reference)))
     (where_clause
       (group_graph_pattern))))
 
@@ -56,9 +61,7 @@ HAVING ex:function ()
       (having_clause
         (having_condition
           (function_call 
-            (prefixed_name 
-              (pn_prefix)
-              (pn_local))
+            (prefixed_name (namespace (pn_prefix)) (pn_local))
             (arg_list (nil)))))))) 
 
 =============
@@ -128,4 +131,4 @@ VALUES (?a ?b) {
       (var)
       (var)
       (rdf_literal
-        (string_literal1)))))
+        (string)))))

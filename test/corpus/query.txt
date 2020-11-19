@@ -1,7 +1,29 @@
+=========
+Prolouge
+=========
+
+BASE <https://www.example.com>
+PREFIX ex:<https://www.example.com>
+
+SELECT * {}
+
+---
+
+(unit
+  (prologue
+    (base_declaration
+      (iri_reference))
+    (prefix_declaration
+      (namespace (pn_prefix))
+      (iri_reference))) 
+  (select_query
+    (select_clause)
+    (where_clause
+      (group_graph_pattern))))
+
 ==============
 Select query
 ==============
-
 
 SELECT *
 
@@ -17,11 +39,9 @@ WHERE {
     (where_clause
       (group_graph_pattern))))
 
-
 ================
 Subselect query
 ================
-
 
 SELECT * { 
   SELECT * {}
@@ -39,13 +59,12 @@ SELECT * {
           (where_clause 
             (group_graph_pattern)))))))
 
-
-================
-Construct query
-================
-
+=========================
+Construct template query
+=========================
 
 CONSTRUCT {
+  ?s ?p ?o .
   ?s ?p ?o
 }
 
@@ -59,8 +78,15 @@ WHERE {
   (construct_query
    (construct_template 
     (construct_triples 
-      (triples_same_subject (var)
-        (property_list predicate: (var)
+      (triples_same_subject
+        (var)
+        (property_list
+          predicate: (var)
+          (object_list (var))))
+      (triples_same_subject
+        (var)
+        (property_list
+          predicate: (var)
           (object_list (var))))))
     (where_clause
       (group_graph_pattern
@@ -71,11 +97,28 @@ WHERE {
                 predicate: (var)
                 (object_list_path (var)))))))))
 
+=======================
+Construct triple query
+=======================
+
+CONSTRUCT WHERE {
+  ?s ?p ?o
+}
+
+---
+
+(unit
+  (construct_query
+    (triples_template
+      (triples_same_subject
+        (var)
+        (property_list
+          (var)
+          (object_list (var)))))))
 
 ===============
 Describe query
 ===============
-
 
 DESCRIBE
 
@@ -86,11 +129,9 @@ DESCRIBE
 (unit
   (describe_query))
 
-
 ==========
 Ask query
 ==========
-
 
 ASK
 

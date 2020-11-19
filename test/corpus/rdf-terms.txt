@@ -23,7 +23,7 @@ VALUES ?var {
       (iri_reference)
       (iri_reference)
       (prefixed_name 
-        (pn_prefix)
+        (namespace (pn_prefix))
         (pn_local)))))
 
 =========
@@ -55,21 +55,44 @@ VALUES ?var {
   (values_clause 
     (inline_data_one_var
       (var)
-      (rdf_literal (string_literal1)) 
-      (rdf_literal (string_literal2)) 
-      (rdf_literal (string_literal1) (lang_tag)) 
-      (rdf_literal (string_literal1) (iri_reference)) 
-      (rdf_literal (string_literal_long1)) 
+      (rdf_literal (string)) 
+      (rdf_literal (string)) 
+      (rdf_literal (string) (lang_tag)) 
+      (rdf_literal (string) (iri_reference)) 
+      (rdf_literal (string)) 
       (boolean_literal) 
-      (rdf_literal (string_literal1)
-      (prefixed_name (pn_prefix) (pn_local))) 
+      (rdf_literal (string)
+      (prefixed_name (namespace (pn_prefix)) (pn_local))) 
       (decimal)
       (double)
       (rdf_literal 
-        (string_literal1) 
-        (prefixed_name
-          (pn_prefix) 
-          (pn_local))))))
+        (string) 
+        (prefixed_name (namespace (pn_prefix)) (pn_local))))))
+
+=======================
+String escape sequence
+=======================
+
+SELECT * {}
+
+VALUES ?var {
+  "fo\t\\foo\bbo"
+}
+
+---
+
+(unit
+  (select_query
+    (select_clause) 
+    (where_clause (group_graph_pattern)))
+    (values_clause 
+      (inline_data_one_var
+        (var)
+        (rdf_literal
+          (string
+            (echar)
+            (echar)
+            (echar))))))
 
 ================
 Query Variables
@@ -105,22 +128,20 @@ SELECT * {
           (triples_same_subject_path
             (blank_node_property_list_path
               (property_list_path
-                (path_element (prefixed_name (pn_local)))
+                (path_element (prefixed_name (namespace) (pn_local)))
                 (object_list_path
-                  (rdf_literal (string_literal2))))))
-          (triples_block
-            (triples_same_subject_path
-              (anon)
-              (property_list_path
-                (path_element (prefixed_name (pn_local)))
-                (object_list_path (rdf_literal (string_literal2)))))
-            (triples_block
-              (triples_same_subject_path
-                (prefixed_name (pn_local))
-                (property_list_path
-                  (path_element (prefixed_name (pn_local)))
-                  (object_list_path
-                    (blank_node_property_list_path
-                      (property_list_path
-                        (path_element (prefixed_name (pn_local)))
-                        (object_list_path (rdf_literal (string_literal2)))))))))))))))
+                  (rdf_literal (string))))))
+          (triples_same_subject_path
+            (anon)
+            (property_list_path
+              (path_element (prefixed_name (namespace) (pn_local)))
+              (object_list_path (rdf_literal (string)))))
+          (triples_same_subject_path
+            (prefixed_name (namespace) (pn_local))
+            (property_list_path
+              (path_element (prefixed_name (namespace) (pn_local)))
+              (object_list_path
+                (blank_node_property_list_path
+                  (property_list_path
+                    (path_element (prefixed_name (namespace) (pn_local)))
+                    (object_list_path (rdf_literal (string)))))))))))))

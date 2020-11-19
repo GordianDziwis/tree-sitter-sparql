@@ -1,6 +1,3 @@
-// [160]
-const ECHAR = /\\\\[tbnrf\\"']/
-
 // [162]
 const WS = [
   /\x20/,
@@ -72,11 +69,21 @@ const PN_LOCAL_ESC = [
 
 String.prototype.orLowerCase =
   function () {
-    return token(choice(this, this.toLowerCase()))
+    return alias(
+      token(choice(
+        this,
+        this.toLowerCase()
+      )),
+      this
+    )
   }
 
 module.exports = grammar({
   name: 'sparql',
+
+  inline: $ => [
+    $._query
+  ],
 
   rules: {
 
@@ -138,7 +145,7 @@ module.exports = grammar({
     // [6]
     prefix_declaration: $ => seq(
       'PREFIX'.orLowerCase(),
-      $._namespace,
+      $.namespace,
       $.iri_reference
     ),
 
@@ -163,7 +170,7 @@ module.exports = grammar({
       'SELECT'.orLowerCase(),
       optional(choice(
         'DISTINCT'.orLowerCase(),
-        'REDUCE'.orLowerCase()
+        'REDUCED'.orLowerCase()
       )),
       choice(
         repeat1(choice(
@@ -222,16 +229,15 @@ module.exports = grammar({
     ),
 
     // [14]
-    default_graph_clause: $ => $.source_selector,
+    // [16]
+    default_graph_clause: $ => field('source_selector', $._iri),
 
     // [15]
+    // [16]
     named_graph_clause: $ => seq(
       'NAMED'.orLowerCase(),
-      $.source_selector
+      field('source_selector', $._iri)
     ),
-
-    // [16]
-    source_selector: $ => $._iri,
 
     // [17]
     where_clause: $ => seq(
@@ -460,7 +466,7 @@ module.exports = grammar({
       optional($.triples_template),
       repeat(seq(
         $.quads_not_triples,
-        optional('?'),
+        optional('.'),
         optional($.triples_template),
       )),
       '}'
@@ -478,7 +484,10 @@ module.exports = grammar({
     // [52]
     triples_template: $ => seq(
       $.triples_same_subject,
-      optional(seq('.', optional($.triples_template)))
+      repeat(seq(
+        '.',
+        $.triples_same_subject)),
+      optional('.')
     ),
 
     // [53]
@@ -502,10 +511,11 @@ module.exports = grammar({
     // [55]
     triples_block: $ => seq(
       $.triples_same_subject_path,
-      optional(seq(
+      repeat(seq(
         '.',
-        optional($.triples_block)
-      ))
+        $.triples_same_subject_path
+      )),
+      optional('.')
     ),
 
     // [56]
@@ -646,10 +656,11 @@ module.exports = grammar({
     // [74]
     construct_triples: $ => seq(
       $.triples_same_subject,
-      optional(seq(
+      repeat(seq(
         '.',
-        optional($.construct_triples)
-      ))
+        $.triples_same_subject
+      )),
+      optional('.')
     ),
 
     // [75]
@@ -751,6 +762,9 @@ module.exports = grammar({
       $._primary_path,
       optional($.path_mod)
     ),
+
+    // [91]
+    echar: $ => /\\[tbnrf\\"']/,
 
     // [92]
     path_inverse: $ => '^',
@@ -1005,10 +1019,13 @@ module.exports = grammar({
     regex_expression: $ => seq(
       'REGEX'.orLowerCase(),
       '(',
-      $._expression,
+      field('text', $._expression),
       ',',
-      $._expression,
-      optional(seq(',', $._expression)),
+      field('pattern', $._expression),
+      optional(seq(
+        ',',
+        field('flag', $._expression))
+      ),
       ')'
     ),
 
@@ -1069,7 +1086,7 @@ module.exports = grammar({
         'GROUP_CONCAT', '(',
         optional('DISTINCT'.orLowerCase()),
         $._expression,
-        optional(seq(';', 'SEPARATOR'.orLowerCase(), '=', $._string)),
+        optional(seq(';', 'SEPARATOR'.orLowerCase(), '=', $.string)),
         ')'
       ),
     ),
@@ -1082,7 +1099,7 @@ module.exports = grammar({
 
     // [129]
     rdf_literal: $ => seq(
-      field('value', $._string),
+      field('value', $.string),
       optional(choice(
         $.lang_tag,
         field('datatype', seq('^^', $._iri))
@@ -1103,11 +1120,11 @@ module.exports = grammar({
 
 
     // [135]
-    _string: $ => choice(
-      $.string_literal1,
-      $.string_literal2,
-      $.string_literal_long1,
-      $.string_literal_long2,
+    string: $ => choice(
+      $._string_literal1,
+      $._string_literal2,
+      $._string_literal_long1,
+      $._string_literal_long2,
     ),
 
     // [136]
@@ -1120,7 +1137,7 @@ module.exports = grammar({
     // [137]
     // [141]
     prefixed_name: $ => seq(
-      $._namespace,
+      $.namespace,
       optional($.pn_local)
     ),
 
@@ -1138,7 +1155,7 @@ module.exports = grammar({
     )),
 
     // [140]
-    _namespace: $ => seq(
+    namespace: $ => seq(
       optional($.pn_prefix),
       ':'
     ),
@@ -1151,10 +1168,10 @@ module.exports = grammar({
         /[0-9]/
       ),
       optional(seq(
-        repeat(prec(1, choice(
+        repeat(choice(
           ...PN_CHARS,
           '.'
-        ))),
+        )),
         choice(...PN_CHARS)
       ))
     )),
@@ -1180,27 +1197,27 @@ module.exports = grammar({
     )),
 
     // [156]
-    string_literal1: $ => token(seq(
+    _string_literal1: $ => seq(
       "'",
       repeat(choice(
         /[^\x27\x5C\x0A\x0D]/,
-        ECHAR
+        $.echar
       )),
       "'"
-    )),
+    ),
 
     // [157]
-    string_literal2: $ => token(seq(
+    _string_literal2: $ => seq(
       '"',
       repeat(choice(
         /[^\x22\x5C\x0A\x0D]/,
-        ECHAR
+        $.echar
       )),
       '"',
-    )),
+    ),
 
     // [158]
-    string_literal_long1: $ => token(seq(
+    _string_literal_long1: $ => seq(
       "'''",
       repeat(seq(
         optional(choice(
@@ -1209,14 +1226,14 @@ module.exports = grammar({
         )),
         choice(
           /[^'\\]/,
-          ECHAR
+          $.echar
         )
       )),
       "'''",
-    )),
+    ),
 
     // [159]
-    string_literal_long2: $ => token(seq(
+    _string_literal_long2: $ => seq(
       '"""',
       repeat(seq(
         optional(choice(
@@ -1225,11 +1242,11 @@ module.exports = grammar({
         )),
         choice(
           /[^"\\]/,
-          ECHAR
+          $.echar
         )
       )),
       '"""',
-    )),
+    ),
 
     // [161]
     // [162]

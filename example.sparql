@@ -1,7 +1,11 @@
 BASE <http://www.example.org>
 PREFIX ex:<http://www.example.org>
+prefix ex:<http://www.example.org>
 
-SELECT DISTINCT ?foo $bar
+SELECT DISTINCT ( ?a + ?b * 1 AS $x )
+
+FROM <www.example.com>
+FROM NAMED <www.example.com>
 
 WHERE {
   ?s ?p0 ?o0,?o1 ;
@@ -11,9 +15,9 @@ WHERE {
   _:s :p :o
   { ?s ?p ?o }
   { ?s ?p ?o }
-  FILTER REGEX(?s, 'Foo')
+  FILTER REGEX(?s, "^foo", "i")
   {} OPTIONAL { ?s ?p ?o }
-  OPTIONAL { ?s ?p ?o }
+  optional { ?s ?p ?o }
   { ?s ?p ?o }
   UNION
   { ?s ?p ?o }
@@ -24,7 +28,7 @@ VALUES ?a {
   <foo>
   example:foo
   'foo'
-  "foo"
+  "fo\t\\foo\bbo"
   'foo'@de
   'foo'^^<http://example.org/foo>
   '''foo"bar'foo'"'''

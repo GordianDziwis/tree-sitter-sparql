@@ -18,8 +18,8 @@ SELECT * {
             (var)
             (property_list_path
               (binary_path
-                (path_element (prefixed_name (pn_local)))
-                (path_element (prefixed_name (pn_local))))
+                (path_element (prefixed_name (namespace) (pn_local)))
+                (path_element (prefixed_name (namespace) (pn_local))))
             (object_list_path (var)))))))))
 
 =========
@@ -42,8 +42,8 @@ SELECT * {
             (var)
             (property_list_path
               (binary_path
-                (path_element (prefixed_name (pn_local)))
-                (path_element (prefixed_name (pn_local))))
+                (path_element (prefixed_name (namespace) (pn_local)))
+                (path_element (prefixed_name (namespace) (pn_local))))
             (object_list_path (var)))))))))
 
 =========
@@ -68,7 +68,7 @@ SELECT * {
             (property_list_path 
               (path_element
                 (path_inverse)
-                (prefixed_name (pn_local))
+                (prefixed_name (namespace) (pn_local))
                 (path_mod))
             (object_list_path (var)))))))))
 

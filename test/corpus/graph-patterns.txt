@@ -17,8 +17,9 @@ SELECT * {
           (triples_same_subject_path 
             (blank_node_label) 
             (property_list_path 
-              (path_element (prefixed_name (pn_local)))
-              (object_list_path (prefixed_name (pn_local))))))))))
+              (path_element
+                (prefixed_name (namespace) (pn_local)))
+              (object_list_path (prefixed_name (namespace) (pn_local))))))))))
 
 =====================
 Group graph patterns
@@ -44,12 +45,11 @@ SELECT * {
             (property_list_path 
               (var) 
               (object_list_path (var))))
-          (triples_block
-            (triples_same_subject_path
+          (triples_same_subject_path
+            (var)
+            (property_list_path
               (var)
-              (property_list_path
-                (var)
-                (object_list_path (var))))))
+              (object_list_path (var)))))
         (group_or_union_graph_pattern
           (group_graph_pattern
             (triples_block
@@ -68,7 +68,7 @@ SELECT * {
                   (object_list_path (var))))))))))) 
 
 ====================
-Empty Group Pattern
+Empty group pattern
 ====================
 
 SELECT * {}
@@ -86,7 +86,7 @@ Filter
 
 SELECT * {
   ?s ?p ?o
-  FILTER REGEX(?s, 'Foo')
+  FILTER (?s > 0)
 }
 
 ---
@@ -103,9 +103,10 @@ SELECT * {
               (var)
               (object_list_path (var)))))
           (filter
-            (regex_expression
-              (var)
-              (rdf_literal (string_literal1))))))))
+            (bracketted_expression
+              (binary_expression
+                (var)
+                (integer))))))))
 
 =================
 Optional pattern

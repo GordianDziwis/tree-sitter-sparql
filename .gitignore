@@ -110,5 +110,6 @@ dist
 .vscode-test
 
 tree-sitter-sparql.wasm
+log.html
 
 # End of https://www.toptal.com/developers/gitignore/api/node
