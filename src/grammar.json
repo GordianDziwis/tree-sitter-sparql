@@ -3177,12 +3177,20 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_iri"
+          "type": "FIELD",
+          "name": "identifier",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_iri"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "arg_list"
+          "type": "FIELD",
+          "name": "arguments",
+          "content": {
+            "type": "SYMBOL",
+            "name": "arg_list"
+          }
         }
       ]
     },
@@ -4549,7 +4557,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "iri_or_function"
+          "name": "_iri_or_function"
         },
         {
           "type": "SYMBOL",
@@ -6880,22 +6888,19 @@
         }
       ]
     },
-    "iri_or_function": {
+    "_iri_or_function": {
       "type": "SEQ",
       "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_iri"
-        },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "arg_list"
+              "name": "_iri"
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "function_call"
             }
           ]
         }

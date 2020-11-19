@@ -619,8 +619,8 @@ module.exports = grammar({
 
     // [70]
     function_call: $ => seq(
-      $._iri,
-      $.arg_list
+      field('identifier', $._iri),
+      field('arguments', $.arg_list)
     ),
 
     // [71]
@@ -940,7 +940,7 @@ module.exports = grammar({
     _primary_expression: $ => choice(
       $.bracketted_expression,
       $._build_in_call,
-      $.iri_or_function,
+      $._iri_or_function,
       $.rdf_literal,
       $._numeric_literal,
       $.boolean_literal,
@@ -1092,10 +1092,10 @@ module.exports = grammar({
     ),
 
     // [128]
-    iri_or_function: $ => seq(
+    _iri_or_function: $ => seq(choice(
       $._iri,
-      optional($.arg_list)
-    ),
+      $.function_call
+    )),
 
     // [129]
     rdf_literal: $ => seq(

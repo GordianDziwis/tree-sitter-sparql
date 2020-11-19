@@ -55,11 +55,15 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -68,6 +72,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
@@ -142,11 +150,15 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -155,6 +167,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
@@ -263,11 +279,15 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -276,6 +296,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
@@ -365,11 +389,15 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -378,6 +406,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
@@ -483,11 +515,15 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -496,6 +532,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
@@ -947,11 +987,15 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -960,6 +1004,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
@@ -1038,7 +1086,7 @@
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -1047,6 +1095,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
@@ -1079,24 +1131,31 @@
   {
     "type": "function_call",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "arg_list",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        }
-      ]
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arg_list",
+            "named": true
+          }
+        ]
+      },
+      "identifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "iri_reference",
+            "named": true
+          },
+          {
+            "type": "prefixed_name",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1243,7 +1302,7 @@
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -1252,6 +1311,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
@@ -1411,7 +1474,7 @@
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -1420,6 +1483,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
@@ -1583,29 +1650,6 @@
       "types": [
         {
           "type": "quads",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "iri_or_function",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "arg_list",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
           "named": true
         }
       ]
@@ -2003,7 +2047,7 @@
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -2012,6 +2056,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
@@ -2567,11 +2615,15 @@
             "named": true
           },
           {
+            "type": "function_call",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
           {
-            "type": "iri_or_function",
+            "type": "iri_reference",
             "named": true
           },
           {
@@ -2600,6 +2652,10 @@
           },
           {
             "type": "not_exists_func",
+            "named": true
+          },
+          {
+            "type": "prefixed_name",
             "named": true
           },
           {
@@ -2853,11 +2909,15 @@
             "named": true
           },
           {
+            "type": "function_call",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
           {
-            "type": "iri_or_function",
+            "type": "iri_reference",
             "named": true
           },
           {
@@ -2886,6 +2946,10 @@
           },
           {
             "type": "not_exists_func",
+            "named": true
+          },
+          {
+            "type": "prefixed_name",
             "named": true
           },
           {
@@ -3139,11 +3203,15 @@
             "named": true
           },
           {
+            "type": "function_call",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
           {
-            "type": "iri_or_function",
+            "type": "iri_reference",
             "named": true
           },
           {
@@ -3172,6 +3240,10 @@
           },
           {
             "type": "not_exists_func",
+            "named": true
+          },
+          {
+            "type": "prefixed_name",
             "named": true
           },
           {
@@ -3247,11 +3319,15 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -3260,6 +3336,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
@@ -3426,11 +3506,15 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -3439,6 +3523,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
@@ -3536,11 +3624,15 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -3549,6 +3641,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
@@ -3790,11 +3886,15 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
         {
-          "type": "iri_or_function",
+          "type": "iri_reference",
           "named": true
         },
         {
@@ -3803,6 +3903,10 @@
         },
         {
           "type": "not_exists_func",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
           "named": true
         },
         {
