@@ -39,6 +39,10 @@
           "named": true
         },
         {
+          "type": "build_in_function",
+          "named": true
+        },
+        {
           "type": "decimal",
           "named": true
         },
@@ -51,10 +55,6 @@
           "named": true
         },
         {
-          "type": "expression_list",
-          "named": true
-        },
-        {
           "type": "function_call",
           "named": true
         },
@@ -64,10 +64,6 @@
         },
         {
           "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
           "named": true
         },
         {
@@ -134,6 +130,10 @@
           "named": true
         },
         {
+          "type": "build_in_function",
+          "named": true
+        },
+        {
           "type": "decimal",
           "named": true
         },
@@ -143,10 +143,6 @@
         },
         {
           "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "expression_list",
           "named": true
         },
         {
@@ -263,6 +259,10 @@
           "named": true
         },
         {
+          "type": "build_in_function",
+          "named": true
+        },
+        {
           "type": "decimal",
           "named": true
         },
@@ -288,10 +288,6 @@
         },
         {
           "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
           "named": true
         },
         {
@@ -373,6 +369,10 @@
           "named": true
         },
         {
+          "type": "build_in_function",
+          "named": true
+        },
+        {
           "type": "decimal",
           "named": true
         },
@@ -385,10 +385,6 @@
           "named": true
         },
         {
-          "type": "expression_list",
-          "named": true
-        },
-        {
           "type": "function_call",
           "named": true
         },
@@ -398,10 +394,6 @@
         },
         {
           "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
           "named": true
         },
         {
@@ -479,7 +471,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -499,6 +491,10 @@
           "named": true
         },
         {
+          "type": "build_in_function",
+          "named": true
+        },
+        {
           "type": "decimal",
           "named": true
         },
@@ -511,10 +507,6 @@
           "named": true
         },
         {
-          "type": "expression_list",
-          "named": true
-        },
-        {
           "type": "function_call",
           "named": true
         },
@@ -524,10 +516,6 @@
         },
         {
           "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
           "named": true
         },
         {
@@ -563,6 +551,114 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "build_in_function",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "aggregate",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean_literal",
+            "named": true
+          },
+          {
+            "type": "bracketted_expression",
+            "named": true
+          },
+          {
+            "type": "build_in_function",
+            "named": true
+          },
+          {
+            "type": "decimal",
+            "named": true
+          },
+          {
+            "type": "double",
+            "named": true
+          },
+          {
+            "type": "exists_func",
+            "named": true
+          },
+          {
+            "type": "expression_list",
+            "named": true
+          },
+          {
+            "type": "function_call",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "iri_reference",
+            "named": true
+          },
+          {
+            "type": "nil",
+            "named": true
+          },
+          {
+            "type": "not_exists_func",
+            "named": true
+          },
+          {
+            "type": "prefixed_name",
+            "named": true
+          },
+          {
+            "type": "rdf_literal",
+            "named": true
+          },
+          {
+            "type": "regex_expression",
+            "named": true
+          },
+          {
+            "type": "string_replace_expression",
+            "named": true
+          },
+          {
+            "type": "substring_expression",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "var",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -971,6 +1067,10 @@
           "named": true
         },
         {
+          "type": "build_in_function",
+          "named": true
+        },
+        {
           "type": "decimal",
           "named": true
         },
@@ -980,10 +1080,6 @@
         },
         {
           "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "expression_list",
           "named": true
         },
         {
@@ -1042,7 +1138,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -1050,23 +1146,11 @@
           "named": true
         },
         {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
           "type": "bracketted_expression",
           "named": true
         },
         {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
+          "type": "build_in_function",
           "named": true
         },
         {
@@ -1074,35 +1158,11 @@
           "named": true
         },
         {
-          "type": "expression_list",
-          "named": true
-        },
-        {
           "type": "function_call",
           "named": true
         },
         {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
-          "named": true
-        },
-        {
           "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
           "named": true
         },
         {
@@ -1116,14 +1176,6 @@
         {
           "type": "substring_expression",
           "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "var",
-          "named": true
         }
       ]
     }
@@ -1132,16 +1184,6 @@
     "type": "function_call",
     "named": true,
     "fields": {
-      "arguments": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "arg_list",
-            "named": true
-          }
-        ]
-      },
       "identifier": {
         "multiple": false,
         "required": true,
@@ -1156,6 +1198,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "arg_list",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1278,6 +1330,10 @@
           "named": true
         },
         {
+          "type": "build_in_function",
+          "named": true
+        },
+        {
           "type": "decimal",
           "named": true
         },
@@ -1290,10 +1346,6 @@
           "named": true
         },
         {
-          "type": "expression_list",
-          "named": true
-        },
-        {
           "type": "function_call",
           "named": true
         },
@@ -1303,10 +1355,6 @@
         },
         {
           "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
           "named": true
         },
         {
@@ -1430,7 +1478,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -1438,23 +1486,11 @@
           "named": true
         },
         {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
           "type": "bracketted_expression",
           "named": true
         },
         {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
+          "type": "build_in_function",
           "named": true
         },
         {
@@ -1462,35 +1498,11 @@
           "named": true
         },
         {
-          "type": "expression_list",
-          "named": true
-        },
-        {
           "type": "function_call",
           "named": true
         },
         {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
-          "named": true
-        },
-        {
           "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
           "named": true
         },
         {
@@ -1503,14 +1515,6 @@
         },
         {
           "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "var",
           "named": true
         }
       ]
@@ -2003,7 +2007,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -2011,23 +2015,11 @@
           "named": true
         },
         {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
           "type": "bracketted_expression",
           "named": true
         },
         {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
+          "type": "build_in_function",
           "named": true
         },
         {
@@ -2035,35 +2027,11 @@
           "named": true
         },
         {
-          "type": "expression_list",
-          "named": true
-        },
-        {
           "type": "function_call",
           "named": true
         },
         {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
-          "named": true
-        },
-        {
           "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
           "named": true
         },
         {
@@ -2076,10 +2044,6 @@
         },
         {
           "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
           "named": true
         },
         {
@@ -2395,193 +2359,9 @@
     "named": true,
     "fields": {
       "flag": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "ABS",
-            "named": false
-          },
-          {
-            "type": "BNODE",
-            "named": false
-          },
-          {
-            "type": "BOUND",
-            "named": false
-          },
-          {
-            "type": "CEIL",
-            "named": false
-          },
-          {
-            "type": "COALESCE",
-            "named": false
-          },
-          {
-            "type": "CONCAT",
-            "named": false
-          },
-          {
-            "type": "CONTAINS",
-            "named": false
-          },
-          {
-            "type": "DATATYPE",
-            "named": false
-          },
-          {
-            "type": "DAY",
-            "named": false
-          },
-          {
-            "type": "ENCODE_FOR_URI",
-            "named": false
-          },
-          {
-            "type": "FLOOR",
-            "named": false
-          },
-          {
-            "type": "HOURS",
-            "named": false
-          },
-          {
-            "type": "IF",
-            "named": false
-          },
-          {
-            "type": "IRI",
-            "named": false
-          },
-          {
-            "type": "LANG",
-            "named": false
-          },
-          {
-            "type": "LANGMATCHES",
-            "named": false
-          },
-          {
-            "type": "LCASE",
-            "named": false
-          },
-          {
-            "type": "MD5",
-            "named": false
-          },
-          {
-            "type": "MINUTES",
-            "named": false
-          },
-          {
-            "type": "MONTH",
-            "named": false
-          },
-          {
-            "type": "NOW",
-            "named": false
-          },
-          {
-            "type": "RAND",
-            "named": false
-          },
-          {
-            "type": "ROUND",
-            "named": false
-          },
-          {
-            "type": "SECONDS",
-            "named": false
-          },
-          {
-            "type": "SHA1",
-            "named": false
-          },
-          {
-            "type": "SHA256",
-            "named": false
-          },
-          {
-            "type": "SHA384",
-            "named": false
-          },
-          {
-            "type": "SHA512",
-            "named": false
-          },
-          {
-            "type": "STR",
-            "named": false
-          },
-          {
-            "type": "STRAFTER",
-            "named": false
-          },
-          {
-            "type": "STRBEFORE",
-            "named": false
-          },
-          {
-            "type": "STRDT",
-            "named": false
-          },
-          {
-            "type": "STRENDS",
-            "named": false
-          },
-          {
-            "type": "STRLANG",
-            "named": false
-          },
-          {
-            "type": "STRLEN",
-            "named": false
-          },
-          {
-            "type": "STRSTARTS",
-            "named": false
-          },
-          {
-            "type": "STRUUID",
-            "named": false
-          },
-          {
-            "type": "TIMEZONE",
-            "named": false
-          },
-          {
-            "type": "TZ",
-            "named": false
-          },
-          {
-            "type": "UCASE",
-            "named": false
-          },
-          {
-            "type": "URI",
-            "named": false
-          },
-          {
-            "type": "UUID",
-            "named": false
-          },
-          {
-            "type": "YEAR",
-            "named": false
-          },
           {
             "type": "aggregate",
             "named": true
@@ -2599,6 +2379,10 @@
             "named": true
           },
           {
+            "type": "build_in_function",
+            "named": true
+          },
+          {
             "type": "decimal",
             "named": true
           },
@@ -2611,10 +2395,6 @@
             "named": true
           },
           {
-            "type": "expression_list",
-            "named": true
-          },
-          {
             "type": "function_call",
             "named": true
           },
@@ -2624,30 +2404,6 @@
           },
           {
             "type": "iri_reference",
-            "named": true
-          },
-          {
-            "type": "isBLANK",
-            "named": false
-          },
-          {
-            "type": "isIRI",
-            "named": false
-          },
-          {
-            "type": "isLITERAL",
-            "named": false
-          },
-          {
-            "type": "isNUMERIC",
-            "named": false
-          },
-          {
-            "type": "isURI",
-            "named": false
-          },
-          {
-            "type": "nil",
             "named": true
           },
           {
@@ -2665,10 +2421,6 @@
           {
             "type": "regex_expression",
             "named": true
-          },
-          {
-            "type": "sameTerm",
-            "named": false
           },
           {
             "type": "string_replace_expression",
@@ -2689,193 +2441,9 @@
         ]
       },
       "pattern": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "ABS",
-            "named": false
-          },
-          {
-            "type": "BNODE",
-            "named": false
-          },
-          {
-            "type": "BOUND",
-            "named": false
-          },
-          {
-            "type": "CEIL",
-            "named": false
-          },
-          {
-            "type": "COALESCE",
-            "named": false
-          },
-          {
-            "type": "CONCAT",
-            "named": false
-          },
-          {
-            "type": "CONTAINS",
-            "named": false
-          },
-          {
-            "type": "DATATYPE",
-            "named": false
-          },
-          {
-            "type": "DAY",
-            "named": false
-          },
-          {
-            "type": "ENCODE_FOR_URI",
-            "named": false
-          },
-          {
-            "type": "FLOOR",
-            "named": false
-          },
-          {
-            "type": "HOURS",
-            "named": false
-          },
-          {
-            "type": "IF",
-            "named": false
-          },
-          {
-            "type": "IRI",
-            "named": false
-          },
-          {
-            "type": "LANG",
-            "named": false
-          },
-          {
-            "type": "LANGMATCHES",
-            "named": false
-          },
-          {
-            "type": "LCASE",
-            "named": false
-          },
-          {
-            "type": "MD5",
-            "named": false
-          },
-          {
-            "type": "MINUTES",
-            "named": false
-          },
-          {
-            "type": "MONTH",
-            "named": false
-          },
-          {
-            "type": "NOW",
-            "named": false
-          },
-          {
-            "type": "RAND",
-            "named": false
-          },
-          {
-            "type": "ROUND",
-            "named": false
-          },
-          {
-            "type": "SECONDS",
-            "named": false
-          },
-          {
-            "type": "SHA1",
-            "named": false
-          },
-          {
-            "type": "SHA256",
-            "named": false
-          },
-          {
-            "type": "SHA384",
-            "named": false
-          },
-          {
-            "type": "SHA512",
-            "named": false
-          },
-          {
-            "type": "STR",
-            "named": false
-          },
-          {
-            "type": "STRAFTER",
-            "named": false
-          },
-          {
-            "type": "STRBEFORE",
-            "named": false
-          },
-          {
-            "type": "STRDT",
-            "named": false
-          },
-          {
-            "type": "STRENDS",
-            "named": false
-          },
-          {
-            "type": "STRLANG",
-            "named": false
-          },
-          {
-            "type": "STRLEN",
-            "named": false
-          },
-          {
-            "type": "STRSTARTS",
-            "named": false
-          },
-          {
-            "type": "STRUUID",
-            "named": false
-          },
-          {
-            "type": "TIMEZONE",
-            "named": false
-          },
-          {
-            "type": "TZ",
-            "named": false
-          },
-          {
-            "type": "UCASE",
-            "named": false
-          },
-          {
-            "type": "URI",
-            "named": false
-          },
-          {
-            "type": "UUID",
-            "named": false
-          },
-          {
-            "type": "YEAR",
-            "named": false
-          },
           {
             "type": "aggregate",
             "named": true
@@ -2893,6 +2461,10 @@
             "named": true
           },
           {
+            "type": "build_in_function",
+            "named": true
+          },
+          {
             "type": "decimal",
             "named": true
           },
@@ -2905,10 +2477,6 @@
             "named": true
           },
           {
-            "type": "expression_list",
-            "named": true
-          },
-          {
             "type": "function_call",
             "named": true
           },
@@ -2918,30 +2486,6 @@
           },
           {
             "type": "iri_reference",
-            "named": true
-          },
-          {
-            "type": "isBLANK",
-            "named": false
-          },
-          {
-            "type": "isIRI",
-            "named": false
-          },
-          {
-            "type": "isLITERAL",
-            "named": false
-          },
-          {
-            "type": "isNUMERIC",
-            "named": false
-          },
-          {
-            "type": "isURI",
-            "named": false
-          },
-          {
-            "type": "nil",
             "named": true
           },
           {
@@ -2959,10 +2503,6 @@
           {
             "type": "regex_expression",
             "named": true
-          },
-          {
-            "type": "sameTerm",
-            "named": false
           },
           {
             "type": "string_replace_expression",
@@ -2983,193 +2523,9 @@
         ]
       },
       "text": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "ABS",
-            "named": false
-          },
-          {
-            "type": "BNODE",
-            "named": false
-          },
-          {
-            "type": "BOUND",
-            "named": false
-          },
-          {
-            "type": "CEIL",
-            "named": false
-          },
-          {
-            "type": "COALESCE",
-            "named": false
-          },
-          {
-            "type": "CONCAT",
-            "named": false
-          },
-          {
-            "type": "CONTAINS",
-            "named": false
-          },
-          {
-            "type": "DATATYPE",
-            "named": false
-          },
-          {
-            "type": "DAY",
-            "named": false
-          },
-          {
-            "type": "ENCODE_FOR_URI",
-            "named": false
-          },
-          {
-            "type": "FLOOR",
-            "named": false
-          },
-          {
-            "type": "HOURS",
-            "named": false
-          },
-          {
-            "type": "IF",
-            "named": false
-          },
-          {
-            "type": "IRI",
-            "named": false
-          },
-          {
-            "type": "LANG",
-            "named": false
-          },
-          {
-            "type": "LANGMATCHES",
-            "named": false
-          },
-          {
-            "type": "LCASE",
-            "named": false
-          },
-          {
-            "type": "MD5",
-            "named": false
-          },
-          {
-            "type": "MINUTES",
-            "named": false
-          },
-          {
-            "type": "MONTH",
-            "named": false
-          },
-          {
-            "type": "NOW",
-            "named": false
-          },
-          {
-            "type": "RAND",
-            "named": false
-          },
-          {
-            "type": "ROUND",
-            "named": false
-          },
-          {
-            "type": "SECONDS",
-            "named": false
-          },
-          {
-            "type": "SHA1",
-            "named": false
-          },
-          {
-            "type": "SHA256",
-            "named": false
-          },
-          {
-            "type": "SHA384",
-            "named": false
-          },
-          {
-            "type": "SHA512",
-            "named": false
-          },
-          {
-            "type": "STR",
-            "named": false
-          },
-          {
-            "type": "STRAFTER",
-            "named": false
-          },
-          {
-            "type": "STRBEFORE",
-            "named": false
-          },
-          {
-            "type": "STRDT",
-            "named": false
-          },
-          {
-            "type": "STRENDS",
-            "named": false
-          },
-          {
-            "type": "STRLANG",
-            "named": false
-          },
-          {
-            "type": "STRLEN",
-            "named": false
-          },
-          {
-            "type": "STRSTARTS",
-            "named": false
-          },
-          {
-            "type": "STRUUID",
-            "named": false
-          },
-          {
-            "type": "TIMEZONE",
-            "named": false
-          },
-          {
-            "type": "TZ",
-            "named": false
-          },
-          {
-            "type": "UCASE",
-            "named": false
-          },
-          {
-            "type": "URI",
-            "named": false
-          },
-          {
-            "type": "UUID",
-            "named": false
-          },
-          {
-            "type": "YEAR",
-            "named": false
-          },
           {
             "type": "aggregate",
             "named": true
@@ -3187,6 +2543,10 @@
             "named": true
           },
           {
+            "type": "build_in_function",
+            "named": true
+          },
+          {
             "type": "decimal",
             "named": true
           },
@@ -3199,10 +2559,6 @@
             "named": true
           },
           {
-            "type": "expression_list",
-            "named": true
-          },
-          {
             "type": "function_call",
             "named": true
           },
@@ -3212,30 +2568,6 @@
           },
           {
             "type": "iri_reference",
-            "named": true
-          },
-          {
-            "type": "isBLANK",
-            "named": false
-          },
-          {
-            "type": "isIRI",
-            "named": false
-          },
-          {
-            "type": "isLITERAL",
-            "named": false
-          },
-          {
-            "type": "isNUMERIC",
-            "named": false
-          },
-          {
-            "type": "isURI",
-            "named": false
-          },
-          {
-            "type": "nil",
             "named": true
           },
           {
@@ -3253,10 +2585,6 @@
           {
             "type": "regex_expression",
             "named": true
-          },
-          {
-            "type": "sameTerm",
-            "named": false
           },
           {
             "type": "string_replace_expression",
@@ -3303,6 +2631,10 @@
           "named": true
         },
         {
+          "type": "build_in_function",
+          "named": true
+        },
+        {
           "type": "decimal",
           "named": true
         },
@@ -3315,10 +2647,6 @@
           "named": true
         },
         {
-          "type": "expression_list",
-          "named": true
-        },
-        {
           "type": "function_call",
           "named": true
         },
@@ -3328,10 +2656,6 @@
         },
         {
           "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
           "named": true
         },
         {
@@ -3490,6 +2814,10 @@
           "named": true
         },
         {
+          "type": "build_in_function",
+          "named": true
+        },
+        {
           "type": "decimal",
           "named": true
         },
@@ -3502,10 +2830,6 @@
           "named": true
         },
         {
-          "type": "expression_list",
-          "named": true
-        },
-        {
           "type": "function_call",
           "named": true
         },
@@ -3515,10 +2839,6 @@
         },
         {
           "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
           "named": true
         },
         {
@@ -3608,6 +2928,10 @@
           "named": true
         },
         {
+          "type": "build_in_function",
+          "named": true
+        },
+        {
           "type": "decimal",
           "named": true
         },
@@ -3620,10 +2944,6 @@
           "named": true
         },
         {
-          "type": "expression_list",
-          "named": true
-        },
-        {
           "type": "function_call",
           "named": true
         },
@@ -3633,10 +2953,6 @@
         },
         {
           "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
           "named": true
         },
         {
@@ -3850,15 +3166,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "aggregate",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
           "named": true
         },
         {
@@ -3867,6 +3179,10 @@
         },
         {
           "type": "bracketted_expression",
+          "named": true
+        },
+        {
+          "type": "build_in_function",
           "named": true
         },
         {
@@ -3882,10 +3198,6 @@
           "named": true
         },
         {
-          "type": "expression_list",
-          "named": true
-        },
-        {
           "type": "function_call",
           "named": true
         },
@@ -3895,10 +3207,6 @@
         },
         {
           "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
           "named": true
         },
         {
@@ -3923,10 +3231,6 @@
         },
         {
           "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
           "named": true
         },
         {

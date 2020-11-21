@@ -1,5 +1,0 @@
-SELECT * {
-<http://example.org/book/book1> dc:title ?title
-}
-
-

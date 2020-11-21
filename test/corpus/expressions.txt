@@ -66,5 +66,5 @@ SELECT ( foo:bar(?a, 1)  AS ?x ) {}
     (select_clause 
       (function_call
         identifier: (prefixed_name (namespace (pn_prefix)) (pn_local))
-        arguments: (arg_list (var) (integer))) (var))
+        (arg_list (var) (integer))) (var))
     (where_clause (group_graph_pattern))))

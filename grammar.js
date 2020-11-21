@@ -1,3 +1,6 @@
+// [X] See section "19.8 Grammar" in https://www.w3.org/TR/sparql11-query/ for
+//     corresponding rule x.
+
 // [162]
 const WS = [
   /\x20/,
@@ -620,7 +623,7 @@ module.exports = grammar({
     // [70]
     function_call: $ => seq(
       field('identifier', $._iri),
-      field('arguments', $.arg_list)
+      $.arg_list
     ),
 
     // [71]
@@ -956,77 +959,124 @@ module.exports = grammar({
 
     // [121]
     _build_in_call: $ => choice(
+      $.build_in_function,
       $.aggregate,
-      seq('STR'.orLowerCase(), $.bracketted_expression),
-      seq('LANG'.orLowerCase(), $.bracketted_expression),
-      seq('LANGMATCHES'.orLowerCase(), '(', $._expression, ',', $._expression, ')'),
-      seq('DATATYPE'.orLowerCase(), $.bracketted_expression),
-      seq('BOUND'.orLowerCase(), '(', $.var, ')'),
-      seq('IRI'.orLowerCase(), $.bracketted_expression),
-      seq('URI'.orLowerCase(), $.bracketted_expression),
-      seq('BNODE'.orLowerCase(), choice(
-        $.bracketted_expression,
-        $.nil)),
-      seq('RAND'.orLowerCase(), $.nil),
-      seq('ABS'.orLowerCase(), $.bracketted_expression),
-      seq('CEIL'.orLowerCase(), $.bracketted_expression),
-      seq('FLOOR'.orLowerCase(), $.bracketted_expression),
-      seq('ROUND'.orLowerCase(), $.bracketted_expression),
-      seq('CONCAT'.orLowerCase(), $.expression_list),
-      $.substring_expression,
-      seq('STRLEN'.orLowerCase(), $.bracketted_expression),
-      $.string_replace_expression,
-      seq('UCASE'.orLowerCase(), $.bracketted_expression),
-      seq('LCASE'.orLowerCase(), $.bracketted_expression),
-      seq('ENCODE_FOR_URI', $.bracketted_expression),
-      seq('CONTAINS'.orLowerCase(), '(', $._expression, ',', $._expression, ')'),
-      seq('STRSTARTS'.orLowerCase(), '(', $._expression, ',', $._expression, ')'),
-      seq('STRENDS'.orLowerCase(), '(', $._expression, ',', $._expression, ')'),
-      seq('STRBEFORE'.orLowerCase(), '(', $._expression, ',', $._expression, ')'),
-      seq('STRAFTER'.orLowerCase(), '(', $._expression, ',', $._expression, ')'),
-      seq('YEAR'.orLowerCase(), $.bracketted_expression),
-      seq('MONTH'.orLowerCase(), $.bracketted_expression),
-      seq('DAY'.orLowerCase(), $.bracketted_expression),
-      seq('HOURS'.orLowerCase(), $.bracketted_expression),
-      seq('MINUTES'.orLowerCase(), $.bracketted_expression),
-      seq('SECONDS'.orLowerCase(), $.bracketted_expression),
-      seq('TIMEZONE'.orLowerCase(), $.bracketted_expression),
-      seq('TZ'.orLowerCase(), $.bracketted_expression),
-      seq('NOW'.orLowerCase(), $.nil),
-      seq('UUID'.orLowerCase(), $.nil),
-      seq('STRUUID'.orLowerCase(), $.nil),
-      seq('MD5', $.bracketted_expression),
-      seq('SHA1', $.bracketted_expression),
-      seq('SHA256', $.bracketted_expression),
-      seq('SHA384', $.bracketted_expression),
-      seq('SHA512', $.bracketted_expression),
-      seq('COALESCE'.orLowerCase(), $.expression_list),
-      seq('IF'.orLowerCase(), '(', $._expression, ',', $._expression, ',', $._expression, ')'),
-      seq('STRLANG'.orLowerCase(), '(', $._expression, ',', $._expression, ')'),
-      seq('STRDT'.orLowerCase(), '(', $._expression, ',', $._expression, ')'),
-      seq('sameTerm', '(', $._expression, ',', $._expression, ')'),
-      seq('isIRI', $.bracketted_expression),
-      seq('isURI', $.bracketted_expression),
-      seq('isBLANK', $.bracketted_expression),
-      seq('isLITERAL', $.bracketted_expression),
-      seq('isNUMERIC', $.bracketted_expression),
-      $.regex_expression,
       $.exists_func,
-      $.not_exists_func
+      $.not_exists_func,
+      $.substring_expression,
+      $.string_replace_expression,
+      $.regex_expression,
+    ),
+
+    build_in_function: $ => choice(
+      $._nullary_build_in_function,
+      $._unary_build_in_function,
+      $._binary_build_in_function,
+      $._variadic_build_in_function,
+      seq(
+        'BOUND'.orLowerCase(),
+        field('arguments', seq('(', $.var, ')'))),
+      seq(
+        'BNODE'.orLowerCase(),
+        field('arguments', choice($.bracketted_expression, $.nil))
+      ),
+      seq(
+        'IF'.orLowerCase(),
+        field('arguments', seq('(', $._expression, ',', $._expression, ',', $._expression, ')'))),
+    ),
+
+    _nullary_build_in_function: $ => seq(
+      choice(
+        ...[
+          'NOW',
+          'RAND',
+          'STRUUID',
+          'UUID'
+        ].map(i => i.orLowerCase())
+      ),
+      field('arguments', $.nil)
+    ),
+
+
+    _unary_build_in_function: $ => seq(
+      choice(
+        ...[
+          'ABS',
+          'CEIL',
+          'DATATYPE',
+          'DAY',
+          'ENCODE_FOR_URI',
+          'FLOOR',
+          'HOURS',
+          'IRI',
+          'LANG',
+          'LCASE',
+          'MD5',
+          'MINUTES',
+          'MONTH',
+          'ROUND',
+          'SECONDS',
+          'SHA1',
+          'SHA256',
+          'SHA384',
+          'SHA512',
+          'STR',
+          'STRLEN',
+          'TIMEZONE',
+          'TZ',
+          'UCASE',
+          'URI',
+          'YEAR',
+          'isBLANK',
+          'isIRI',
+          'isLITERAL',
+          'isNUMERIC',
+          'isURI',
+        ].map(i => i.orLowerCase())
+      ),
+      field('arguments', $.bracketted_expression)
+    ),
+
+    _binary_build_in_function: $ => seq(
+      choice(
+        ...[
+          'CONTAINS',
+          'LANGMATCHES',
+          'STRAFTER',
+          'STRBEFORE',
+          'STRDT',
+          'STRENDS',
+          'STRLANG',
+          'STRSTARTS',
+          'sameTerm',
+        ].map(i => i.orLowerCase())
+      ),
+      field('arguments', seq('(', $._expression, ',', $._expression, ')'))
+    ),
+
+    _variadic_build_in_function: $ => seq(
+      choice(
+        ...[
+          'CONCAT',
+          'COALESCE',
+        ].map(i => i.orLowerCase())
+      ),
+      field('arguments', $.expression_list)
     ),
 
     // [122]
     regex_expression: $ => seq(
       'REGEX'.orLowerCase(),
-      '(',
-      field('text', $._expression),
-      ',',
-      field('pattern', $._expression),
-      optional(seq(
+      seq('(',
+        field('text', $._expression),
         ',',
-        field('flag', $._expression))
-      ),
-      ')'
+        field('pattern', $._expression),
+        optional(seq(
+          ',',
+          field('flag', $._expression))
+        ),
+        ')'
+      )
     ),
 
     // [123]
@@ -1069,7 +1119,8 @@ module.exports = grammar({
     // [127]
     aggregate: $ => choice(
       seq(
-        'COUNT'.orLowerCase(), '(',
+        'COUNT'.orLowerCase(),
+        '(',
         optional('DISTINCT'.orLowerCase()),
         choice(
           '*',

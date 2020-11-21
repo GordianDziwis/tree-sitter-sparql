@@ -145,3 +145,24 @@ SELECT * {
                   (property_list_path
                     (path_element (prefixed_name (namespace) (pn_local)))
                     (object_list_path (rdf_literal (string)))))))))))))
+
+====
+Nil
+====
+
+SELECT * {}
+
+VALUES () {
+  ()
+}
+
+---
+
+(unit
+  (select_query
+    (select_clause)
+    (where_clause (group_graph_pattern)))
+    (values_clause
+      (inline_data_full
+        (nil)
+        (nil))))

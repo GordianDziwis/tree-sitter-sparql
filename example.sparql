@@ -1,6 +1,6 @@
 BASE <http://www.example.org>
-PREFIX ex:<http://www.example.org>
-prefix ex:<http://www.example.org>
+PREFIX ex: <http://www.example.org>
+prefix ex: <http://www.example.org>
 
 SELECT DISTINCT ( ?a + ?b * 1 AS $x )
 
@@ -16,6 +16,13 @@ WHERE {
   { ?s ?p ?o }
   { ?s ?p ?o }
   FILTER REGEX(?s, "^foo", "i")
+  FILTER REGEX(?s, ?a, ?s)
+  FILTER REGEX(?s, ?a)
+  FILTER RAND()
+  FILTER func:foo(?s, "^f[]\boo", "i", $s)
+  FILTER strends(?s, "^foo")
+  FILTER str("^foo")
+  FILTER sameTerm("^foo", ?a)
   {} OPTIONAL { ?s ?p ?o }
   optional { ?s ?p ?o }
   { ?s ?p ?o }
@@ -27,6 +34,7 @@ VALUES ?a {
   <http://example.org/foo>
   <foo>
   example:foo
+  :foo
   'foo'
   "fo\t\\foo\bbo"
   'foo'@de
