@@ -1,5 +1,87 @@
 [
   {
+    "type": "_expression",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "aggregate",
+        "named": true
+      },
+      {
+        "type": "binary_expression",
+        "named": true
+      },
+      {
+        "type": "boolean_literal",
+        "named": true
+      },
+      {
+        "type": "bracketted_expression",
+        "named": true
+      },
+      {
+        "type": "build_in_function",
+        "named": true
+      },
+      {
+        "type": "decimal",
+        "named": true
+      },
+      {
+        "type": "double",
+        "named": true
+      },
+      {
+        "type": "exists_func",
+        "named": true
+      },
+      {
+        "type": "function_call",
+        "named": true
+      },
+      {
+        "type": "integer",
+        "named": true
+      },
+      {
+        "type": "iri_reference",
+        "named": true
+      },
+      {
+        "type": "not_exists_func",
+        "named": true
+      },
+      {
+        "type": "prefixed_name",
+        "named": true
+      },
+      {
+        "type": "rdf_literal",
+        "named": true
+      },
+      {
+        "type": "regex_expression",
+        "named": true
+      },
+      {
+        "type": "string_replace_expression",
+        "named": true
+      },
+      {
+        "type": "substring_expression",
+        "named": true
+      },
+      {
+        "type": "unary_expression",
+        "named": true
+      },
+      {
+        "type": "var",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "add",
     "named": true,
     "fields": {},
@@ -23,83 +105,11 @@
       "required": false,
       "types": [
         {
-          "type": "aggregate",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
+          "type": "_expression",
           "named": true
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "var",
           "named": true
         }
       ]
@@ -114,83 +124,11 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
+          "type": "_expression",
           "named": true
         },
         {
           "type": "nil",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "var",
           "named": true
         }
       ]
@@ -243,83 +181,11 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "exists_func",
+          "type": "_expression",
           "named": true
         },
         {
           "type": "expression_list",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "var",
           "named": true
         }
       ]
@@ -353,79 +219,7 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "var",
+          "type": "_expression",
           "named": true
         }
       ]
@@ -475,79 +269,7 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "var",
+          "type": "_expression",
           "named": true
         }
       ]
@@ -574,35 +296,7 @@
             "named": false
           },
           {
-            "type": "aggregate",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "boolean_literal",
-            "named": true
-          },
-          {
-            "type": "bracketted_expression",
-            "named": true
-          },
-          {
-            "type": "build_in_function",
-            "named": true
-          },
-          {
-            "type": "decimal",
-            "named": true
-          },
-          {
-            "type": "double",
-            "named": true
-          },
-          {
-            "type": "exists_func",
+            "type": "_expression",
             "named": true
           },
           {
@@ -610,51 +304,7 @@
             "named": true
           },
           {
-            "type": "function_call",
-            "named": true
-          },
-          {
-            "type": "integer",
-            "named": true
-          },
-          {
-            "type": "iri_reference",
-            "named": true
-          },
-          {
             "type": "nil",
-            "named": true
-          },
-          {
-            "type": "not_exists_func",
-            "named": true
-          },
-          {
-            "type": "prefixed_name",
-            "named": true
-          },
-          {
-            "type": "rdf_literal",
-            "named": true
-          },
-          {
-            "type": "regex_expression",
-            "named": true
-          },
-          {
-            "type": "string_replace_expression",
-            "named": true
-          },
-          {
-            "type": "substring_expression",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "var",
             "named": true
           }
         ]
@@ -1051,83 +701,11 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
+          "type": "_expression",
           "named": true
         },
         {
           "type": "nil",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "var",
           "named": true
         }
       ]
@@ -1314,79 +892,7 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "var",
+          "type": "_expression",
           "named": true
         }
       ]
@@ -2363,79 +1869,7 @@
         "required": false,
         "types": [
           {
-            "type": "aggregate",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "boolean_literal",
-            "named": true
-          },
-          {
-            "type": "bracketted_expression",
-            "named": true
-          },
-          {
-            "type": "build_in_function",
-            "named": true
-          },
-          {
-            "type": "decimal",
-            "named": true
-          },
-          {
-            "type": "double",
-            "named": true
-          },
-          {
-            "type": "exists_func",
-            "named": true
-          },
-          {
-            "type": "function_call",
-            "named": true
-          },
-          {
-            "type": "integer",
-            "named": true
-          },
-          {
-            "type": "iri_reference",
-            "named": true
-          },
-          {
-            "type": "not_exists_func",
-            "named": true
-          },
-          {
-            "type": "prefixed_name",
-            "named": true
-          },
-          {
-            "type": "rdf_literal",
-            "named": true
-          },
-          {
-            "type": "regex_expression",
-            "named": true
-          },
-          {
-            "type": "string_replace_expression",
-            "named": true
-          },
-          {
-            "type": "substring_expression",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "var",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -2445,79 +1879,7 @@
         "required": true,
         "types": [
           {
-            "type": "aggregate",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "boolean_literal",
-            "named": true
-          },
-          {
-            "type": "bracketted_expression",
-            "named": true
-          },
-          {
-            "type": "build_in_function",
-            "named": true
-          },
-          {
-            "type": "decimal",
-            "named": true
-          },
-          {
-            "type": "double",
-            "named": true
-          },
-          {
-            "type": "exists_func",
-            "named": true
-          },
-          {
-            "type": "function_call",
-            "named": true
-          },
-          {
-            "type": "integer",
-            "named": true
-          },
-          {
-            "type": "iri_reference",
-            "named": true
-          },
-          {
-            "type": "not_exists_func",
-            "named": true
-          },
-          {
-            "type": "prefixed_name",
-            "named": true
-          },
-          {
-            "type": "rdf_literal",
-            "named": true
-          },
-          {
-            "type": "regex_expression",
-            "named": true
-          },
-          {
-            "type": "string_replace_expression",
-            "named": true
-          },
-          {
-            "type": "substring_expression",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "var",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -2527,79 +1889,7 @@
         "required": true,
         "types": [
           {
-            "type": "aggregate",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "boolean_literal",
-            "named": true
-          },
-          {
-            "type": "bracketted_expression",
-            "named": true
-          },
-          {
-            "type": "build_in_function",
-            "named": true
-          },
-          {
-            "type": "decimal",
-            "named": true
-          },
-          {
-            "type": "double",
-            "named": true
-          },
-          {
-            "type": "exists_func",
-            "named": true
-          },
-          {
-            "type": "function_call",
-            "named": true
-          },
-          {
-            "type": "integer",
-            "named": true
-          },
-          {
-            "type": "iri_reference",
-            "named": true
-          },
-          {
-            "type": "not_exists_func",
-            "named": true
-          },
-          {
-            "type": "prefixed_name",
-            "named": true
-          },
-          {
-            "type": "rdf_literal",
-            "named": true
-          },
-          {
-            "type": "regex_expression",
-            "named": true
-          },
-          {
-            "type": "string_replace_expression",
-            "named": true
-          },
-          {
-            "type": "substring_expression",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "var",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -2615,79 +1905,7 @@
       "required": false,
       "types": [
         {
-          "type": "aggregate",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "var",
+          "type": "_expression",
           "named": true
         }
       ]
@@ -2798,79 +2016,7 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "var",
+          "type": "_expression",
           "named": true
         }
       ]
@@ -2912,79 +2058,7 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "var",
+          "type": "_expression",
           "named": true
         }
       ]

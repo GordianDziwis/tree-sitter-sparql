@@ -33,7 +33,7 @@ Literals
 SELECT * {}
 
 VALUES ?var {
-    'foo'
+  'foo'
   "foo"
   'foo'@de
   'foo'^^<http://example.org/foo>

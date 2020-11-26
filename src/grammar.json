@@ -8042,6 +8042,8 @@
   "inline": [
     "_query"
   ],
-  "supertypes": []
+  "supertypes": [
+    "_expression"
+  ]
 }
 

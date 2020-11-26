@@ -84,6 +84,10 @@ String.prototype.orLowerCase =
 module.exports = grammar({
   name: 'sparql',
 
+  supertypes: $ => [
+    $._expression
+  ],
+
   inline: $ => [
     $._query
   ],
