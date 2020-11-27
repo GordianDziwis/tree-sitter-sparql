@@ -143,3 +143,23 @@ WHERE {}
   (ask_query
     (where_clause
       (group_graph_pattern))))
+
+========
+Comment
+========
+
+# Comment
+
+SELECT * {}
+
+# Comment
+
+---
+
+(unit
+  (comment)
+  (select_query
+    (select_clause)
+    (where_clause
+      (group_graph_pattern)))
+  (comment))
