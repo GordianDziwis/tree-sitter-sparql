@@ -14,6 +14,19 @@
         }
       ]
     },
+    "comment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#"
+        },
+        {
+          "type": "PATTERN",
+          "value": ".*"
+        }
+      ]
+    },
     "_query": {
       "type": "SEQ",
       "members": [
@@ -6880,15 +6893,15 @@
       ]
     },
     "blank_node_label": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "_:"
-          },
-          {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "_:"
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
             "type": "CHOICE",
             "members": [
               {
@@ -6908,103 +6921,9 @@
                 "value": "[0-9]"
               }
             ]
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "REPEAT",
-                    "content": {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "PATTERN",
-                          "value": "[A-Z]"
-                        },
-                        {
-                          "type": "PATTERN",
-                          "value": "[a-z]"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "_"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "-"
-                        },
-                        {
-                          "type": "PATTERN",
-                          "value": "[0-9]"
-                        },
-                        {
-                          "type": "PATTERN",
-                          "value": "[\\u00B7]"
-                        },
-                        {
-                          "type": "PATTERN",
-                          "value": "[\\u0300-\\u036F]"
-                        },
-                        {
-                          "type": "PATTERN",
-                          "value": "[\\u203F-\\u2040]"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "."
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "PATTERN",
-                        "value": "[A-Z]"
-                      },
-                      {
-                        "type": "PATTERN",
-                        "value": "[a-z]"
-                      },
-                      {
-                        "type": "STRING",
-                        "value": "_"
-                      },
-                      {
-                        "type": "STRING",
-                        "value": "-"
-                      },
-                      {
-                        "type": "PATTERN",
-                        "value": "[0-9]"
-                      },
-                      {
-                        "type": "PATTERN",
-                        "value": "[\\u00B7]"
-                      },
-                      {
-                        "type": "PATTERN",
-                        "value": "[\\u0300-\\u036F]"
-                      },
-                      {
-                        "type": "PATTERN",
-                        "value": "[\\u203F-\\u2040]"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
           }
-        ]
-      }
+        }
+      ]
     },
     "lang_tag": {
       "type": "TOKEN",
@@ -8032,6 +7951,10 @@
     }
   },
   "extras": [
+    {
+      "type": "SYMBOL",
+      "name": "comment"
+    },
     {
       "type": "PATTERN",
       "value": "\\s"

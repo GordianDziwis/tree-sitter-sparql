@@ -1226,20 +1226,20 @@ module.exports = grammar({
     ),
 
     // [142]
-    blank_node_label: $ => token(seq(
+    blank_node_label: $ => seq(
       '_:',
-      choice(
+      token.immediate(choice(
         ...PN_CHARS_U,
         /[0-9]/
       ),
-      optional(seq(
-        repeat(choice(
-          ...PN_CHARS,
-          '.'
-        )),
-        choice(...PN_CHARS)
-      ))
-    )),
+        optional(seq(
+          repeat(choice(
+            ...PN_CHARS,
+            '.'
+          )),
+          choice(...PN_CHARS)
+        ))
+      )),
 
     // [145]
     lang_tag: $ => token(seq(
