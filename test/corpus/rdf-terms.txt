@@ -95,7 +95,7 @@ VALUES ?var {
             (echar))))))
 
 ================
-Query Variables
+Query variables
 ================
 
 SELECT $foo ?bar {}
@@ -108,7 +108,7 @@ SELECT $foo ?bar {}
     (where_clause (group_graph_pattern))))
 
 ============
-Blank Nodes
+Blank nodes
 ============
 
 SELECT * {
