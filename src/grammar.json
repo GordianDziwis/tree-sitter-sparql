@@ -2,17 +2,20 @@
   "name": "sparql",
   "rules": {
     "unit": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_query"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_update"
-        }
-      ]
+      "type": "REPEAT",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_query"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_update"
+          }
+        ]
+      }
     },
     "comment": {
       "type": "SEQ",
@@ -81,89 +84,89 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "prologue"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
+              "type": "SYMBOL",
+              "name": "prologue"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
               "members": [
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "load"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "clear"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "drop"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "add"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "move"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "copy"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "create"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "insert_data"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "delete_data"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "delete_where"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "modify"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "load"
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SEQ",
-                      "members": [
-                        {
-                          "type": "STRING",
-                          "value": ";"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "_update"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "clear"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "drop"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "add"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "move"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "copy"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "create"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "insert_data"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "delete_data"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "delete_where"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "modify"
                 }
               ]
             },
             {
-              "type": "BLANK"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ";"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_update"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             }
           ]
         }

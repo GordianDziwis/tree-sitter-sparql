@@ -99,10 +99,10 @@ module.exports = grammar({
 
   rules: {
 
-    unit: $ => choice(
+    unit: $ => repeat(choice(
       $._query,
       $._update
-    ),
+    )),
 
     comment: $ => seq(
       '#',
@@ -125,8 +125,8 @@ module.exports = grammar({
     // [29]
     // [30]
     _update: $ => seq(
-      $.prologue,
-      optional(seq(
+      optional($.prologue),
+      seq(
         choice(
           $.load,
           $.clear,
@@ -143,7 +143,7 @@ module.exports = grammar({
         optional(seq(
           ';',
           $._update
-        ))
+        )
       ))
     ),
 
@@ -503,7 +503,8 @@ module.exports = grammar({
       $.triples_same_subject,
       repeat(seq(
         '.',
-        $.triples_same_subject)),
+        $.triples_same_subject
+      )),
       optional('.')
     ),
 
