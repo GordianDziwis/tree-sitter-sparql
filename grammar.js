@@ -104,10 +104,7 @@ module.exports = grammar({
       $._update
     )),
 
-    comment: $ => seq(
-      '#',
-      /.*/
-    ),
+    comment: $ => /#.*/,
 
     // [2]
     _query: $ => seq(
