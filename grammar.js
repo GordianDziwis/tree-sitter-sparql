@@ -97,6 +97,8 @@ module.exports = grammar({
     $._query
   ],
 
+  word: $ => $.pn_prefix,
+
   rules: {
 
     unit: $ => repeat(choice(
