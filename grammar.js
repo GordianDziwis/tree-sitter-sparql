@@ -142,8 +142,8 @@ module.exports = grammar({
         optional(seq(
           ';',
           $._update
-        )
-      ))
+        ))
+      )
     ),
 
     // [4]

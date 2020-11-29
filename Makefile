@@ -1,3 +1,5 @@
+.PHONY: build
+
 build:
 	tree-sitter generate
 

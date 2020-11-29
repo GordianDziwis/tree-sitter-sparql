@@ -2468,10 +2468,6 @@
     "named": false
   },
   {
-    "type": "#",
-    "named": false
-  },
-  {
     "type": "&&",
     "named": false
   },
@@ -2993,6 +2989,10 @@
   },
   {
     "type": "anon",
+    "named": true
+  },
+  {
+    "type": "comment",
     "named": true
   },
   {

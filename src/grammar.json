@@ -1,5 +1,6 @@
 {
   "name": "sparql",
+  "word": "pn_prefix",
   "rules": {
     "unit": {
       "type": "REPEAT",
@@ -18,17 +19,8 @@
       }
     },
     "comment": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "#"
-        },
-        {
-          "type": "PATTERN",
-          "value": ".*"
-        }
-      ]
+      "type": "PATTERN",
+      "value": "#.*"
     },
     "_query": {
       "type": "SEQ",
