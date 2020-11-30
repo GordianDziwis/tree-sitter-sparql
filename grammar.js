@@ -70,16 +70,17 @@ const PN_LOCAL_ESC = [
   '%'
 ].map(char => '\\' + char)
 
-String.prototype.orLowerCase =
-  function () {
-    return alias(
-      token(choice(
-        this,
-        this.toLowerCase()
-      )),
+String.prototype.toCaseInsensitiv = function () {
+  return alias(
+    token(new RegExp(
       this
-    )
-  }
+        .split('')
+        .map(letter => `[${letter}${letter.toLowerCase()}]`)
+        .join('')
+    )),
+    this
+  )
+}
 
 module.exports = grammar({
   name: 'sparql',
@@ -154,13 +155,13 @@ module.exports = grammar({
 
     // [5]
     base_declaration: $ => seq(
-      'BASE'.orLowerCase(),
+      'BASE'.toCaseInsensitiv(),
       $.iri_reference
     ),
 
     // [6]
     prefix_declaration: $ => seq(
-      'PREFIX'.orLowerCase(),
+      'PREFIX'.toCaseInsensitiv(),
       $.namespace,
       $.iri_reference
     ),
@@ -183,15 +184,15 @@ module.exports = grammar({
 
     // [9]
     select_clause: $ => seq(
-      'SELECT'.orLowerCase(),
+      'SELECT'.toCaseInsensitiv(),
       optional(choice(
-        'DISTINCT'.orLowerCase(),
-        'REDUCED'.orLowerCase()
+        'DISTINCT'.toCaseInsensitiv(),
+        'REDUCED'.toCaseInsensitiv()
       )),
       choice(
         repeat1(choice(
           $.var,
-          seq('(', $._expression, 'AS'.orLowerCase(), $.var, ')')
+          seq('(', $._expression, 'AS'.toCaseInsensitiv(), $.var, ')')
         )),
         '*'
       )
@@ -199,7 +200,7 @@ module.exports = grammar({
 
     // [10]
     construct_query: $ => seq(
-      'CONSTRUCT'.orLowerCase(),
+      'CONSTRUCT'.toCaseInsensitiv(),
       choice(
         seq(
           $.construct_template,
@@ -209,7 +210,7 @@ module.exports = grammar({
         ),
         seq(
           repeat($.dataset_clause),
-          'WHERE'.orLowerCase(), '{', $.triples_template, '}',
+          'WHERE'.toCaseInsensitiv(), '{', $.triples_template, '}',
           optional($.solution_modifier)
         )
       )
@@ -217,7 +218,7 @@ module.exports = grammar({
 
     // [11]
     describe_query: $ => seq(
-      'DESCRIBE'.orLowerCase(),
+      'DESCRIBE'.toCaseInsensitiv(),
       choice(
         repeat1($._var_or_iri),
         '*'
@@ -229,7 +230,7 @@ module.exports = grammar({
 
     // [12]
     ask_query: $ => seq(
-      'ASK'.orLowerCase(),
+      'ASK'.toCaseInsensitiv(),
       repeat($.dataset_clause),
       $.where_clause,
       optional($.solution_modifier)
@@ -237,7 +238,7 @@ module.exports = grammar({
 
     // [13]
     dataset_clause: $ => seq(
-      'FROM'.orLowerCase(),
+      'FROM'.toCaseInsensitiv(),
       choice(
         $.default_graph_clause,
         $.named_graph_clause
@@ -251,13 +252,13 @@ module.exports = grammar({
     // [15]
     // [16]
     named_graph_clause: $ => seq(
-      'NAMED'.orLowerCase(),
+      'NAMED'.toCaseInsensitiv(),
       field('source_selector', $._iri)
     ),
 
     // [17]
     where_clause: $ => seq(
-      optional('WHERE'.orLowerCase()),
+      optional('WHERE'.toCaseInsensitiv()),
       $.group_graph_pattern
     ),
 
@@ -292,8 +293,8 @@ module.exports = grammar({
 
     // [19]
     group_clause: $ => seq(
-      'GROUP'.orLowerCase(),
-      'BY'.orLowerCase(),
+      'GROUP'.toCaseInsensitiv(),
+      'BY'.toCaseInsensitiv(),
       repeat1($.group_condition)
     ),
 
@@ -304,7 +305,7 @@ module.exports = grammar({
       seq(
         '(',
         $._expression,
-        optional(seq('AS'.orLowerCase(), $.var)),
+        optional(seq('AS'.toCaseInsensitiv(), $.var)),
         ')'
       ),
       $.var
@@ -312,7 +313,7 @@ module.exports = grammar({
 
     // [21]
     having_clause: $ => seq(
-      'HAVING'.orLowerCase(),
+      'HAVING'.toCaseInsensitiv(),
       repeat1($.having_condition)
     ),
 
@@ -321,15 +322,15 @@ module.exports = grammar({
 
     // [23]
     order_clause: $ => seq(
-      'ORDER'.orLowerCase(),
-      'BY'.orLowerCase(),
+      'ORDER'.toCaseInsensitiv(),
+      'BY'.toCaseInsensitiv(),
       repeat1($.order_condition)
     ),
 
     // [24]
     order_condition: $ => choice(
       seq(
-        choice('ASC'.orLowerCase(), 'DESC'.orLowerCase()),
+        choice('ASC'.toCaseInsensitiv(), 'DESC'.toCaseInsensitiv()),
         $.bracketted_expression
       ),
       choice(
@@ -347,75 +348,75 @@ module.exports = grammar({
 
     // [26]
     limit_clause: $ => seq(
-      'LIMIT'.orLowerCase(),
+      'LIMIT'.toCaseInsensitiv(),
       $.integer
     ),
 
     // [27]
     offset_clause: $ => seq(
-      'OFFSET'.orLowerCase(),
+      'OFFSET'.toCaseInsensitiv(),
       $.integer
     ),
 
     // [28]
     values_clause: $ => seq(
-      'VALUES'.orLowerCase(),
+      'VALUES'.toCaseInsensitiv(),
       $._data_block
     ),
 
     // [31]
     load: $ => seq(
-      'LOAD'.orLowerCase(),
-      optional('SILENT'.orLowerCase()),
+      'LOAD'.toCaseInsensitiv(),
+      optional('SILENT'.toCaseInsensitiv()),
       $._iri,
-      optional(seq('INTO'.orLowerCase(), $.graph_ref))
+      optional(seq('INTO'.toCaseInsensitiv(), $.graph_ref))
     ),
 
     // [32]
     clear: $ => seq(
-      'CLEAR'.orLowerCase(),
-      optional('SILENT'.orLowerCase()),
+      'CLEAR'.toCaseInsensitiv(),
+      optional('SILENT'.toCaseInsensitiv()),
       $.graph_ref_all
     ),
 
     // [33]
     drop: $ => seq(
-      'DROP'.orLowerCase(),
-      optional('SILENT'.orLowerCase()),
+      'DROP'.toCaseInsensitiv(),
+      optional('SILENT'.toCaseInsensitiv()),
       $.graph_ref_all
     ),
 
     // [34]
     create: $ => seq(
-      'CREATE'.orLowerCase(),
-      optional('SILENT'.orLowerCase()),
+      'CREATE'.toCaseInsensitiv(),
+      optional('SILENT'.toCaseInsensitiv()),
       $.graph_ref
     ),
 
     // [35]
     add: $ => seq(
-      'ADD'.orLowerCase(),
-      optional('SILENT'.orLowerCase()),
+      'ADD'.toCaseInsensitiv(),
+      optional('SILENT'.toCaseInsensitiv()),
       $.graph_or_default,
-      'TO'.orLowerCase(),
+      'TO'.toCaseInsensitiv(),
       $.graph_or_default
     ),
 
     // [36]
     move: $ => seq(
-      'MOVE'.orLowerCase(),
-      optional('SILENT'.orLowerCase()),
+      'MOVE'.toCaseInsensitiv(),
+      optional('SILENT'.toCaseInsensitiv()),
       $.graph_or_default,
-      'TO'.orLowerCase(),
+      'TO'.toCaseInsensitiv(),
       $.graph_or_default
     ),
 
     // [37]
     copy: $ => seq(
-      'COPY'.orLowerCase(),
-      optional('SILENT'.orLowerCase()),
+      'COPY'.toCaseInsensitiv(),
+      optional('SILENT'.toCaseInsensitiv()),
       $.graph_or_default,
-      'TO'.orLowerCase(),
+      'TO'.toCaseInsensitiv(),
       $.graph_or_default
     ),
 
@@ -430,48 +431,48 @@ module.exports = grammar({
 
     // [41]
     modify: $ => seq(
-      optional(seq('WITH'.orLowerCase(), $._iri)),
+      optional(seq('WITH'.toCaseInsensitiv(), $._iri)),
       choice(
         seq($.delete_clause, optional($.insert_clause)),
         $.insert_clause
       ),
       repeat($.using_clause),
-      'WHERE'.orLowerCase(),
+      'WHERE'.toCaseInsensitiv(),
       $.group_graph_pattern
     ),
 
     // [42]
-    delete_clause: $ => seq('DELETE'.orLowerCase(), $.quads),
+    delete_clause: $ => seq('DELETE'.toCaseInsensitiv(), $.quads),
 
     // [43]
-    insert_clause: $ => seq('INSERT'.orLowerCase(), $.quads),
+    insert_clause: $ => seq('INSERT'.toCaseInsensitiv(), $.quads),
 
     // [44]
     using_clause: $ => seq(
-      'USING'.orLowerCase(),
+      'USING'.toCaseInsensitiv(),
       choice(
         $._iri,
-        seq('NAMED'.orLowerCase(), $._iri)
+        seq('NAMED'.toCaseInsensitiv(), $._iri)
       )
     ),
 
     // [45]
     graph_or_default: $ => choice(
-      'DEFAULT'.orLowerCase(),
+      'DEFAULT'.toCaseInsensitiv(),
       seq(
-        optional('GRAPH'.orLowerCase()),
+        optional('GRAPH'.toCaseInsensitiv()),
         $._iri)
     ),
 
     // [46]
-    graph_ref: $ => seq('GRAPH'.orLowerCase(), $._iri),
+    graph_ref: $ => seq('GRAPH'.toCaseInsensitiv(), $._iri),
 
     // [47]
     graph_ref_all: $ => choice(
       $.graph_ref,
-      'DEFAULT'.orLowerCase(),
-      'NAMED'.orLowerCase(),
-      'ALL'.orLowerCase()
+      'DEFAULT'.toCaseInsensitiv(),
+      'NAMED'.toCaseInsensitiv(),
+      'ALL'.toCaseInsensitiv()
     ),
 
     // [48]
@@ -490,7 +491,7 @@ module.exports = grammar({
 
     // [51]
     quads_not_triples: $ => seq(
-      'GRAPH'.orLowerCase(),
+      'GRAPH'.toCaseInsensitiv(),
       $._var_or_iri,
       '{',
       optional($.triples_template),
@@ -548,35 +549,35 @@ module.exports = grammar({
     ),
 
     // [57]
-    optional_graph_pattern: $ => seq('OPTIONAL'.orLowerCase(), $.group_graph_pattern),
+    optional_graph_pattern: $ => seq('OPTIONAL'.toCaseInsensitiv(), $.group_graph_pattern),
 
     // [58]
     graph_graph_pattern: $ => seq(
-      'GRAPH'.orLowerCase(),
+      'GRAPH'.toCaseInsensitiv(),
       $._var_or_iri,
       $.group_graph_pattern
     ),
 
     // [59]
     service_graph_pattern: $ => seq(
-      'SERVICE'.orLowerCase(),
-      optional('SILENT'.orLowerCase()),
+      'SERVICE'.toCaseInsensitiv(),
+      optional('SILENT'.toCaseInsensitiv()),
       $._var_or_iri,
       $.group_graph_pattern
     ),
 
     // [60]
     bind: $ => seq(
-      'BIND'.orLowerCase(),
+      'BIND'.toCaseInsensitiv(),
       '(',
       $._expression,
-      'AS'.orLowerCase(),
+      'AS'.toCaseInsensitiv(),
       $.var,
       ')'
     ),
 
     // [61]
-    inline_data: $ => seq('VALUES'.orLowerCase(), $._data_block),
+    inline_data: $ => seq('VALUES'.toCaseInsensitiv(), $._data_block),
 
     // [62]
     _data_block: $ => choice(
@@ -612,20 +613,20 @@ module.exports = grammar({
       $.rdf_literal,
       $._numeric_literal,
       $.boolean_literal,
-      'UNDEF'.orLowerCase()
+      'UNDEF'.toCaseInsensitiv()
     ),
 
     // [66]
-    minus_graph_pattern: $ => seq('MINUS'.orLowerCase(), $.group_graph_pattern),
+    minus_graph_pattern: $ => seq('MINUS'.toCaseInsensitiv(), $.group_graph_pattern),
 
     // [67]
     group_or_union_graph_pattern: $ => seq(
       $.group_graph_pattern,
-      repeat(seq('UNION'.orLowerCase(), $.group_graph_pattern))
+      repeat(seq('UNION'.toCaseInsensitiv(), $.group_graph_pattern))
     ),
 
     // [68]
-    filter: $ => seq('FILTER'.orLowerCase(), $._constraint),
+    filter: $ => seq('FILTER'.toCaseInsensitiv(), $._constraint),
 
     // [69]
     _constraint: $ => choice(
@@ -645,7 +646,7 @@ module.exports = grammar({
       $.nil,
       seq(
         '(',
-        optional('DISTINCT'.orLowerCase()),
+        optional('DISTINCT'.toCaseInsensitiv()),
         $._expression,
         repeat(seq(',', $._expression)),
         ')'
@@ -937,8 +938,8 @@ module.exports = grammar({
       prec.left(2, seq($._expression, '>', $._expression)),
       prec.left(2, seq($._expression, '<=', $._expression)),
       prec.left(2, seq($._expression, '>=', $._expression)),
-      prec.left(2, seq($._expression, 'IN'.orLowerCase(), $.expression_list)),
-      prec.left(2, seq($._expression, 'NOT'.orLowerCase(), 'IN'.orLowerCase(), $.expression_list)),
+      prec.left(2, seq($._expression, 'IN'.toCaseInsensitiv(), $.expression_list)),
+      prec.left(2, seq($._expression, 'NOT'.toCaseInsensitiv(), 'IN'.toCaseInsensitiv(), $.expression_list)),
       // numeric
       prec.left(3, seq($._expression, '+', $._expression)),
       prec.left(3, seq($._expression, '-', $._expression)),
@@ -988,14 +989,14 @@ module.exports = grammar({
       $._binary_build_in_function,
       $._variadic_build_in_function,
       seq(
-        'BOUND'.orLowerCase(),
+        'BOUND'.toCaseInsensitiv(),
         field('arguments', seq('(', $.var, ')'))),
       seq(
-        'BNODE'.orLowerCase(),
+        'BNODE'.toCaseInsensitiv(),
         field('arguments', choice($.bracketted_expression, $.nil))
       ),
       seq(
-        'IF'.orLowerCase(),
+        'IF'.toCaseInsensitiv(),
         field('arguments', seq('(', $._expression, ',', $._expression, ',', $._expression, ')'))),
     ),
 
@@ -1006,7 +1007,7 @@ module.exports = grammar({
           'RAND',
           'STRUUID',
           'UUID'
-        ].map(i => i.orLowerCase())
+        ].map(i => i.toCaseInsensitiv())
       ),
       field('arguments', $.nil)
     ),
@@ -1046,7 +1047,7 @@ module.exports = grammar({
           'isLITERAL',
           'isNUMERIC',
           'isURI',
-        ].map(i => i.orLowerCase())
+        ].map(i => i.toCaseInsensitiv())
       ),
       field('arguments', $.bracketted_expression)
     ),
@@ -1063,7 +1064,7 @@ module.exports = grammar({
           'STRLANG',
           'STRSTARTS',
           'sameTerm',
-        ].map(i => i.orLowerCase())
+        ].map(i => i.toCaseInsensitiv())
       ),
       field('arguments', seq('(', $._expression, ',', $._expression, ')'))
     ),
@@ -1073,14 +1074,14 @@ module.exports = grammar({
         ...[
           'CONCAT',
           'COALESCE',
-        ].map(i => i.orLowerCase())
+        ].map(i => i.toCaseInsensitiv())
       ),
       field('arguments', $.expression_list)
     ),
 
     // [122]
     regex_expression: $ => seq(
-      'REGEX'.orLowerCase(),
+      'REGEX'.toCaseInsensitiv(),
       seq('(',
         field('text', $._expression),
         ',',
@@ -1095,7 +1096,7 @@ module.exports = grammar({
 
     // [123]
     substring_expression: $ => seq(
-      'SUBSTR'.orLowerCase(),
+      'SUBSTR'.toCaseInsensitiv(),
       '(',
       $._expression,
       ',',
@@ -1106,7 +1107,7 @@ module.exports = grammar({
 
     // [124]
     string_replace_expression: $ => seq(
-      'REPLACE'.orLowerCase(),
+      'REPLACE'.toCaseInsensitiv(),
       '(',
       $._expression,
       ',',
@@ -1119,39 +1120,39 @@ module.exports = grammar({
 
     // [125]
     exists_func: $ => seq(
-      'EXISTS'.orLowerCase(),
+      'EXISTS'.toCaseInsensitiv(),
       $.group_graph_pattern
     ),
 
     // [126]
     not_exists_func: $ => seq(
-      'NOT'.orLowerCase(),
-      'EXISTS'.orLowerCase(),
+      'NOT'.toCaseInsensitiv(),
+      'EXISTS'.toCaseInsensitiv(),
       $.group_graph_pattern
     ),
 
     // [127]
     aggregate: $ => choice(
       seq(
-        'COUNT'.orLowerCase(),
+        'COUNT'.toCaseInsensitiv(),
         '(',
-        optional('DISTINCT'.orLowerCase()),
+        optional('DISTINCT'.toCaseInsensitiv()),
         choice(
           '*',
           $._expression
         ),
         ')'
       ),
-      seq('SUM'.orLowerCase(), '(', optional('DISTINCT'.orLowerCase()), $._expression, ')'),
-      seq('MIN'.orLowerCase(), '(', optional('DISTINCT'.orLowerCase()), $._expression, ')'),
-      seq('MAX'.orLowerCase(), '(', optional('DISTINCT'.orLowerCase()), $._expression, ')'),
-      seq('AVG'.orLowerCase(), '(', optional('DISTINCT'.orLowerCase()), $._expression, ')'),
-      seq('SAMPLE'.orLowerCase(), '(', optional('DISTINCT'.orLowerCase()), $._expression, ')'),
+      seq('SUM'.toCaseInsensitiv(), '(', optional('DISTINCT'.toCaseInsensitiv()), $._expression, ')'),
+      seq('MIN'.toCaseInsensitiv(), '(', optional('DISTINCT'.toCaseInsensitiv()), $._expression, ')'),
+      seq('MAX'.toCaseInsensitiv(), '(', optional('DISTINCT'.toCaseInsensitiv()), $._expression, ')'),
+      seq('AVG'.toCaseInsensitiv(), '(', optional('DISTINCT'.toCaseInsensitiv()), $._expression, ')'),
+      seq('SAMPLE'.toCaseInsensitiv(), '(', optional('DISTINCT'.toCaseInsensitiv()), $._expression, ')'),
       seq(
         'GROUP_CONCAT', '(',
-        optional('DISTINCT'.orLowerCase()),
+        optional('DISTINCT'.toCaseInsensitiv()),
         $._expression,
-        optional(seq(';', 'SEPARATOR'.orLowerCase(), '=', $.string)),
+        optional(seq(';', 'SEPARATOR'.toCaseInsensitiv(), '=', $.string)),
         ')'
       ),
     ),
