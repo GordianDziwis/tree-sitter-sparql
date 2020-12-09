@@ -1318,7 +1318,6 @@ module.exports = grammar({
 
 
     // [161]
-    // [162]
     nil: $ => token(seq(
       '(',
       repeat(choice(...WS)),
@@ -1326,7 +1325,6 @@ module.exports = grammar({
     )),
 
     // [163]
-    // [162]
     anon: $ => token(seq(
       '[',
       repeat(choice(...WS)),

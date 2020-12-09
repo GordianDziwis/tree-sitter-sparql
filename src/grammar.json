@@ -3131,10 +3131,6 @@
         }
       ]
     },
-    "echar": {
-      "type": "PATTERN",
-      "value": "\\\\[tbnrf\\\\\"']"
-    },
     "path_inverse": {
       "type": "STRING",
       "value": "^"
@@ -5993,6 +5989,10 @@
           "value": "\"\"\""
         }
       ]
+    },
+    "echar": {
+      "type": "PATTERN",
+      "value": "\\\\[tbnrf\\\\\"']"
     },
     "nil": {
       "type": "TOKEN",
