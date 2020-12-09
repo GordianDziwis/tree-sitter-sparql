@@ -1,0 +1,6 @@
+select ?x ?y {
+  ?x a <a>
+  { select ?x {
+    ?x a ?y # ?y this is not a reference to the ?y in the outer scope.
+  }}
+}
