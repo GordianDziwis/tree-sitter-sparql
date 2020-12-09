@@ -41,6 +41,7 @@ VALUES ?var {
   false
   'false'^^xsd:boolean
   1.1
+  -1.1
   1.0e6
   '1.3'^^xsd:decimal
 }
@@ -64,6 +65,7 @@ VALUES ?var {
       (rdf_literal (string)
       (prefixed_name (namespace (pn_prefix)) (pn_local))) 
       (decimal)
+      (decimal)
       (double)
       (rdf_literal 
         (string) 
@@ -81,18 +83,15 @@ VALUES ?var {
 
 ---
 
-(unit
-  (select_query
-    (select_clause) 
-    (where_clause (group_graph_pattern)))
-    (values_clause 
-      (inline_data_one_var
-        (var)
-        (rdf_literal
-          (string
-            (echar)
-            (echar)
-            (echar))))))
+(unit (select_query
+  (select_clause) 
+  (where_clause (group_graph_pattern)))
+  (values_clause (inline_data_one_var
+    (var)
+    (rdf_literal (string
+      (echar)
+      (echar)
+      (echar))))))
 
 ================
 Query variables

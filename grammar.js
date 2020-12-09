@@ -1260,18 +1260,21 @@ module.exports = grammar({
     )),
 
     // [146]
-    integer: $ => token(/[0-9]+/),
+    integer: $ => token(/[+-]?[0-9]+/),
 
     // [147]
-    decimal: $ => token(seq(/[0-9]*/, '.', /[0-9]+/)),
+    decimal: $ => token(seq(/[+-]?/, /[0-9]*/, '.', /[0-9]+/)),
 
     // [148]
-    // [155]
-    double: $ => token(choice(
-      seq(/[0-9]+/, '.', /[0-9]*/, seq(...EXPONENT)),
-      seq('.', /[0-9]+/, seq(...EXPONENT)),
-      seq(/[0-9]+/, seq(...EXPONENT))
-    )),
+    double: $ => token(seq(
+      /[+-]?/,
+      choice(
+        seq(/[0-9]+/, '.', /[0-9]*/, seq(...EXPONENT)),
+        seq('.', /[0-9]+/, seq(...EXPONENT)),
+        seq(/[0-9]+/, seq(...EXPONENT))
+      ))
+    ),
+
 
     // [156]
     _string_literal1: $ => seq(
