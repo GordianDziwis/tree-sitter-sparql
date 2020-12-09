@@ -1,6 +1,13 @@
 // [X] See section "19.8 Grammar" in https://www.w3.org/TR/sparql11-query/ for
 //     corresponding rule x.
 
+// [155]
+const EXPONENT = [
+  /[eE]/,
+  /[+-]?/,
+  /[0-9]+/
+]
+
 // [162]
 const WS = [
   /\x20/,
@@ -1256,9 +1263,9 @@ module.exports = grammar({
     // [148]
     // [155]
     double: $ => token(choice(
-      seq(/[0-9]+/, '.', /[0-9]*/, seq(/[eE]/, /[+-]?/, /[0-9]+/)),
-      seq('.', /[0-9]+/, seq(/[eE]/, /[+-]?/, /[0-9]+/)),
-      seq(/[0-9]+/, seq(/[eE]/, /[+-]?/, /[0-9]+/))
+      seq(/[0-9]+/, '.', /[0-9]*/, seq(...EXPONENT)),
+      seq('.', /[0-9]+/, seq(...EXPONENT)),
+      seq(/[0-9]+/, seq(...EXPONENT))
     )),
 
     // [156]
@@ -1312,7 +1319,7 @@ module.exports = grammar({
       )),
       '"""',
     ),
-    
+
     // [160]
     echar: $ => /\\[tbnrf\\"']/,
 
