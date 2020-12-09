@@ -781,9 +781,6 @@ module.exports = grammar({
       optional($.path_mod)
     ),
 
-    // [91]
-    echar: $ => /\\[tbnrf\\"']/,
-
     // [92]
     path_inverse: $ => '^',
 
@@ -1313,6 +1310,10 @@ module.exports = grammar({
       )),
       '"""',
     ),
+    
+    // [160]
+    echar: $ => /\\[tbnrf\\"']/,
+
 
     // [161]
     // [162]
