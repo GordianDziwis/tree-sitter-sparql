@@ -19,13 +19,13 @@ WHERE {
     (where_clause
       (group_graph_pattern
           (triples_block
-            (triples_same_subject_path
+            (triples_same_subject
               subject: (var)
-              (property_list_path
-                (property_path
+              (property_list
+                (property
                   (var)
-                  (object_list_path (var)))
-                (property_path
+                  (object_list (var)))
+                (property
                   (var)
                   (object_list (var))))))))))
 
@@ -73,12 +73,12 @@ WHERE {
     (where_clause
       (group_graph_pattern
           (triples_block
-            (triples_same_subject_path
+            (triples_same_subject
               subject: (var)
-              (property_list_path
-                (property_path
+              (property_list
+                (property
                   (var)
-                  (object_list_path 
+                  (object_list 
                     (var)
                     (var))))))))))
 
@@ -94,23 +94,18 @@ WHERE {
 
 ---
 
-(unit
-  (select_query 
-    (select_clause)
-    (where_clause
-      (group_graph_pattern
-        (triples_block
-          (triples_same_subject_path
-            (collection_path
-              (var)
-              (blank_node_property_list_path
-                (property_list_path
-                  (property_path
-                    (path_element
-                      (prefixed_name (namespace) (pn_local)))
-                  (object_list_path
-                    (prefixed_name (namespace) (pn_local))))))
-              (collection_path (var)))))))))
+(unit (select_query 
+  (select_clause)
+  (where_clause (group_graph_pattern (triples_block (triples_same_subject (collection
+    (var)
+    (blank_node_property_list (property_list (property
+      (path_element (prefixed_name
+        (namespace)
+        (pn_local)))
+      (object_list (prefixed_name
+        (namespace)
+        (pn_local))))))
+    (collection (var)))))))))
 
 =========
 Rdf:type
@@ -131,19 +126,19 @@ WHERE {
     (where_clause
       (group_graph_pattern
         (triples_block
-          (triples_same_subject_path
+          (triples_same_subject
             (var)
-            (property_list_path
-              (property_path
+            (property_list
+              (property
                 (path_element)
-                (object_list_path (var)))))
-          (triples_same_subject_path
-            (blank_node_property_list_path
-              (property_list_path
-                (property_path
+                (object_list (var)))))
+          (triples_same_subject
+            (blank_node_property_list
+              (property_list
+                (property
                   (path_element)
-                  (object_list_path (prefixed_name (namespace) (pn_local))))))
-            (property_list_path
-              (property_path
+                  (object_list (prefixed_name (namespace) (pn_local))))))
+            (property_list
+              (property
                 (var)
-                (object_list_path (var))))))))))
+                (object_list (var))))))))))

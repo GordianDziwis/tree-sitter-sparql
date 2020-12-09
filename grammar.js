@@ -535,10 +535,10 @@ module.exports = grammar({
 
     // [55]
     triples_block: $ => seq(
-      $.triples_same_subject_path,
+      alias($.triples_same_subject_path, $.triples_same_subject),
       repeat(seq(
         '.',
-        $.triples_same_subject_path
+        alias($.triples_same_subject_path, $.triples_same_subject)
       )),
       optional('.')
     ),
@@ -734,26 +734,27 @@ module.exports = grammar({
     triples_same_subject_path: $ => choice(
       seq(
         field('subject', $._var_or_term),
-        $.property_list_path),
+        alias($.property_list_path, $.property_list)
+      ),
       seq(
         $._triples_node_path,
-        optional($.property_list_path)
+        optional(alias($.property_list_path, $.property_list))
       )
     ),
 
     // [83]
     property_list_path: $ => seq(
-      $.property_path,
+      alias($.property_path, $.property),
       repeat(seq(
         ';',
-        optional(alias($.property_path_rest, $.property_path))
+        optional(alias($.property_path_rest, $.property))
       ))
     ),
 
     // Enable incremental selection of properties
     property_path: $ => seq(
       $._predicate_path,
-      $.object_list_path
+      alias($.object_list_path, $.object_list)
     ),
 
     property_path_rest: $ => seq(
@@ -851,14 +852,14 @@ module.exports = grammar({
 
     // [100]
     _triples_node_path: $ => choice(
-      $.collection_path,
-      $.blank_node_property_list_path
+      alias($.collection_path, $.collection),
+      alias($.blank_node_property_list_path, $.blank_node_property_list)
     ),
 
     // [101]
     blank_node_property_list_path: $ => seq(
       '[',
-      $.property_list_path,
+      alias($.property_list_path, $.property_list),
       ']'
     ),
 

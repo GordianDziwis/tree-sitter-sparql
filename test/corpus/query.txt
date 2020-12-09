@@ -91,11 +91,11 @@ WHERE {
     (where_clause
       (group_graph_pattern
         (triples_block
-         (triples_same_subject_path
+         (triples_same_subject
               subject: (var)
-              (property_list_path (property_path
+              (property_list (property
                 (var)
-                (object_list_path (var))))))))))
+                (object_list (var))))))))))
 
 =======================
 Construct triple query

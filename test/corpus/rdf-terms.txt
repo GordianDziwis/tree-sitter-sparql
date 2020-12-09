@@ -125,24 +125,24 @@ SELECT * {
     (where_clause 
       (group_graph_pattern
         (triples_block
-          (triples_same_subject_path
-            (blank_node_property_list_path
-              (property_list_path (property_path
+          (triples_same_subject
+            (blank_node_property_list
+              (property_list (property
                 (path_element (prefixed_name (namespace) (pn_local)))
-                (object_list_path (rdf_literal (string)))))))
-          (triples_same_subject_path
+                (object_list (rdf_literal (string)))))))
+          (triples_same_subject
             (anon)
-            (property_list_path (property_path
+            (property_list (property
               (path_element (prefixed_name (namespace) (pn_local)))
-              (object_list_path (rdf_literal (string))))))
-          (triples_same_subject_path
+              (object_list (rdf_literal (string))))))
+          (triples_same_subject
             (prefixed_name (namespace) (pn_local))
-            (property_list_path (property_path
+            (property_list (property
               (path_element (prefixed_name (namespace) (pn_local)))
-              (object_list_path
-                (blank_node_property_list_path (property_list_path (property_path
+              (object_list
+                (blank_node_property_list (property_list (property
                   (path_element (prefixed_name (namespace) (pn_local)))
-                  (object_list_path (rdf_literal (string)))))))))))))))
+                  (object_list (rdf_literal (string)))))))))))))))
 
 ====
 Nil

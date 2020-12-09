@@ -14,13 +14,13 @@ SELECT * {
     (where_clause
       (group_graph_pattern
         (triples_block
-          (triples_same_subject_path
+          (triples_same_subject
             (var)
-            (property_list_path (property_path
+            (property_list (property
               (binary_path
                 (path_element (prefixed_name (namespace) (pn_local)))
                 (path_element (prefixed_name (namespace) (pn_local))))
-              (object_list_path (var))))))))))
+              (object_list (var))))))))))
 
 =========
 Sequence
@@ -38,13 +38,13 @@ SELECT * {
     (where_clause
       (group_graph_pattern
         (triples_block
-          (triples_same_subject_path
+          (triples_same_subject
             (var)
-            (property_list_path (property_path
+            (property_list (property
               (binary_path
                 (path_element (prefixed_name (namespace) (pn_local)))
                 (path_element (prefixed_name (namespace) (pn_local))))
-              (object_list_path (var))))))))))
+              (object_list (var))))))))))
 
 =========
 Modifier
@@ -62,13 +62,13 @@ SELECT * {
     (where_clause
       (group_graph_pattern
         (triples_block
-          (triples_same_subject_path
+          (triples_same_subject
             (var)
-            (property_list_path (property_path
+            (property_list (property
               (path_element
                 (path_inverse)
                 (prefixed_name (namespace) (pn_local))
                 (path_mod))
-            (object_list_path (var))))))))))
+            (object_list (var))))))))))
 
 

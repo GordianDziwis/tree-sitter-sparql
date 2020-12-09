@@ -246,21 +246,6 @@
     }
   },
   {
-    "type": "blank_node_property_list_path",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "property_list_path",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "boolean_literal",
     "named": true,
     "fields": {}
@@ -357,69 +342,6 @@
         },
         {
           "type": "collection",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "var",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "collection_path",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "anon",
-          "named": true
-        },
-        {
-          "type": "blank_node_label",
-          "named": true
-        },
-        {
-          "type": "blank_node_property_list_path",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "collection_path",
           "named": true
         },
         {
@@ -1406,69 +1328,6 @@
     }
   },
   {
-    "type": "object_list_path",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "anon",
-          "named": true
-        },
-        {
-          "type": "blank_node_label",
-          "named": true
-        },
-        {
-          "type": "blank_node_property_list_path",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "collection_path",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "var",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "offset_clause",
     "named": true,
     "fields": {},
@@ -1708,11 +1567,19 @@
       "required": true,
       "types": [
         {
+          "type": "binary_path",
+          "named": true
+        },
+        {
           "type": "iri_reference",
           "named": true
         },
         {
           "type": "object_list",
+          "named": true
+        },
+        {
+          "type": "path_element",
           "named": true
         },
         {
@@ -1736,52 +1603,6 @@
       "types": [
         {
           "type": "property",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "property_list_path",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "property_path",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "property_path",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "binary_path",
-          "named": true
-        },
-        {
-          "type": "object_list",
-          "named": true
-        },
-        {
-          "type": "object_list_path",
-          "named": true
-        },
-        {
-          "type": "path_element",
-          "named": true
-        },
-        {
-          "type": "var",
           "named": true
         }
       ]
@@ -2090,7 +1911,7 @@
       "required": true,
       "types": [
         {
-          "type": "triples_same_subject_path",
+          "type": "triples_same_subject",
           "named": true
         }
       ]
@@ -2098,73 +1919,6 @@
   },
   {
     "type": "triples_same_subject",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "anon",
-          "named": true
-        },
-        {
-          "type": "blank_node_label",
-          "named": true
-        },
-        {
-          "type": "blank_node_property_list",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "collection",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "property_list",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "var",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "triples_same_subject_path",
     "named": true,
     "fields": {
       "subject": {
@@ -2223,15 +1977,59 @@
       "required": true,
       "types": [
         {
-          "type": "blank_node_property_list_path",
+          "type": "anon",
           "named": true
         },
         {
-          "type": "collection_path",
+          "type": "blank_node_label",
           "named": true
         },
         {
-          "type": "property_list_path",
+          "type": "blank_node_property_list",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "collection",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        },
+        {
+          "type": "property_list",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         }
       ]
