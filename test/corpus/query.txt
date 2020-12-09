@@ -168,8 +168,16 @@ SELECT * {}
 Case insensitivity
 ===================
 
-select DISTINCT * Where {}
+select DISTINCT * Where {
+ ?a A ?b
+}
 
 ---
 
-(unit (select_query (select_clause) (where_clause (group_graph_pattern))))
+(unit (select_query
+  (select_clause)
+  (where_clause (group_graph_pattern (triples_block (triples_same_subject
+    (var)
+    (property_list (property
+      (path_element (prefixed_name (namespace (pn_prefix) (MISSING ":"))))
+      (object_list (var))))))))))
