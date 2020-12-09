@@ -163,3 +163,13 @@ SELECT * {}
     (where_clause
       (group_graph_pattern)))
   (comment))
+
+===================
+Case insensitivity
+===================
+
+select DISTINCT * Where {}
+
+---
+
+(unit (select_query (select_clause) (where_clause (group_graph_pattern))))
