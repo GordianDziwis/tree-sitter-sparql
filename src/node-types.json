@@ -1700,38 +1700,42 @@
     }
   },
   {
-    "type": "property_list",
+    "type": "property",
     "named": true,
-    "fields": {
-      "predicate": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "a",
-            "named": false
-          },
-          {
-            "type": "iri_reference",
-            "named": true
-          },
-          {
-            "type": "prefixed_name",
-            "named": true
-          },
-          {
-            "type": "var",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
           "type": "object_list",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "property",
           "named": true
         }
       ]
@@ -1740,36 +1744,44 @@
   {
     "type": "property_list_path",
     "named": true,
-    "fields": {
-      "predicate": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "binary_path",
-            "named": true
-          },
-          {
-            "type": "path_element",
-            "named": true
-          },
-          {
-            "type": "var",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "property_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property_path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_path",
+          "named": true
+        },
         {
           "type": "object_list",
           "named": true
         },
         {
           "type": "object_list_path",
+          "named": true
+        },
+        {
+          "type": "path_element",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         }
       ]

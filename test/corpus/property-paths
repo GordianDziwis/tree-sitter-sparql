@@ -16,11 +16,11 @@ SELECT * {
         (triples_block
           (triples_same_subject_path
             (var)
-            (property_list_path
+            (property_list_path (property_path
               (binary_path
                 (path_element (prefixed_name (namespace) (pn_local)))
                 (path_element (prefixed_name (namespace) (pn_local))))
-            (object_list_path (var)))))))))
+              (object_list_path (var))))))))))
 
 =========
 Sequence
@@ -40,11 +40,11 @@ SELECT * {
         (triples_block
           (triples_same_subject_path
             (var)
-            (property_list_path
+            (property_list_path (property_path
               (binary_path
                 (path_element (prefixed_name (namespace) (pn_local)))
                 (path_element (prefixed_name (namespace) (pn_local))))
-            (object_list_path (var)))))))))
+              (object_list_path (var))))))))))
 
 =========
 Modifier
@@ -56,7 +56,6 @@ SELECT * {
 
 ---
 
-
 (unit
   (select_query
     (select_clause)
@@ -65,11 +64,11 @@ SELECT * {
         (triples_block
           (triples_same_subject_path
             (var)
-            (property_list_path 
+            (property_list_path (property_path
               (path_element
                 (path_inverse)
                 (prefixed_name (namespace) (pn_local))
                 (path_mod))
-            (object_list_path (var)))))))))
+            (object_list_path (var))))))))))
 
 

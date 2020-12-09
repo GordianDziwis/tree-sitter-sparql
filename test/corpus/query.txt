@@ -80,22 +80,22 @@ WHERE {
     (construct_triples 
       (triples_same_subject
         (var)
-        (property_list
-          predicate: (var)
-          (object_list (var))))
+        (property_list (property
+          (var)
+          (object_list (var)))))
       (triples_same_subject
         (var)
-        (property_list
-          predicate: (var)
-          (object_list (var))))))
+        (property_list (property
+          (var)
+          (object_list (var)))))))
     (where_clause
       (group_graph_pattern
         (triples_block
          (triples_same_subject_path
               subject: (var)
-              (property_list_path 
-                predicate: (var)
-                (object_list_path (var)))))))))
+              (property_list_path (property_path
+                (var)
+                (object_list_path (var))))))))))
 
 =======================
 Construct triple query
@@ -112,9 +112,9 @@ CONSTRUCT WHERE {
     (triples_template
       (triples_same_subject
         (var)
-        (property_list
+        (property_list (property
           (var)
-          (object_list (var)))))))
+          (object_list (var))))))))
 
 ===============
 Describe query

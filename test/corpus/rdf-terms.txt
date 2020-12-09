@@ -127,24 +127,22 @@ SELECT * {
         (triples_block
           (triples_same_subject_path
             (blank_node_property_list_path
-              (property_list_path
+              (property_list_path (property_path
                 (path_element (prefixed_name (namespace) (pn_local)))
-                (object_list_path
-                  (rdf_literal (string))))))
+                (object_list_path (rdf_literal (string)))))))
           (triples_same_subject_path
             (anon)
-            (property_list_path
+            (property_list_path (property_path
               (path_element (prefixed_name (namespace) (pn_local)))
-              (object_list_path (rdf_literal (string)))))
+              (object_list_path (rdf_literal (string))))))
           (triples_same_subject_path
             (prefixed_name (namespace) (pn_local))
-            (property_list_path
+            (property_list_path (property_path
               (path_element (prefixed_name (namespace) (pn_local)))
               (object_list_path
-                (blank_node_property_list_path
-                  (property_list_path
-                    (path_element (prefixed_name (namespace) (pn_local)))
-                    (object_list_path (rdf_literal (string)))))))))))))
+                (blank_node_property_list_path (property_list_path (property_path
+                  (path_element (prefixed_name (namespace) (pn_local)))
+                  (object_list_path (rdf_literal (string)))))))))))))))
 
 ====
 Nil

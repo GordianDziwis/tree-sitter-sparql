@@ -18,8 +18,9 @@ INSERT DATA {
         (triples_template
           (triples_same_subject
             (var)
-            (property_list (var)
-            (object_list (var)))))))))
+            (property_list (property
+              (var)
+              (object_list (var))))))))))
 
 =====
 Load

@@ -702,25 +702,24 @@ module.exports = grammar({
     ),
 
     // [77]
-    // [78]
     property_list: $ => seq(
-      field('predicate', choice(
-        $._var_or_iri,
-        'a'
-      )),
+      $.property,
+      repeat(seq(
+        ';',
+        optional($.property)
+      ))
+    ),
+
+    // Enable incremental selection of properties
+    property: $ => seq(
+      $._predicate,
       $.object_list,
-      repeat(
-        seq(
-          ';',
-          optional(seq(
-            field('predicate', choice(
-              $._var_or_iri,
-              'a'
-            )),
-            $.object_list
-          ))
-        )
-      )
+    ),
+
+    // [78]
+    _predicate: $ => choice(
+      $._var_or_iri,
+      'a'
     ),
 
     // [79]
@@ -743,32 +742,37 @@ module.exports = grammar({
     ),
 
     // [83]
-    // [84]
-    // [85]
     property_list_path: $ => seq(
-      field('predicate', choice(
-        $._path,
-        $.var
-      )),
-      $.object_list_path,
+      $.property_path,
       repeat(seq(
         ';',
-        optional(seq(
-          field('predicate', choice(
-            $._path,
-            $.var
-          )),
-          $.object_list,
-        ))
+        optional(alias($.property_path_rest, $.property_path))
       ))
+    ),
+
+    // Enable incremental selection of properties
+    property_path: $ => seq(
+      $._predicate_path,
+      $.object_list_path
+    ),
+
+    property_path_rest: $ => seq(
+      $._predicate_path,
+      $.object_list,
+    ),
+
+    // [84]
+    // [85]
+    _predicate_path: $ => choice(
+      $._path,
+      $.var
     ),
 
     // [86]
     // [87]
     object_list_path: $ => seq(
       $._graph_node_path,
-      repeat(seq(',', $._graph_node_path)
-      )
+      repeat(seq(',', $._graph_node_path))
     ),
 
     // [88 - 92]

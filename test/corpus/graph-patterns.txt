@@ -17,9 +17,11 @@ SELECT * {
           (triples_same_subject_path 
             (blank_node_label) 
             (property_list_path 
-              (path_element
-                (prefixed_name (namespace) (pn_local)))
-              (object_list_path (prefixed_name (namespace) (pn_local))))))))))
+              (property_path
+                (path_element
+                  (prefixed_name (namespace) (pn_local)))
+                (object_list_path
+                  (prefixed_name (namespace) (pn_local)))))))))))
 
 =====================
 Group graph patterns
@@ -42,30 +44,30 @@ SELECT * {
         (triples_block
           (triples_same_subject_path
             (var)
-            (property_list_path 
+            (property_list_path (property_path
               (var) 
-              (object_list_path (var))))
+              (object_list_path (var)))))
           (triples_same_subject_path
             (var)
-            (property_list_path
+            (property_list_path (property_path
               (var)
-              (object_list_path (var)))))
+              (object_list_path (var))))))
         (group_or_union_graph_pattern
           (group_graph_pattern
             (triples_block
               (triples_same_subject_path
                 (var) 
-                (property_list_path
+                (property_list_path (property_path
                   (var)
-                  (object_list_path (var)))))))
+                  (object_list_path (var))))))))
         (group_or_union_graph_pattern
           (group_graph_pattern
             (triples_block
               (triples_same_subject_path
                 (var)
-                (property_list_path
+                (property_list_path (property_path
                   (var)
-                  (object_list_path (var))))))))))) 
+                  (object_list_path (var)))))))))))) 
 
 ====================
 Empty group pattern
@@ -99,9 +101,9 @@ SELECT * {
         (triples_block
           (triples_same_subject_path
             (var)
-            (property_list_path
+            (property_list_path (property_path
               (var)
-              (object_list_path (var)))))
+              (object_list_path (var))))))
           (filter
             (bracketted_expression
               (binary_expression
@@ -131,17 +133,17 @@ SELECT * {
             (triples_block
               (triples_same_subject_path
                 (var)
-                (property_list_path
+                (property_list_path (property_path
                   (var)
-                  (object_list_path (var)))))))
+                  (object_list_path (var))))))))
         (optional_graph_pattern
           (group_graph_pattern
             (triples_block
               (triples_same_subject_path
                 (var)
-                (property_list_path
+                (property_list_path (property_path
                   (var)
-                  (object_list_path (var)))))))))))
+                  (object_list_path (var))))))))))))
 
 
 ============================
@@ -167,9 +169,9 @@ SELECT * {
             (triples_block
               (triples_same_subject_path
                 (var)
-                (property_list_path
+                (property_list_path (property_path
                   (var)
-                  (object_list_path (var)))))
+                  (object_list_path (var))))))
             (filter
               (bracketted_expression
                 (binary_expression
@@ -198,16 +200,16 @@ SELECT * {
             (triples_block
               (triples_same_subject_path
                 (var)
-                (property_list_path
+                (property_list_path (property_path
                   (var)
-                  (object_list_path (var))))))
+                  (object_list_path (var)))))))
           (group_graph_pattern
             (triples_block
               (triples_same_subject_path
                 (var)
-                (property_list_path
+                (property_list_path (property_path
                   (var)
-                  (object_list_path (var)))))))))))
+                  (object_list_path (var))))))))))))
 
 =========
 Negation
@@ -227,20 +229,26 @@ SELECT * {
     (where_clause
       (group_graph_pattern
         (triples_block
-          (triples_same_subject_path (var)
-            (property_list_path (var)
-              (object_list_path (var)))))
+          (triples_same_subject_path
+            (var)
+            (property_list_path (property_path
+              (var)
+              (object_list_path (var))))))
         (filter
           (not_exists_func
             (group_graph_pattern
               (triples_block
-                (triples_same_subject_path (var)
-                  (property_list_path (var)
-                    (object_list_path (var))))))))
+                (triples_same_subject_path
+                  (var)
+                  (property_list_path (property_path
+                    (var)
+                    (object_list_path (var)))))))))
       (minus_graph_pattern
         (group_graph_pattern
           (triples_block
-            (triples_same_subject_path (var)
-              (property_list_path (var)
-                (object_list_path (var)))))))))))
+            (triples_same_subject_path
+              (var)
+              (property_list_path (property_path
+                (var)
+                (object_list_path (var))))))))))))
 

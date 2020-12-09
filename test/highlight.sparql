@@ -18,6 +18,10 @@ FROM <www.example.com>
 FROM NAMED <www.example.com>
 
 WHERE {
+  :DateTimeDescription
+     rdf:type owl:Class ;
+     rdf:type owl:Class ;
+     rdf:type owl:Class .
   ?s ?p0 ?o0,<t> ;
      ?p1 prox:test .
   (?foo [:p :o] (?bar)) .

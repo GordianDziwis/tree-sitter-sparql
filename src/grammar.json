@@ -2805,25 +2805,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "predicate",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_var_or_iri"
-              },
-              {
-                "type": "STRING",
-                "value": "a"
-              }
-            ]
-          }
-        },
-        {
           "type": "SYMBOL",
-          "name": "object_list"
+          "name": "property"
         },
         {
           "type": "REPEAT",
@@ -2838,30 +2821,8 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "FIELD",
-                        "name": "predicate",
-                        "content": {
-                          "type": "CHOICE",
-                          "members": [
-                            {
-                              "type": "SYMBOL",
-                              "name": "_var_or_iri"
-                            },
-                            {
-                              "type": "STRING",
-                              "value": "a"
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "object_list"
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "property"
                   },
                   {
                     "type": "BLANK"
@@ -2870,6 +2831,32 @@
               }
             ]
           }
+        }
+      ]
+    },
+    "property": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_predicate"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "object_list"
+        }
+      ]
+    },
+    "_predicate": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_var_or_iri"
+        },
+        {
+          "type": "STRING",
+          "value": "a"
         }
       ]
     },
@@ -2945,25 +2932,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "predicate",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_path"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "var"
-              }
-            ]
-          }
-        },
-        {
           "type": "SYMBOL",
-          "name": "object_list_path"
+          "name": "property_path"
         },
         {
           "type": "REPEAT",
@@ -2978,30 +2948,13 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "FIELD",
-                        "name": "predicate",
-                        "content": {
-                          "type": "CHOICE",
-                          "members": [
-                            {
-                              "type": "SYMBOL",
-                              "name": "_path"
-                            },
-                            {
-                              "type": "SYMBOL",
-                              "name": "var"
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "object_list"
-                      }
-                    ]
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "property_path_rest"
+                    },
+                    "named": true,
+                    "value": "property_path"
                   },
                   {
                     "type": "BLANK"
@@ -3010,6 +2963,45 @@
               }
             ]
           }
+        }
+      ]
+    },
+    "property_path": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_predicate_path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "object_list_path"
+        }
+      ]
+    },
+    "property_path_rest": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_predicate_path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "object_list"
+        }
+      ]
+    },
+    "_predicate_path": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "var"
         }
       ]
     },
