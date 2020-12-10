@@ -61,10 +61,14 @@ SELECT ( foo:bar(?a, 1)  AS ?x ) {}
 
 ---
 
-(unit
-  (select_query
-    (select_clause 
-      (function_call
-        identifier: (prefixed_name (namespace (pn_prefix)) (pn_local))
-        (arg_list (var) (integer))) (var))
-    (where_clause (group_graph_pattern))))
+(unit (select_query
+  (select_clause 
+    (function_call
+      identifier: (prefixed_name
+        (namespace (pn_prefix))
+        (pn_local))
+      (arg_list
+        (var)
+        (integer)))
+    bound_variable: (var))
+  (where_clause (group_graph_pattern))))

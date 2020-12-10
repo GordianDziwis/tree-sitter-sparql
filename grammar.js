@@ -198,8 +198,14 @@ module.exports = grammar({
       )),
       choice(
         repeat1(choice(
-          $.var,
-          seq('(', $._expression, 'AS'.toCaseInsensitiv(), $.var, ')')
+          field('bound_variable', $.var),
+          seq(
+            '(',
+            $._expression,
+            'AS'.toCaseInsensitiv(),
+            field('bound_variable', $.var),
+            ')'
+          )
         )),
         '*'
       )
@@ -312,10 +318,13 @@ module.exports = grammar({
       seq(
         '(',
         $._expression,
-        optional(seq('AS'.toCaseInsensitiv(), $.var)),
+        optional(seq(
+          'AS'.toCaseInsensitiv(),
+          field('bound_variable', $.var)
+        )),
         ')'
       ),
-      $.var
+      field('bound_variable', $.var)
     ),
 
     // [21]
@@ -366,10 +375,7 @@ module.exports = grammar({
     ),
 
     // [28]
-    values_clause: $ => seq(
-      'VALUES'.toCaseInsensitiv(),
-      $._data_block
-    ),
+    values_clause: $ => seq('VALUES'.toCaseInsensitiv(), $._data_block),
 
     // [31]
     load: $ => seq(
@@ -579,7 +585,7 @@ module.exports = grammar({
       '(',
       $._expression,
       'AS'.toCaseInsensitiv(),
-      $.var,
+      field('bound_variable', $.var),
       ')'
     ),
 
@@ -594,7 +600,7 @@ module.exports = grammar({
 
     // [63]
     inline_data_one_var: $ => seq(
-      $.var,
+      field('bound_variable', $.var),
       '{',
       repeat($._data_block_value),
       '}'
@@ -604,7 +610,11 @@ module.exports = grammar({
     inline_data_full: $ => seq(
       choice(
         $.nil,
-        seq('(', repeat1($.var), ')')
+        seq(
+          '(',
+          repeat1(field('bound_variable', $.var)),
+          ')'
+        )
       ),
       '{',
       repeat(choice(

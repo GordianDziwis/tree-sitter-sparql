@@ -213,9 +213,20 @@
   {
     "type": "bind",
     "named": true,
-    "fields": {},
+    "fields": {
+      "bound_variable": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "var",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -813,10 +824,21 @@
   {
     "type": "group_condition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "bound_variable": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "var",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
           "type": "_expression",
@@ -975,10 +997,21 @@
   {
     "type": "inline_data_full",
     "named": true,
-    "fields": {},
+    "fields": {
+      "bound_variable": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "var",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "boolean_literal",
@@ -1011,10 +1044,6 @@
         {
           "type": "rdf_literal",
           "named": true
-        },
-        {
-          "type": "var",
-          "named": true
         }
       ]
     }
@@ -1022,10 +1051,21 @@
   {
     "type": "inline_data_one_var",
     "named": true,
-    "fields": {},
+    "fields": {
+      "bound_variable": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "var",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "boolean_literal",
@@ -1053,10 +1093,6 @@
         },
         {
           "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "var",
           "named": true
         }
       ]
@@ -1737,7 +1773,18 @@
   {
     "type": "select_clause",
     "named": true,
-    "fields": {},
+    "fields": {
+      "bound_variable": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "var",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": false,

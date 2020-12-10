@@ -356,8 +356,12 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "SYMBOL",
-                    "name": "var"
+                    "type": "FIELD",
+                    "name": "bound_variable",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "var"
+                    }
                   },
                   {
                     "type": "SEQ",
@@ -383,8 +387,12 @@
                         "value": "AS"
                       },
                       {
-                        "type": "SYMBOL",
-                        "name": "var"
+                        "type": "FIELD",
+                        "name": "bound_variable",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "var"
+                        }
                       },
                       {
                         "type": "STRING",
@@ -963,8 +971,12 @@
                       "value": "AS"
                     },
                     {
-                      "type": "SYMBOL",
-                      "name": "var"
+                      "type": "FIELD",
+                      "name": "bound_variable",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "var"
+                      }
                     }
                   ]
                 },
@@ -980,8 +992,12 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "var"
+          "type": "FIELD",
+          "name": "bound_variable",
+          "content": {
+            "type": "SYMBOL",
+            "name": "var"
+          }
         }
       ]
     },
@@ -2331,8 +2347,12 @@
           "value": "AS"
         },
         {
-          "type": "SYMBOL",
-          "name": "var"
+          "type": "FIELD",
+          "name": "bound_variable",
+          "content": {
+            "type": "SYMBOL",
+            "name": "var"
+          }
         },
         {
           "type": "STRING",
@@ -2378,8 +2398,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "var"
+          "type": "FIELD",
+          "name": "bound_variable",
+          "content": {
+            "type": "SYMBOL",
+            "name": "var"
+          }
         },
         {
           "type": "STRING",
@@ -2418,8 +2442,12 @@
                 {
                   "type": "REPEAT1",
                   "content": {
-                    "type": "SYMBOL",
-                    "name": "var"
+                    "type": "FIELD",
+                    "name": "bound_variable",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "var"
+                    }
                   }
                 },
                 {

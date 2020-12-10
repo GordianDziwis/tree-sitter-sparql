@@ -1,13 +1,16 @@
 BASE <http://www.example.org>
 PREFIX ex: <http://www.example.org>
-PREFIX ex: <http://www.example.org>
 
-SELECT ?x {
-  ?x ex:p :o
+# ?x ?y are bound
+SELECT (?s AS ?x) ?y {
+  SELECT (?s AS ?x) ?y {
+    BIND (?s AS ?x)
+    VALUES (?x ?y) { ('a') }
+  } GROUP BY ?x
 }
+GROUP BY (?s AS ?x)
+VALUES ?x { 'a' }
 
-PREFIX     :    <http://example.org/ns#>
-PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
 
 SELECT ?name
 WHERE { ?x foaf:name ?name ; :empId ?emp }
@@ -19,7 +22,6 @@ FROM NAMED <www.example.com>
 
 WHERE {
   () :predicate ( :a :b :c ) .
-  _:alice foaf:knows _:bob .
   :DateTimeDescription
      rdf:type owl:Class ;
      rdf:type owl:Class ;
