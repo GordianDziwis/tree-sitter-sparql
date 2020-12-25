@@ -127,7 +127,7 @@ VALUES (?a ?b) {
     (where_clause
       (group_graph_pattern))) 
   (values_clause 
-    (inline_data_full 
+    (data_block
       (var)
       (var)
       (rdf_literal

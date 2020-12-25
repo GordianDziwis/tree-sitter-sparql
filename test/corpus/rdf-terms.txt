@@ -18,7 +18,7 @@ VALUES ?var {
     (where_clause
       (group_graph_pattern)))
   (values_clause 
-    (inline_data_one_var
+    (data_block
       (var)
       (iri_reference)
       (iri_reference)
@@ -54,7 +54,7 @@ VALUES ?var {
     (where_clause
       (group_graph_pattern)))
   (values_clause 
-    (inline_data_one_var
+    (data_block
       (var)
       (rdf_literal (string)) 
       (rdf_literal (string)) 
@@ -86,7 +86,7 @@ VALUES ?var {
 (unit (select_query
   (select_clause) 
   (where_clause (group_graph_pattern)))
-  (values_clause (inline_data_one_var
+  (values_clause (data_block
     (var)
     (rdf_literal (string
       (echar)
@@ -160,6 +160,6 @@ VALUES () {
     (select_clause)
     (where_clause (group_graph_pattern)))
     (values_clause
-      (inline_data_full
+      (data_block
         (nil)
         (nil))))

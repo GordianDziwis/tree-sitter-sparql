@@ -482,6 +482,60 @@
     }
   },
   {
+    "type": "data_block",
+    "named": true,
+    "fields": {
+      "bound_variable": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "var",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "double",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "iri_reference",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "prefixed_name",
+          "named": true
+        },
+        {
+          "type": "rdf_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "dataset_clause",
     "named": true,
     "fields": {},
@@ -984,115 +1038,7 @@
       "required": true,
       "types": [
         {
-          "type": "inline_data_full",
-          "named": true
-        },
-        {
-          "type": "inline_data_one_var",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "inline_data_full",
-    "named": true,
-    "fields": {
-      "bound_variable": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "var",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "inline_data_one_var",
-    "named": true,
-    "fields": {
-      "bound_variable": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "var",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
+          "type": "data_block",
           "named": true
         }
       ]
@@ -1127,6 +1073,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "iri_reference",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "limit_clause",
@@ -2283,11 +2234,7 @@
       "required": true,
       "types": [
         {
-          "type": "inline_data_full",
-          "named": true
-        },
-        {
-          "type": "inline_data_one_var",
+          "type": "data_block",
           "named": true
         }
       ]
@@ -2870,10 +2817,6 @@
   },
   {
     "type": "integer",
-    "named": true
-  },
-  {
-    "type": "iri_reference",
     "named": true
   },
   {

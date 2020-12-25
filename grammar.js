@@ -128,9 +128,7 @@ module.exports = grammar({
       optional($.values_clause)
     ),
 
-    // [3]
-    // [29]
-    // [30]
+    // [3, 29-30]
     _update: $ => seq(
       optional($.prologue),
       seq(
@@ -262,8 +260,7 @@ module.exports = grammar({
     // [16]
     default_graph_clause: $ => field('source_selector', $._iri),
 
-    // [15]
-    // [16]
+    // [15-16]
     named_graph_clause: $ => seq(
       'NAMED'.toCaseInsensitiv(),
       field('source_selector', $._iri)
@@ -375,7 +372,7 @@ module.exports = grammar({
     ),
 
     // [28]
-    values_clause: $ => seq('VALUES'.toCaseInsensitiv(), $._data_block),
+    values_clause: $ => seq('VALUES'.toCaseInsensitiv(), $.data_block),
 
     // [31]
     load: $ => seq(
@@ -590,16 +587,16 @@ module.exports = grammar({
     ),
 
     // [61]
-    inline_data: $ => seq('VALUES'.toCaseInsensitiv(), $._data_block),
+    inline_data: $ => seq('VALUES'.toCaseInsensitiv(), $.data_block),
 
     // [62]
-    _data_block: $ => choice(
-      $.inline_data_one_var,
-      $.inline_data_full
+    data_block: $ => choice(
+      $._inline_data_one_var,
+      $._inline_data_full
     ),
 
     // [63]
-    inline_data_one_var: $ => seq(
+    _inline_data_one_var: $ => seq(
       field('bound_variable', $.var),
       '{',
       repeat($._data_block_value),
@@ -607,7 +604,7 @@ module.exports = grammar({
     ),
 
     // [64]
-    inline_data_full: $ => seq(
+    _inline_data_full: $ => seq(
       choice(
         $.nil,
         seq(
@@ -1395,5 +1392,3 @@ module.exports = grammar({
     )),
   }
 });
-
-

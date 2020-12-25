@@ -1227,7 +1227,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_data_block"
+          "name": "data_block"
         }
       ]
     },
@@ -2377,24 +2377,24 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_data_block"
+          "name": "data_block"
         }
       ]
     },
-    "_data_block": {
+    "data_block": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "inline_data_one_var"
+          "name": "_inline_data_one_var"
         },
         {
           "type": "SYMBOL",
-          "name": "inline_data_full"
+          "name": "_inline_data_full"
         }
       ]
     },
-    "inline_data_one_var": {
+    "_inline_data_one_var": {
       "type": "SEQ",
       "members": [
         {
@@ -2422,7 +2422,7 @@
         }
       ]
     },
-    "inline_data_full": {
+    "_inline_data_full": {
       "type": "SEQ",
       "members": [
         {
@@ -5657,24 +5657,27 @@
       ]
     },
     "iri_reference": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "<"
-          },
-          {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
             "type": "PATTERN",
             "value": "([^<>\"{}|^`\\\\\\x00-\\x20])*"
-          },
-          {
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
             "type": "STRING",
             "value": ">"
           }
-        ]
-      }
+        }
+      ]
     },
     "namespace": {
       "type": "SEQ",
