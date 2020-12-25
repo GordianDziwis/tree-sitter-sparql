@@ -1233,11 +1233,11 @@ module.exports = grammar({
     ),
 
     // [139]
-    iri_reference: $ => token(seq(
+    iri_reference: $ => seq(
       '<',
-      /([^<>"{}|^`\\\x00-\x20])*/,
-      '>'
-    )),
+      token.immediate(/([^<>"{}|^`\\\x00-\x20])*/),
+      token.immediate('>')
+    ),
 
     // [140]
     namespace: $ => seq(
