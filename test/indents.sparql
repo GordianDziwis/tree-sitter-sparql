@@ -1,0 +1,28 @@
+SELECT * {
+  SELECT * {
+    ?s ?p ?o ;
+      ?p ?o
+      .
+    ?s
+      a ?o ;
+      ?p ?o .
+    BIND (?s AS ?x)
+    [] <p> [ 
+        <p> 'a' ;
+        <p> 'b' ;
+      ] .
+    []
+      <p> [
+        <p> 'a' ;
+        <p> 'b' ;
+      ] .
+    () <p> (
+        :a
+        :b
+        :c
+      ) .
+    VALUES ?x {
+      'a'
+    }
+  }
+}
