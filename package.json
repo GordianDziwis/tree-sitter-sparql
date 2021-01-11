@@ -22,7 +22,8 @@
     {
       "scope": "source.sparql",
       "file-types": [
-        "sparql"
+        "sparql",
+        "rq"
       ]
     }
   ]
