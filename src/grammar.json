@@ -3535,6 +3535,54 @@
                 "value": "[a-z]"
               },
               {
+                "type": "PATTERN",
+                "value": "[\\u00C0-\\u00D6]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u00D8-\\u00F6]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u00F8-\\u02FF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u0370-\\u037D]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u037F-\\u1FFF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u200C-\\u200D]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u2070-\\u218F]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u2C00-\\u2FEF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u3001-\\uD7FF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\uF900-\\uFDCF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\uFDF0-\\uFFFD]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u{10000}-\\u{EFFFF}]"
+              },
+              {
                 "type": "STRING",
                 "value": "_"
               },
@@ -3556,6 +3604,54 @@
                 {
                   "type": "PATTERN",
                   "value": "[a-z]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\u00C0-\\u00D6]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\u00D8-\\u00F6]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\u00F8-\\u02FF]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\u0370-\\u037D]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\u037F-\\u1FFF]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\u200C-\\u200D]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\u2070-\\u218F]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\u2C00-\\u2FEF]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\u3001-\\uD7FF]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\uF900-\\uFDCF]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\uFDF0-\\uFFFD]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[\\u{10000}-\\u{EFFFF}]"
                 },
                 {
                   "type": "STRING",
@@ -5721,6 +5817,54 @@
                 "value": "[a-z]"
               },
               {
+                "type": "PATTERN",
+                "value": "[\\u00C0-\\u00D6]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u00D8-\\u00F6]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u00F8-\\u02FF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u0370-\\u037D]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u037F-\\u1FFF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u200C-\\u200D]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u2070-\\u218F]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u2C00-\\u2FEF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u3001-\\uD7FF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\uF900-\\uFDCF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\uFDF0-\\uFFFD]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u{10000}-\\u{EFFFF}]"
+              },
+              {
                 "type": "STRING",
                 "value": "_"
               },
@@ -6170,6 +6314,54 @@
               {
                 "type": "PATTERN",
                 "value": "[a-z]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u00C0-\\u00D6]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u00D8-\\u00F6]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u00F8-\\u02FF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u0370-\\u037D]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u037F-\\u1FFF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u200C-\\u200D]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u2070-\\u218F]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u2C00-\\u2FEF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u3001-\\uD7FF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\uF900-\\uFDCF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\uFDF0-\\uFFFD]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u{10000}-\\u{EFFFF}]"
               }
             ]
           },
@@ -6191,6 +6383,54 @@
                         {
                           "type": "PATTERN",
                           "value": "[a-z]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u00C0-\\u00D6]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u00D8-\\u00F6]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u00F8-\\u02FF]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u0370-\\u037D]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u037F-\\u1FFF]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u200C-\\u200D]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u2070-\\u218F]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u2C00-\\u2FEF]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u3001-\\uD7FF]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\uF900-\\uFDCF]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\uFDF0-\\uFFFD]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u{10000}-\\u{EFFFF}]"
                         },
                         {
                           "type": "STRING",
@@ -6233,6 +6473,54 @@
                       {
                         "type": "PATTERN",
                         "value": "[a-z]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u00C0-\\u00D6]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u00D8-\\u00F6]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u00F8-\\u02FF]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u0370-\\u037D]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u037F-\\u1FFF]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u200C-\\u200D]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u2070-\\u218F]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u2C00-\\u2FEF]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u3001-\\uD7FF]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\uF900-\\uFDCF]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\uFDF0-\\uFFFD]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u{10000}-\\u{EFFFF}]"
                       },
                       {
                         "type": "STRING",
@@ -6285,6 +6573,54 @@
               {
                 "type": "PATTERN",
                 "value": "[a-z]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u00C0-\\u00D6]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u00D8-\\u00F6]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u00F8-\\u02FF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u0370-\\u037D]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u037F-\\u1FFF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u200C-\\u200D]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u2070-\\u218F]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u2C00-\\u2FEF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u3001-\\uD7FF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\uF900-\\uFDCF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\uFDF0-\\uFFFD]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\u{10000}-\\u{EFFFF}]"
               },
               {
                 "type": "STRING",
@@ -6441,6 +6777,54 @@
                         {
                           "type": "PATTERN",
                           "value": "[a-z]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u00C0-\\u00D6]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u00D8-\\u00F6]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u00F8-\\u02FF]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u0370-\\u037D]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u037F-\\u1FFF]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u200C-\\u200D]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u2070-\\u218F]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u2C00-\\u2FEF]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u3001-\\uD7FF]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\uF900-\\uFDCF]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\uFDF0-\\uFFFD]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\u{10000}-\\u{EFFFF}]"
                         },
                         {
                           "type": "STRING",
@@ -6610,6 +6994,54 @@
                       {
                         "type": "PATTERN",
                         "value": "[a-z]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u00C0-\\u00D6]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u00D8-\\u00F6]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u00F8-\\u02FF]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u0370-\\u037D]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u037F-\\u1FFF]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u200C-\\u200D]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u2070-\\u218F]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u2C00-\\u2FEF]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u3001-\\uD7FF]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\uF900-\\uFDCF]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\uFDF0-\\uFFFD]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "[\\u{10000}-\\u{EFFFF}]"
                       },
                       {
                         "type": "STRING",
