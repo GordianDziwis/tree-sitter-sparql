@@ -1,7 +1,9 @@
-.PHONY: build
-
 build:
 	tree-sitter generate
-
-develop: build
 	tree-sitter test
+
+develop:
+	tree-sitter generate
+	tree-sitter test
+
+.PHONY: build develop

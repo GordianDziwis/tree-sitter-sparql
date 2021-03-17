@@ -2,9 +2,14 @@
   "name": "tree-sitter-sparql",
   "version": "0.0.1",
   "description": "SPARQL grammar for tree-sitter",
-  "main": "index.js",
+  "main": "bindings/node",
   "scripts": {
-    "test": "tree-sitter test && node test.js"
+    "build": "tree-sitter generate",
+    "test": "tree-sitter test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bonabeavis/tree-sitter-sparql"
   },
   "keywords": [
     "parser",
@@ -16,7 +21,7 @@
     "nan": "^2.14.1"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.17.3"
+    "tree-sitter-cli": "^0.19.3"
   },
   "tree-sitter": [
     {
