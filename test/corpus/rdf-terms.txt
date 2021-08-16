@@ -33,6 +33,7 @@ Literals
 SELECT * {}
 
 VALUES ?var {
+  '#foo'
   'foo'
   "foo"
   'foo'@de
@@ -56,6 +57,7 @@ VALUES ?var {
   (values_clause 
     (data_block
       (var)
+      (rdf_literal (string)) 
       (rdf_literal (string)) 
       (rdf_literal (string)) 
       (rdf_literal (string) (lang_tag)) 

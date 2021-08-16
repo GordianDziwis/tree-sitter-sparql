@@ -31,4 +31,6 @@ VALUES ?a {
   'foo'^^foo:bar
   # String escapes
   'foo\tbar\\foo\bar'
+  # Hash in string
+  '#foo'
 }
