@@ -65,7 +65,7 @@ SELECT ( foo:bar(?a, 1)  AS ?x ) {}
   (select_clause 
     (function_call
       identifier: (prefixed_name
-        (namespace (pn_prefix))
+        (pname_ns)
         (pn_local))
       (arg_list
         (var)

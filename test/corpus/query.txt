@@ -14,7 +14,7 @@ SELECT * {}
     (base_declaration
       (iri_reference))
     (prefix_declaration
-      (namespace (pn_prefix))
+      (pname_ns)
       (iri_reference))) 
   (select_query
     (select_clause)
@@ -178,6 +178,7 @@ select DISTINCT * Where {
   (select_clause)
   (where_clause (group_graph_pattern (triples_block (triples_same_subject
     (var)
-    (property_list (property
-      (path_element (prefixed_name (namespace (pn_prefix) (MISSING ":"))))
-      (object_list (var))))))))))
+    (ERROR (UNEXPECTED ' '))
+    (property_list (property 
+      (var)
+      (object_list (prefixed_name (MISSING pname_ns)))))))))))

@@ -100,10 +100,10 @@ WHERE {
     (var)
     (blank_node_property_list (property_list (property
       (path_element (prefixed_name
-        (namespace)
+        (pname_ns)
         (pn_local)))
       (object_list (prefixed_name
-        (namespace)
+        (pname_ns)
         (pn_local))))))
     (collection (var)))))))))
 
@@ -137,7 +137,7 @@ WHERE {
               (property_list
                 (property
                   (path_element)
-                  (object_list (prefixed_name (namespace) (pn_local))))))
+                  (object_list (prefixed_name (pname_ns) (pn_local))))))
             (property_list
               (property
                 (var)

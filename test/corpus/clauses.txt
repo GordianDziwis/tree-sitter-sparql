@@ -61,7 +61,7 @@ HAVING ex:function ()
       (having_clause
         (having_condition
           (function_call 
-            (prefixed_name (namespace (pn_prefix)) (pn_local))
+            (prefixed_name (pname_ns) (pn_local))
             (arg_list (nil)))))))) 
 
 =============

@@ -1,12 +1,8 @@
 build:
-	tree-sitter generate
-	tree-sitter test
-
-develop:
-	tree-sitter generate
-	tree-sitter test
+	./node_modules/tree-sitter-cli/tree-sitter generate
+	./node_modules/tree-sitter-cli/tree-sitter test
 
 publish: build
 	npm publish
 
-.PHONY: build develop
+.PHONY: build publish

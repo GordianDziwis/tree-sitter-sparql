@@ -1222,21 +1222,6 @@
     }
   },
   {
-    "type": "namespace",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "pn_prefix",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "not_exists_func",
     "named": true,
     "fields": {},
@@ -1501,7 +1486,7 @@
           "named": true
         },
         {
-          "type": "namespace",
+          "type": "pname_ns",
           "named": true
         }
       ]
@@ -1516,11 +1501,11 @@
       "required": true,
       "types": [
         {
-          "type": "namespace",
+          "type": "pn_local",
           "named": true
         },
         {
-          "type": "pn_local",
+          "type": "pname_ns",
           "named": true
         }
       ]
@@ -2320,10 +2305,6 @@
     "named": false
   },
   {
-    "type": ":",
-    "named": false
-  },
-  {
     "type": ";",
     "named": false
   },
@@ -2856,7 +2837,7 @@
     "named": true
   },
   {
-    "type": "pn_prefix",
+    "type": "pname_ns",
     "named": true
   },
   {

@@ -32,5 +32,5 @@ LOAD :foo INTO GRAPH :bar
 
 (unit
   (load
-    (prefixed_name (namespace) (pn_local))
-    (graph_ref (prefixed_name (namespace) (pn_local)))))
+    (prefixed_name (pname_ns) (pn_local))
+    (graph_ref (prefixed_name (pname_ns) (pn_local)))))

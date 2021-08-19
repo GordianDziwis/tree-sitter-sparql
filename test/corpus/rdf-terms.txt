@@ -7,7 +7,6 @@ SELECT * {}
 VALUES ?var {
   <http://example.org/foo>
   <foo>
-  example:foo
 }
 
 ---
@@ -21,10 +20,33 @@ VALUES ?var {
     (data_block
       (var)
       (iri_reference)
-      (iri_reference)
-      (prefixed_name 
-        (namespace (pn_prefix))
-        (pn_local)))))
+      (iri_reference))))
+
+===============
+Prefixed names
+===============
+
+SELECT * {}
+
+VALUES ?var {
+  example:foo
+  example :foo
+  example: foo
+}
+
+---
+
+(unit
+  (select_query
+    (select_clause)
+    (where_clause (group_graph_pattern)))
+  (values_clause (data_block
+    (var)
+    (prefixed_name (pname_ns) (pn_local))
+    (ERROR (UNEXPECTED ' '))
+    (prefixed_name (pname_ns) (pn_local))
+    (prefixed_name (pname_ns))
+    (ERROR (UNEXPECTED '\n')))))
 
 =========
 Literals
@@ -65,13 +87,13 @@ VALUES ?var {
       (rdf_literal (string)) 
       (boolean_literal) 
       (rdf_literal (string)
-      (prefixed_name (namespace (pn_prefix)) (pn_local))) 
+      (prefixed_name (pname_ns) (pn_local))) 
       (decimal)
       (decimal)
       (double)
       (rdf_literal 
         (string) 
-        (prefixed_name (namespace (pn_prefix)) (pn_local))))))
+        (prefixed_name (pname_ns) (pn_local))))))
 
 =======================
 String escape sequence
@@ -129,20 +151,20 @@ SELECT * {
           (triples_same_subject
             (blank_node_property_list
               (property_list (property
-                (path_element (prefixed_name (namespace) (pn_local)))
+                (path_element (prefixed_name (pname_ns) (pn_local)))
                 (object_list (rdf_literal (string)))))))
           (triples_same_subject
             (anon)
             (property_list (property
-              (path_element (prefixed_name (namespace) (pn_local)))
+              (path_element (prefixed_name (pname_ns) (pn_local)))
               (object_list (rdf_literal (string))))))
           (triples_same_subject
-            (prefixed_name (namespace) (pn_local))
+            (prefixed_name (pname_ns) (pn_local))
             (property_list (property
-              (path_element (prefixed_name (namespace) (pn_local)))
+              (path_element (prefixed_name (pname_ns) (pn_local)))
               (object_list
                 (blank_node_property_list (property_list (property
-                  (path_element (prefixed_name (namespace) (pn_local)))
+                  (path_element (prefixed_name (pname_ns) (pn_local)))
                   (object_list (rdf_literal (string)))))))))))))))
 
 ====

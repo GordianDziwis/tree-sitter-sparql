@@ -105,7 +105,7 @@ module.exports = grammar({
     $._query
   ],
 
-  word: $ => $.pn_prefix,
+  word: $ => $.pname_ns,
 
   rules: {
 
@@ -167,7 +167,7 @@ module.exports = grammar({
     // [6]
     prefix_declaration: $ => seq(
       'PREFIX'.toCaseInsensitiv(),
-      $.namespace,
+      $.pname_ns,
       $.iri_reference
     ),
 
@@ -1217,10 +1217,9 @@ module.exports = grammar({
 
 
     // [137]
-    // [141]
-    prefixed_name: $ => seq(
-      $.namespace,
-      optional($.pn_local)
+    prefixed_name: $ => choice(
+      $.pname_ns,
+      $._pname_ln
     ),
 
     // [138]
@@ -1237,9 +1236,25 @@ module.exports = grammar({
     ),
 
     // [140]
-    namespace: $ => seq(
-      optional($.pn_prefix),
+    // [168]
+    pname_ns: $ => token(seq(
+      optional(seq(
+        choice(...PN_CHARS_BASE),
+        optional(seq(
+          repeat(choice(
+            ...PN_CHARS,
+            '.'
+          )),
+          choice(...PN_CHARS)
+        ))
+      )),
       ':'
+    )),
+
+    // [141]
+    _pname_ln: $ => seq(
+      $.pname_ns,
+      $.pn_local
     ),
 
     // [142]
@@ -1353,18 +1368,6 @@ module.exports = grammar({
       ']'
     )),
 
-    // [168]
-    pn_prefix: $ => token(seq(
-      choice(...PN_CHARS_BASE),
-      optional(seq(
-        repeat(choice(
-          ...PN_CHARS,
-          '.'
-        )),
-        choice(...PN_CHARS)
-      ))
-    )),
-
     // [169]
     pn_local: $ => token.immediate(seq(
       choice(
@@ -1390,5 +1393,6 @@ module.exports = grammar({
         )
       ))
     )),
+
   }
 });

@@ -12,16 +12,19 @@ GROUP BY (?s AS ?x)
 VALUES ?x { 'a' }
 
 # Signed and unsigned numeric
-SELECT (- 1 AS ?x) (-1 AS ?y) {
+SELECT (- 1 AS ?x) (-1 AS ?y) (?a > ?x AS ?y) {
   # Seperate triples by highlight
   ?s  <p> foo:o .
+  ?s  <p> foo:o .
   _:s <p> $o .
+  # a is recognized
+  ?s a ?o .
   # Paths
   ?s ^:p/:p|:p? ?o .
   ?s !(^:p|:p) ?o
   # Different highlight for build in function and function call
   FILTER RAND()
-  FILTER function:foo()
+  FILTER function:foo(?s)
   FILTER <foo>()
 }
 VALUES ?a {
@@ -33,4 +36,5 @@ VALUES ?a {
   'foo\tbar\\foo\bar'
   # Hash in string
   '#foo'
+  <foo>
 }
