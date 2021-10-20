@@ -114,31 +114,8 @@ Rdf:type
 SELECT *
 
 WHERE {
-  ?s a ?o .
-  [ a :o ] ?p ?o
+  a:a :a : .
 }
 
 ---
 
-(unit
-  (select_query
-    (select_clause)
-    (where_clause
-      (group_graph_pattern
-        (triples_block
-          (triples_same_subject
-            (var)
-            (property_list
-              (property
-                (path_element)
-                (object_list (var)))))
-          (triples_same_subject
-            (blank_node_property_list
-              (property_list
-                (property
-                  (path_element)
-                  (object_list (prefixed_name (pname_ns) (pn_local))))))
-            (property_list
-              (property
-                (var)
-                (object_list (var))))))))))

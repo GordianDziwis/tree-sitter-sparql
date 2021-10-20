@@ -20,18 +20,18 @@ const WS = [
 const PN_CHARS_BASE = [
   /[A-Z]/,
   /[a-z]/,
-  /[\u00C0-\u00D6]/,
-  /[\u00D8-\u00F6]/,
-  /[\u00F8-\u02FF]/,
-  /[\u0370-\u037D]/,
-  /[\u037F-\u1FFF]/,
-  /[\u200C-\u200D]/,
-  /[\u2070-\u218F]/,
-  /[\u2C00-\u2FEF]/,
-  /[\u3001-\uD7FF]/,
-  /[\uF900-\uFDCF]/,
-  /[\uFDF0-\uFFFD]/,
-  /[\u{10000}-\u{EFFFF}]/u
+  // /[\u00C0-\u00D6]/,
+  // /[\u00D8-\u00F6]/,
+  // /[\u00F8-\u02FF]/,
+  // /[\u0370-\u037D]/,
+  // /[\u037F-\u1FFF]/,
+  // /[\u200C-\u200D]/,
+  // /[\u2070-\u218F]/,
+  // /[\u2C00-\u2FEF]/,
+  // /[\u3001-\uD7FF]/,
+  // /[\uF900-\uFDCF]/,
+  // /[\uFDF0-\uFFFD]/,
+  // /[\u{10000}-\u{EFFFF}]/u
 ]
 
 // [165]
@@ -105,7 +105,7 @@ module.exports = grammar({
     $._query
   ],
 
-  word: $ => $.pname_ns,
+  word: $ => $.pn_local,
 
   rules: {
 
@@ -127,7 +127,43 @@ module.exports = grammar({
       ),
       optional($.values_clause)
     ),
+    // [141]
+    pname_ln: $ => prec.dynamic(10, seq(
+      $.pname_ns,
+      $.pn_local
+    )),
 
+
+    prefixed_name: $ => prec.right(10,choice(
+      prec.right(10, $.pname_ln),
+      prec.right(-10, $.pname_ns)
+    )),
+  pn_local: $ => token.immediate(seq(
+      choice(
+        ...PN_CHARS_U,
+        ':',
+        /[0-9]/,
+        seq('%', choice(...HEX), choice(...HEX)),
+        ...PN_LOCAL_ESC
+      ),
+      optional(seq(
+        repeat(choice(
+          ...PN_CHARS,
+          '.',
+          ':',
+          seq('%', choice(...HEX), choice(...HEX)),
+          ...PN_LOCAL_ESC
+        )),
+        choice(
+          ...PN_CHARS,
+          ':',
+          seq('%', choice(...HEX), choice(...HEX)),
+          ...PN_LOCAL_ESC
+        )
+      ))
+    )),
+
+ 
     // [3, 29-30]
     _update: $ => seq(
       optional($.prologue),
@@ -1217,10 +1253,7 @@ module.exports = grammar({
 
 
     // [137]
-    prefixed_name: $ => choice(
-      $.pname_ns,
-      $._pname_ln
-    ),
+
 
     // [138]
     _blank_node: $ => choice(
@@ -1234,28 +1267,8 @@ module.exports = grammar({
       token.immediate(/([^<>"{}|^`\\\x00-\x20])*/),
       token.immediate('>')
     ),
+    //
 
-    // [140]
-    // [168]
-    pname_ns: $ => token(seq(
-      optional(seq(
-        choice(...PN_CHARS_BASE),
-        optional(seq(
-          repeat(choice(
-            ...PN_CHARS,
-            '.'
-          )),
-          choice(...PN_CHARS)
-        ))
-      )),
-      ':'
-    )),
-
-    // [141]
-    _pname_ln: $ => seq(
-      $.pname_ns,
-      $.pn_local
-    ),
 
     // [142]
     blank_node_label: $ => seq(
@@ -1369,30 +1382,21 @@ module.exports = grammar({
     )),
 
     // [169]
-    pn_local: $ => token.immediate(seq(
-      choice(
-        ...PN_CHARS_U,
-        ':',
-        /[0-9]/,
-        seq('%', choice(...HEX), choice(...HEX)),
-        ...PN_LOCAL_ESC
-      ),
+     // [140]
+    // [168]
+    pname_ns: $ => token(prec(-10, seq(
       optional(seq(
-        repeat(choice(
-          ...PN_CHARS,
-          '.',
-          ':',
-          seq('%', choice(...HEX), choice(...HEX)),
-          ...PN_LOCAL_ESC
-        )),
-        choice(
-          ...PN_CHARS,
-          ':',
-          seq('%', choice(...HEX), choice(...HEX)),
-          ...PN_LOCAL_ESC
-        )
-      ))
-    )),
+        choice(...PN_CHARS_BASE),
+        optional(seq(
+          repeat(choice(
+            ...PN_CHARS,
+            '.'
+          )),
+          choice(...PN_CHARS)
+        ))
+      )),
+      ':'
+    ))),
 
   }
 });

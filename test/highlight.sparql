@@ -17,7 +17,8 @@ SELECT (- 1 AS ?x) (-1 AS ?y) (?a > ?x AS ?y) {
   ?s  <p> foo:o .
   ?s  <p> foo:o .
   _:s <p> $o .
-  # a is recognized
+  # a != :a
+  :a <p> <o>.
   ?s a ?o .
   # Paths
   ?s ^:p/:p|:p? ?o .

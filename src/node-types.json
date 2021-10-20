@@ -1474,6 +1474,25 @@
     }
   },
   {
+    "type": "pname_ln",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "pn_local",
+          "named": true
+        },
+        {
+          "type": "pname_ns",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "prefix_declaration",
     "named": true,
     "fields": {},
@@ -1497,11 +1516,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "pn_local",
+          "type": "pname_ln",
           "named": true
         },
         {
